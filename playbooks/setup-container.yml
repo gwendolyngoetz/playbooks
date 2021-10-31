@@ -1,0 +1,47 @@
+---
+#- hosts: local_lxc_containers
+- hosts: new
+  become: true
+  become_user: root
+  tasks:
+    - name: Clear motd directory
+      shell: rm -f /etc/update-motd.d/*
+
+    - name: Copy motd
+      copy:
+        src: ../templates/01-custom.j2
+        dest: /etc/update-motd.d/01-custom
+        owner: root
+        group: root
+        mode: '0755'
+    
+    - name: Set timezone to Pacific
+      community.general.timezone: 
+        name: America/Los_Angeles 
+
+    - name: Set NTP to use the local NTP server
+      copy:
+        src: ../templates/timesyncd.conf.j2
+        dest: /etc/systemd/timesyncd.conf
+        owner: root
+        group: root
+
+    - name: Restart NTP service
+      service:
+        name: systemd-timesyncd
+        state: restarted
+        
+    - name: Install vim
+      apt: name=vim state=present
+
+    - name: Install htop
+      apt: name=htop state=present
+
+    - name: Install zip
+      apt: name=zip state=present
+
+    - name: Install unzip
+      apt: name=unzip state=present
+
+    - name: Install curl
+      apt: name=curl state=present

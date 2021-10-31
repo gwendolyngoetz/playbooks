@@ -1,0 +1,36 @@
+---
+- hosts: new 
+  become: true
+  tasks:
+    - name: Update apt
+      apt:
+        update_cache: yes
+
+    - name: Install required system packages
+      apt: name={{ item }} state=latest
+      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common' ]
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt: update_cache=yes name=docker-ce state=latest
+
+    - name: Install docker-compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 
+        dest: /usr/local/bin/docker-compose
+        mode: '+x'
+
+    - name: Symlink docker-compose
+      ansible.builtin.file:
+        src: /usr/local/bin/docker-compose
+        dest: /usr/bin/docker-compose
+        state: link

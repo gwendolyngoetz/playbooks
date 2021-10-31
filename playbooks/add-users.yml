@@ -1,0 +1,19 @@
+---
+- hosts: local_lxc_containers
+  vars:
+    var_username: gwendolyn
+  become: true
+  become_user: root
+  tasks:
+    - name: Add my user account
+      user:
+        name: "{{ var_username }}"
+        createhome: yes
+        shell: /bin/bash
+        groups: sudo
+      register: newuser
+
+    - name: set password
+      shell: /usr/bin/openssl passwd -6 -salt "p3x515" "{{ vault_gwendolyn_password }}" | awk '{print "{{ var_username }}:"$1}' | chpasswd -e
+      when: newuser.changed
+
