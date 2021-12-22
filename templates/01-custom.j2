@@ -1,7 +1,7 @@
 #!/bin/sh
 
 hostname=$(hostname)
-server_ip=$(hostname -I)
+server_ip=$(hostname -I | cut -d' ' -f1)
 
 printf "* \e[1;35m$hostname\e[m -> \e[33m$server_ip\e[m"
 echo ""
