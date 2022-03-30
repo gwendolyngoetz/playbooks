@@ -1,8 +1,8 @@
 - block:
-#  - name: Download intellij package
-#    ansible.builtin.get_url:
-#      url: https://download.jetbrains.com/product?code=IU&latest&distribution=linux
-#      dest: /tmp/intellij.tar.gz
+  - name: Download intellij package
+    ansible.builtin.get_url:
+      url: https://download.jetbrains.com/product?code=IU&latest&distribution=linux
+      dest: /tmp/intellij.tar.gz
 
   - name: Make sure ~/.local/bin exists
     ansible.builtin.file:
@@ -14,11 +14,12 @@
     ansible.builtin.unarchive:
       src: /tmp/intellij.tar.gz
       dest: /opt/intellij
-      owner: gwendolyn
-      group: gwendolyn
+      owner: {{ ansible_user_id }}
+      group: {{ ansible_user_id }}
       remote_src: yes
 
-#  - name: Remove package.tar file
-#    ansible.builtin.file:
-#      path: /tmp/intellij.tar.gz
-#      state: absent
+  - name: Remove package tar file
+    ansible.builtin.file:
+      path: /tmp/intellij.tar.gz
+      state: absent
+  become: true
