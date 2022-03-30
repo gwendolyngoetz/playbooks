@@ -22,12 +22,12 @@
   - name: Run docker rootless setup tool
     ansible.builtin.command: /usr/bin/dockerd-rootless-setuptool.sh install
 
-  - name: 
+  - name: Set path
     ansible.builtin.lineinfile: 
       path: ~/.bashrc
       line: export PATH=/usr/bin:$PATH
 
-  - name: 
+  - name: Set docker host
     ansible.builtin.lineinfile: 
       path: ~/.bashrc
       line: export DOCKER_HOST=unix:///run/user/1000/docker.sock
