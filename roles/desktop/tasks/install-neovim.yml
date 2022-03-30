@@ -1,0 +1,9 @@
+- block:
+  - name: Install Neovim
+    ansible.builtin.apt_repository:
+      repo: ppa:neovim-ppa/unstable
+
+  - name: Install neovim
+    ansible.builtin.package:
+      name: neovim
+  become: true

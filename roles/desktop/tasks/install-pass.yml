@@ -1,0 +1,10 @@
+- block:
+  - name: Install pass
+    ansible.builtin.package:
+      name:
+        - pass
+        - pass-extension-otp
+  become: true
+  # Configure gpg
+
+

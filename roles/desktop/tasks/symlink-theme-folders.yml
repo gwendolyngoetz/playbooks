@@ -1,0 +1,38 @@
+- block:
+  - name: Make .themes directory
+    ansible.builtin.file:
+      path: ~/.themes
+      state: directory
+
+  - name: Make .fonts directory
+    ansible.builtin.file:
+      path: ~/.fonts
+      state: directory
+  
+  - name: Make .icons directory
+    ansible.builtin.file:
+      path: ~/.icons
+      state: directory
+
+
+- block:
+  - name: Link .themes to root
+    ansible.builtin.file:
+      src: /home/gwendolyn/.themes
+      dest: /root/.themes
+      state: link
+
+  - name: Link .fonts to root
+    ansible.builtin.file:
+      src: /home/gwendolyn/.fonts
+      dest: /root/.fonts
+      state: link
+
+  - name: Link .icons to root
+    ansible.builtin.file:
+      src: /home/gwendolyn/.icons
+      dest: /root/.icons
+      state: link
+  become: true
+
+  # fix absolute paths

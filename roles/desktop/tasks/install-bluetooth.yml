@@ -1,0 +1,8 @@
+- block:
+  - name: Install Bluetooth
+    ansible.builtin.package:
+      name:
+        - bluez
+        - bluez-tools
+        - blueman
+  become: true

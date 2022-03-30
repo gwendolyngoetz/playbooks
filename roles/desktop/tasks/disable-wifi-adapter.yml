@@ -1,0 +1,12 @@
+- block:
+  - name: Disable Wifi Adapter
+    ansible.builtin.blockinfile:
+      path: /etc/modprobe.d/blacklist.conf
+      mode: 0644
+      owner: root
+      group: root
+      create: yes
+      block: |
+        # 12/12/2021 Block wifi
+        blacklist iwlwifi
+  become: true

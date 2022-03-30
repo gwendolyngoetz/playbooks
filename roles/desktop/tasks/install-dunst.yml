@@ -1,0 +1,37 @@
+- block:
+  - name: Install dunst dependencies
+    ansible.builtin.package:
+      name:
+        - libdbus-1-dev
+        - libglib2.0-dev
+        - libgtk2.0-dev
+        - libnotify-dev
+        - libpango1.0-dev
+        - libx11-dev
+        - libxdg-basedir-dev
+        - libxinerama-dev
+        - libxrandr-dev
+        - libxss-dev
+    become: true
+
+  - name: Clone dunst
+    ansible.builtin.git:
+      repo: https://github.com/dunst-project/dunst.git
+      dest: ~/src/github/system-repos/dunst
+
+  - name: Make dunst build directory
+    ansible.builtin.file:
+      path: ~/src/github/system-repos/dunst/build
+      state: directory
+      mode: 0755
+
+  - name: Run dunst - make
+    ansible.builtin.command: make WAYLAND=0 SYSTEMD=0 SYSCONFDIR=/etc/xdg
+    args:
+      chdir: ~/src/github/system-repos/dunst
+
+  - name: Run dunst - make install
+    ansible.builtin.command: make WAYLAND=0 SYSTEMD=0 SYSCONFDIR=/etc/xdg install
+    args:
+      chdir: /home/gwendolyn/src/github/system-repos/dunst # fix absolute path
+    become: true

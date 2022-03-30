@@ -1,0 +1,10 @@
+- block:
+  - name: Install apps used by i3
+    ansible.builtin.package:
+      name:
+        - feh
+        - flameshot
+        - thunar
+        - wmctrl
+        - zenity
+  become: true

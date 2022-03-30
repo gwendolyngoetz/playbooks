@@ -1,0 +1,15 @@
+- block:
+  - name: Clone dracula qt5 theme
+    ansible.builtin.git:
+      repo: https://github.com/dracula/qt5.git
+      dest: ~/src/github/system-repos/qt5-dracula-theme
+
+  - name: Make qt5 theme directory
+    ansible.builtin.file:
+      path: ~/.config/qt5ct/colors 
+      state: directory
+      
+  - name: Copy dracula.conf
+    ansible.builtin.copy:
+      src: ~/src/github/system-repos/qt5-dracula-theme/Dracula.conf
+      dest: ~/.config/qt5ct/colors/Dracula.conf

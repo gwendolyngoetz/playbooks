@@ -1,0 +1,9 @@
+- block:
+  - name: Add alacritty ppa 
+    ansible.builtin.apt_repository:
+      repo: ppa:aslatter/ppa
+
+  - name: Install alacritty
+    ansible.builtin.package:
+      name: alacritty
+  become: true

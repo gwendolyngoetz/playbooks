@@ -1,0 +1,8 @@
+- block:
+  - name: Install breeze theme packages
+    ansible.builtin.package:
+      name:
+        - breeze-gtk-theme
+        - breeze-icon-theme
+        - breeze-cursor-theme
+  become: true

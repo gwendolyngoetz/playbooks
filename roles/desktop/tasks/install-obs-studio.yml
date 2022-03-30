@@ -1,0 +1,16 @@
+- block:
+  - name: Install OBS Studio dependencies
+    ansible.builtin.package:
+      name:
+        - ffmpeg
+        - v4l2loopback-dkms
+
+  - name: Add obs studio ppa 
+    ansible.builtin.apt_repository:
+      repo: ppa:obsproject/obs-studio
+
+  - name: Install obs studio
+    ansible.builtin.package:
+      name:
+        - obs-studio
+  become: true

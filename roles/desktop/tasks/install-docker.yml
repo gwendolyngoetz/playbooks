@@ -1,0 +1,39 @@
+- block:
+  - name: Install required system packages
+    ansible.builtin.package:
+      name: 
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+
+  - name: Add Docker GPG apt Key
+    ansible.builtin.apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+      state: present
+
+  - name: Add Docker Repository
+    ansible.builtin.apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu focal stable
+      state: present
+
+  - name: Update apt and install docker-ce
+    ansible.builtin.package: 
+      name:
+        - docker-ce
+
+  - name: Install docker-compose
+    ansible.builtin.get_url: 
+      url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-linux-x86_64
+      dest: /usr/local/bin/docker-compose
+      mode: '+x'
+
+  - name: Symlink docker-compose
+    ansible.builtin.file:
+      src: /usr/local/bin/docker-compose
+      dest: /usr/bin/docker-compose
+      state: link
+
+  vars:
+    docker_compose_version: v2.3.4
+  become: true

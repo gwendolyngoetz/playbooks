@@ -1,0 +1,21 @@
+- block:
+  - name: Remove snapd 
+    apt:
+      name: snapd
+      state: absent
+      purge: yes
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Remove snapd-related directories
+    file:
+      path: "{{ snap_folder }}"
+      state: absent
+    loop:
+      - /snap
+      - /var/snap
+      - /var/lib/snapd
+      - ~/snap
+    loop_control:
+      loop_var: snap_folder
+    when: ansible_distribution == "Ubuntu"
+  become: true

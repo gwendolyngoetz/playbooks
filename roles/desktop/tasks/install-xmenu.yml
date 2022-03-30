@@ -1,0 +1,23 @@
+- block:
+  - name: Install xmenu dependencies
+    ansible.builtin.package:
+      name:
+        - libxinerama-dev
+        - libimlib2-dev
+    become: true
+
+  - name: Clone xmenu
+    ansible.builtin.git:
+      repo: https://github.com/phillbush/xmenu.git
+      dest: ~/src/github/system-repos/xmenu
+
+  - name: Run xmenu - make
+    ansible.builtin.command: make
+    args:
+      chdir: ~/src/github/system-repos/xmenu
+
+  - name: Run xmenu - make install
+    ansible.builtin.command: make install
+    args:
+      chdir: /home/gwendolyn/src/github/system-repos/xmenu #fix absolute path
+    become: true

@@ -1,0 +1,9 @@
+- name: Run Work Desktop Role
+  include_tasks: "{{ item }}"
+  loop:
+    - install-base-tools.yml
+    - install-vscode.yml
+    - install-intellij.yml
+    - install-docker.yml
+    - install-docker-compose.yml
+    - configure-docker-rootless.yml

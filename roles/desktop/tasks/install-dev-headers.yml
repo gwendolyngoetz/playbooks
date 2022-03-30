@@ -1,0 +1,7 @@
+- block:
+  - name: Install dev headers
+    ansible.builtin.package:
+      name:
+        - libssl-dev
+        - libxml2-utils
+  become: true

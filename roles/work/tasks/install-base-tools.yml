@@ -1,0 +1,21 @@
+- block:
+  - name: Update apt cache
+    apt:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install base tools
+    ansible.builtin.package:
+      name: 
+        - git
+        - vim
+        - firefox
+        - htop
+        - meld
+        - ttf-mscorefonts-installer
+        - unzip
+        - zip
+        - linux-image-extra-virtual
+  become: true    
+

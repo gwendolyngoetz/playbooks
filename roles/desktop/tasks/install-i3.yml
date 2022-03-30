@@ -1,0 +1,61 @@
+- block:
+  - name: Install i3 build tools
+    ansible.builtin.package:
+      name:
+        - gcc
+        - make
+        - meson
+    become: true
+
+  - name: Install i3 dependency libraries
+    ansible.builtin.package:
+      name:
+        - libxcb1-dev
+        - libxcb-keysyms1-dev
+        - libpango1.0-dev 
+        - libxcb-util0-dev 
+        - libxcb-icccm4-dev 
+        - libyajl-dev 
+        - libstartup-notification0-dev 
+        - libxcb-randr0-dev 
+        - libev-dev 
+        - libxcb-cursor-dev 
+        - libxcb-xinerama0-dev
+        - libxcb-xkb-dev 
+        - libxkbcommon-dev 
+        - libxkbcommon-x11-dev 
+        - autoconf 
+        - libxcb-xrm0 
+        - libxcb-xrm-dev 
+        - automake 
+        - libxcb-shape0-dev
+    become: true
+
+  - name: Clone i3 from github
+    ansible.builtin.git:
+      repo: https://www.github.com/Airblader/i3.git
+      dest: ~/src/github/system-repos/i3-gaps
+      clone: yes
+      update: yes
+
+  - name: Make i3 build directory
+    ansible.builtin.file:
+      path: ~/src/github/system-repos/i3-gaps/build 
+      state: directory
+      mode: 0755
+
+  - name: Run i3 - meson
+    ansible.builtin.command: meson ..
+    args:
+      chdir: ~/src/github/system-repos/i3-gaps/build
+
+  - name: Run i3 - ninja 
+    ansible.builtin.command: ninja
+    args:
+      chdir: ~/src/github/system-repos/i3-gaps/build
+
+  - name: Run i3 - ninja install 
+    ansible.builtin.command: ninja install
+    args:
+      chdir: /home/gwendolyn/src/github/system-repos/i3-gaps/build  # todo: fix absolute path
+    become: true

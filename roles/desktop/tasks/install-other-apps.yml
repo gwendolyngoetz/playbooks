@@ -1,0 +1,5 @@
+- name: Install apps used by other things
+  ansible.builtin.package:
+    name:
+      - libnotify-bin
+  become: true

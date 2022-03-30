@@ -1,0 +1,17 @@
+- block:
+  - name: one
+    debug: 
+      msg: on no {{ minevar }}
+
+  - name: two
+    command: ls
+  - name: three
+    command: ls
+  rescue:
+  - name: four
+    command: ls
+  always:
+  - name: five
+    command: ls
+  vars:
+    minevar: asdf

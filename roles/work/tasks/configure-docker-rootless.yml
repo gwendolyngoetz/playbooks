@@ -1,0 +1,41 @@
+- block:
+  - name: Install required system packages
+    ansible.builtin.package:
+      name: 
+        - dbus-user-session
+        - uidmap
+
+  - name: Disable system-wide docker daemon service
+    ansible.builtin.systemd:
+      name: docker.service
+      state: stopped
+      enabled: no
+
+  - name: Disable system-wide docker daemon socket
+    ansible.builtin.systemd:
+      name: docker.socket
+      state: stopped
+      enabled: no
+  become: true
+
+- block:
+  - name: Run docker rootless setup tool
+    ansible.builtin.command: /usr/bin/dockerd-rootless-setuptool.sh install
+
+  - name: 
+    ansible.builtin.lineinfile: 
+      path: ~/.bashrc
+      line: export PATH=/usr/bin:$PATH
+
+  - name: 
+    ansible.builtin.lineinfile: 
+      path: ~/.bashrc
+      line: export DOCKER_HOST=unix:///run/user/1000/docker.sock
+
+  - name: Enable user docker daemon socket
+    ansible.builtin.systemd:
+      name: docker.service
+      scope: user
+      state: started
+      enabled: yes
+

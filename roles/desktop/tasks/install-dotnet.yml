@@ -1,0 +1,3 @@
+- name: Install dotnet
+  ansible.builtin.package:
+    name: dotnet-sdk-6.0

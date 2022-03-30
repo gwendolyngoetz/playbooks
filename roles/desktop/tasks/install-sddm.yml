@@ -1,0 +1,61 @@
+- block:
+  - name: Install sddm
+    ansible.builtin.package:
+      name: sddm
+    become: true
+
+  - name: Generate default SDDM config file
+    ansible.builtin.shell: sddm --example-config | tee /etc/sddm.conf
+    become: true
+
+  - name: Clone Chili SDDM Theme
+    ansible.builtin.git:
+      repo: https://github.com/MarianArlt/sddm-chili.git
+      dest: ~/src/github/system-repos/sddm-chili
+
+  - name: Create chili theme directory
+    ansible.builtin.file:
+      path: /usr/share/sddm/themes/chili
+      state: directory
+    become: true
+
+  - name: Copy chili theme to sddm themes folder
+    ansible.builtin.command: rsync -av -exclude=".*" . /usr/share/sddm/themes/chili
+    args:
+      chdir: /home/gwendolyn/src/github/system-repos/sddm-chili # fix absolute path
+    become: true
+
+  - name: Install chili theme dependencies
+    ansible.builtin.package:
+      name:
+        - qml-module-qtquick-controls
+        - qml-module-qtquick-controls2
+    become: true
+
+  - name: Set SDDM theme
+    ansible.builtin.shell: sed -i 's/^Current=[a-zA-Z0-9-]*$/Current=chili/g' /etc/sddm.conf
+    become: true
+
+  - name: Set up user icon
+    ansible.builtin.file:
+      src: ~/.face
+      dest: ~/.face.icon
+      state: link
+
+  - name: Give sddm user access to home
+    ansible.posix.acl:
+      path: /home/gwendolyn
+      entity: sddm
+      etype: user
+      permissions: x
+      state: present
+    become: true
+      
+  - name: Give sddm user access to home/.face.icon
+    ansible.posix.acl:
+      path: /home/gwendolyn/.face.icon
+      entity: sddm
+      etype: user
+      permissions: r
+      state: present
+    become: true

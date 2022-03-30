@@ -1,0 +1,19 @@
+- block:
+  - name: Update apt cache
+    apt:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install base tools
+    ansible.builtin.package:
+      name: 
+        - exa
+        - git
+        - network-manager
+        - vim
+        - firefox
+        - rsync
+        - acl
+        - apt-utils
+  become: true

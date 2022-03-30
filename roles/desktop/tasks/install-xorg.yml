@@ -1,0 +1,13 @@
+- block:
+  - name: Install Xorg
+    ansible.builtin.package:
+      name:
+        - xorg
+    become: true
+
+  - name: Configure .xinitrc to run i3
+    ansible.builtin.lineinfile:
+      path: ~/.xinitrc
+      line: exec i3
+      create: yes
+

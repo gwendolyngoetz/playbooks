@@ -1,0 +1,18 @@
+- block:
+  - name: Install Audio tools
+    ansible.builtin.package:
+      name:
+        - pavucontrol
+        - alsa-utils
+        
+  - name: Add to Audio group
+    user:
+      name: "{{ username }}"
+      groups: audio
+      state: present
+      append: yes
+    loop:
+      - gwendolyn
+    loop_control:
+      loop_var: username
+  become: true

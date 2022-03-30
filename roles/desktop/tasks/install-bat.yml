@@ -1,0 +1,18 @@
+- block:
+  - name: Install bat
+    ansible.builtin.package:
+      name: bat
+    become: true
+    
+  - name: Make sure ~/.local/bin exists
+    ansible.builtin.file:
+      path: ~/.local/bin
+      state: directory
+      mode: '0755'
+
+  - name: Set up user icon
+    ansible.builtin.file:
+      src: /usr/bin/batcat
+      dest: ~/.local/bin/bat
+      state: link
+  
