@@ -1,0 +1,8 @@
+- block:
+  - name: Install pinta flatpak - Pinta simple image editor
+    community.general.flatpak:
+      name: com.github.PintaProject.Pinta
+
+  - name: Install blanket flatpak - Background sounds
+    community.general.flatpak:
+      name: com.rafaelmardojai.Blanket
