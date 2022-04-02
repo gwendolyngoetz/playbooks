@@ -7,7 +7,7 @@
 
   - name: Configure .xinitrc to run i3
     ansible.builtin.lineinfile:
-      path: ~/.xinitrc
+      path: $HOME/.xinitrc
       line: exec i3
       create: yes
 

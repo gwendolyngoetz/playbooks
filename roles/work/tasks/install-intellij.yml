@@ -4,7 +4,7 @@
       url: https://download.jetbrains.com/product?code=IU&latest&distribution=linux
       dest: /tmp/intellij.tar.gz
 
-  - name: Make sure ~/.local/bin exists
+  - name: Make sure /opt/intellij exists
     ansible.builtin.file:
       path: /opt/intellij
       state: directory
@@ -14,8 +14,8 @@
     ansible.builtin.unarchive:
       src: /tmp/intellij.tar.gz
       dest: /opt/intellij
-      owner: {{ ansible_user_id }}
-      group: {{ ansible_user_id }}
+      owner: "{{ ansible_user_id }}"
+      group: "{{ ansible_user_id }}"
       remote_src: yes
 
   - name: Remove package tar file

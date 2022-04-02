@@ -1,17 +1,17 @@
-- block:
-  - name: one
-    debug: 
-      msg: on no {{ minevar }}
+- name: userid become=true
+  debug:
+    msg: "{{ ansible_user_id }}"
+  become: true
 
-  - name: two
-    command: ls
-  - name: three
-    command: ls
-  rescue:
-  - name: four
-    command: ls
-  always:
-  - name: five
-    command: ls
-  vars:
-    minevar: asdf
+- name: make dir
+  ansible.builtin.file:
+    path: /tmp/test123
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_user_id }}"
+    mode: 0755
+  become: true
+
+- name: userid become=false
+  debug:
+    msg: "{{ ansible_user_id }}"

@@ -17,21 +17,21 @@
   - name: Clone dunst
     ansible.builtin.git:
       repo: https://github.com/dunst-project/dunst.git
-      dest: ~/src/github/system-repos/dunst
+      dest: $HOME/src/github/system-repos/dunst
 
   - name: Make dunst build directory
     ansible.builtin.file:
-      path: ~/src/github/system-repos/dunst/build
+      path: $HOME/src/github/system-repos/dunst/build
       state: directory
       mode: 0755
 
   - name: Run dunst - make
     ansible.builtin.command: make WAYLAND=0 SYSTEMD=0 SYSCONFDIR=/etc/xdg
     args:
-      chdir: ~/src/github/system-repos/dunst
+      chdir: $HOME/src/github/system-repos/dunst
 
   - name: Run dunst - make install
     ansible.builtin.command: make WAYLAND=0 SYSTEMD=0 SYSCONFDIR=/etc/xdg install
     args:
-      chdir: /home/gwendolyn/src/github/system-repos/dunst # fix absolute path
+      chdir: $HOME/src/github/system-repos/dunst
     become: true

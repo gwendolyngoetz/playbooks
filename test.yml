@@ -1,7 +1,6 @@
 ---
 - hosts: new
   name: Test playbook
-  become: true
   become_user: root
   roles:
     - test

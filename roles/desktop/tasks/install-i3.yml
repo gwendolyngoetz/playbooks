@@ -34,28 +34,28 @@
   - name: Clone i3 from github
     ansible.builtin.git:
       repo: https://www.github.com/Airblader/i3.git
-      dest: ~/src/github/system-repos/i3-gaps
+      dest: $HOME/src/github/system-repos/i3-gaps
       clone: yes
       update: yes
 
   - name: Make i3 build directory
     ansible.builtin.file:
-      path: ~/src/github/system-repos/i3-gaps/build 
+      path: $HOME/src/github/system-repos/i3-gaps/build 
       state: directory
       mode: 0755
 
   - name: Run i3 - meson
     ansible.builtin.command: meson ..
     args:
-      chdir: ~/src/github/system-repos/i3-gaps/build
+      chdir: $HOME/src/github/system-repos/i3-gaps/build
 
   - name: Run i3 - ninja 
     ansible.builtin.command: ninja
     args:
-      chdir: ~/src/github/system-repos/i3-gaps/build
+      chdir: $HOME/src/github/system-repos/i3-gaps/build
 
   - name: Run i3 - ninja install 
     ansible.builtin.command: ninja install
     args:
-      chdir: /home/gwendolyn/src/github/system-repos/i3-gaps/build  # todo: fix absolute path
+      chdir: $HOME/src/github/system-repos/i3-gaps/build
     become: true

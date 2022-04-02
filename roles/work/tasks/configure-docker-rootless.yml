@@ -24,12 +24,12 @@
 
   - name: Set path
     ansible.builtin.lineinfile: 
-      path: ~/.bashrc
+      path: $HOME/.bashrc
       line: export PATH=/usr/bin:$PATH
 
   - name: Set docker host
     ansible.builtin.lineinfile: 
-      path: ~/.bashrc
+      path: $HOME/.bashrc
       line: export DOCKER_HOST=unix:///run/user/1000/docker.sock
 
   - name: Enable user docker daemon socket

@@ -45,7 +45,7 @@
         - /snap
         - /var/snap
         - /var/lib/snapd
-        - ~/snap
+        - $HOME/snap
       when: ansible_distribution == "Ubuntu"
 
     - name: Install qemu-guest-agent

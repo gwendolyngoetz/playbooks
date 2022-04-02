@@ -39,5 +39,6 @@
     - install-nodejs.yml
     - install-printing.yml
     - install-flatpak.yml
-###    - install-intellij.yml
+    - install-flatpak-apps.yml
+    - install-intellij.yml
     - install-docker.yml
