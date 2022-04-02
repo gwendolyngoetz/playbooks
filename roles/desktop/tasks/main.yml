@@ -14,7 +14,7 @@
     - load-dotfiles.yml
     - install-alacritty.yml
     - install-sddm.yml
-    - install-polybar.ymo
+    - install-polybar.yml
     - install-i3-apps.yml
     - install-dunst.yml
     - install-rofi.yml
