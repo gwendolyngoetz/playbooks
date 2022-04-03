@@ -7,7 +7,7 @@
         
   - name: Add to Audio group
     user:
-      name: "{{ ansible_user_id }}"
+      name: "{{ lookup('env', 'USER') }}"
       groups: audio
       state: present
       append: yes

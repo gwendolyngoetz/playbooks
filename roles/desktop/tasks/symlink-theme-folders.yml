@@ -18,19 +18,19 @@
 - block:
   - name: Link .themes to root
     ansible.builtin.file:
-      src: $HOME/.themes
+      src: "{{ lookup('env', 'HOME') }}/.themes"
       dest: /root/.themes
       state: link
 
   - name: Link .fonts to root
     ansible.builtin.file:
-      src: $HOME/.fonts
+      src: "{{ lookup('env', 'HOME') }}/.fonts"
       dest: /root/.fonts
       state: link
 
   - name: Link .icons to root
     ansible.builtin.file:
-      src: $HOME/.icons
+      src: "{{ lookup('env', 'HOME') }}/.icons"
       dest: /root/.icons
       state: link
   become: true

@@ -57,5 +57,5 @@
   - name: Run i3 - ninja install 
     ansible.builtin.command: ninja install
     args:
-      chdir: $HOME/src/github/system-repos/i3-gaps/build
+      chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/i3-gaps/build"
     become: true

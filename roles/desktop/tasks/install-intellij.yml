@@ -14,8 +14,8 @@
     ansible.builtin.unarchive:
       src: /tmp/intellij.tar.gz
       dest: /opt/intellij
-      owner: "{{ ansible_user_id }}"
-      group: "{{ ansible_user_id }}"
+      owner: "{{ lookup('env', 'USER') }}"
+      group: "{{ lookup('env', 'USER') }}"
       remote_src: yes
 
   - name: Remove package tar file

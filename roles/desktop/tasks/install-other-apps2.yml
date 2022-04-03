@@ -2,6 +2,7 @@
   - name: Install other apps
     ansible.builtin.package:
       name:
+        - arandr
         - darktable
         - fd-find
         - gimp

@@ -1,6 +1,6 @@
 - name: userid become=true
   debug:
-    msg: "{{ ansible_user_id }}"
+    msg: "{{ ansible_user_id }} {{ lookup('env', 'HOME') }}"
   become: true
 
 - name: make dir
@@ -14,4 +14,4 @@
 
 - name: userid become=false
   debug:
-    msg: "{{ ansible_user_id }}"
+    msg: "{{ ansible_user_id }} {{ lookup('env', 'HOME') }}"

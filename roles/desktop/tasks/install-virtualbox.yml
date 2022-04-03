@@ -1,13 +1,13 @@
 - block:
   - name: Accept virtualbox-ext-pack seen license
-    debconf:
+    ansible.builtin.debconf:
       name: virtualbox-ext-pack
       question: virtualbox-ext-pack/license
       value: 'true'
       vtype: seen
 
   - name: Accept virtualbox-ext-pack select license
-    debconf:
+    ansible.builtin.debconf:
       name: virtualbox-ext-pack
       question: virtualbox-ext-pack/license
       value: 'true'

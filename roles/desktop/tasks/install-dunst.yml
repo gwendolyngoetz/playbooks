@@ -33,5 +33,5 @@
   - name: Run dunst - make install
     ansible.builtin.command: make WAYLAND=0 SYSTEMD=0 SYSCONFDIR=/etc/xdg install
     args:
-      chdir: $HOME/src/github/system-repos/dunst
+      chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/dunst"
     become: true

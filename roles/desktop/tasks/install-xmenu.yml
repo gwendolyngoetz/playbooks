@@ -19,5 +19,5 @@
   - name: Run xmenu - make install
     ansible.builtin.command: make install
     args:
-      chdir: $HOME/src/github/system-repos/xmenu
+      chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/xmenu"
     become: true

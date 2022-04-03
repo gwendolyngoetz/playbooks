@@ -14,7 +14,8 @@
       - /snap
       - /var/snap
       - /var/lib/snapd
-      - $HOME/snap
+      - $HOME/snap  # root
+      - "{{ lookup('env', 'HOME') }}/snap" # nonroot
     loop_control:
       loop_var: snap_folder
     when: ansible_distribution == "Ubuntu"

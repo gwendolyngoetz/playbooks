@@ -22,7 +22,7 @@
   - name: Copy chili theme to sddm themes folder
     ansible.builtin.command: rsync -av -exclude=".*" . /usr/share/sddm/themes/chili
     args:
-      chdir: $HOME/src/github/system-repos/sddm-chili
+      chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/sddm-chili"
     become: true
 
   - name: Install chili theme dependencies
@@ -44,7 +44,7 @@
 
   - name: Give sddm user access to $HOME
     ansible.posix.acl:
-      path: $HOME
+      path: "{{ lookup('env', 'HOME') }}"
       entity: sddm
       etype: user
       permissions: x
@@ -53,7 +53,7 @@
       
   - name: Give sddm user access to $HOME/.face.icon
     ansible.posix.acl:
-      path: $HOME/.face.icon
+      path: "{{ lookup('env', 'HOME') }}/.face.icon"
       entity: sddm
       etype: user
       permissions: r
