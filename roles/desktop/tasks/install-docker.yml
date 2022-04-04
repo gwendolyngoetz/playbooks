@@ -6,21 +6,32 @@
         - ca-certificates
         - curl
         - software-properties-common
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install required system packages
+    ansible.builtin.package:
+      name: 
+        - ca-certificates
+        - curl
+    when: ansible_distribution == "Fedora"
 
   - name: Add Docker GPG apt Key
     ansible.builtin.apt_key:
       url: https://download.docker.com/linux/ubuntu/gpg
       state: present
+    when: ansible_distribution == "Ubuntu"
 
   - name: Add Docker Repository
     ansible.builtin.apt_repository:
       repo: deb https://download.docker.com/linux/ubuntu focal stable
       state: present
+    when: ansible_distribution == "Ubuntu"
 
   - name: Update apt and install docker-ce
     ansible.builtin.package: 
       name:
         - docker-ce
+    when: ansible_distribution == "Ubuntu"
 
   - name: Install docker-compose
     ansible.builtin.get_url: 

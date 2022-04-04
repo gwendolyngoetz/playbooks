@@ -14,5 +14,5 @@
     ansible.builtin.file:
       src: /usr/bin/batcat
       dest: $HOME/.local/bin/bat
-      state: link
-  
+      state: link  
+    when: ansible_distribution == "Ubuntu"

@@ -12,6 +12,22 @@
         - libxinerama-dev
         - libxrandr-dev
         - libxss-dev
+    when: ansible_distribution == "Ubuntu"
+    become: true
+
+  - name: Install dunst dependencies
+    ansible.builtin.package:
+      name:
+        - dbus-devel 
+        - libX11-devel 
+        - libXrandr-devel 
+        - glib2-devel 
+        - pango-devel 
+        - gtk3-devel 
+        - libxdg-basedir-devel
+        - libXScrnSaver-devel
+        - libnotify-devel
+    when: ansible_distribution == "Fedora"
     become: true
 
   - name: Clone dunst

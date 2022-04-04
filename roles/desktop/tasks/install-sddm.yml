@@ -30,6 +30,16 @@
       name:
         - qml-module-qtquick-controls
         - qml-module-qtquick-controls2
+    when: ansible_distribution == "Ubuntu"
+    become: true
+
+  - name: Install chili theme dependencies
+    ansible.builtin.package:
+      name:
+        - qt5-qtquickcontrols
+        - qt5-qtquickcontrols2
+        - qt5-qtgraphicaleffects
+    when: ansible_distribution == "Fedora"
     become: true
 
   - name: Set SDDM theme

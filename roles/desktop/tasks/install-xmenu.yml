@@ -4,6 +4,15 @@
       name:
         - libxinerama-dev
         - libimlib2-dev
+    when: ansible_distribution == "Ubuntu"
+    become: true
+    
+  - name: Install xmenu dependencies
+    ansible.builtin.package:
+      name:
+        - libXinerama-devel
+        - imlib2-devel
+    when: ansible_distribution == "Fedora"
     become: true
 
   - name: Clone xmenu

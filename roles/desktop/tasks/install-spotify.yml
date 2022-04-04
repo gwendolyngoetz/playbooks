@@ -2,15 +2,24 @@
   - name: Add spotify package key
     ansible.builtin.apt_key:
       url: https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg
+    when: ansible_distribution == "Ubuntu"
 
   - name: Add spotify ppa 
     ansible.builtin.apt_repository:
       repo: deb http://repository.spotify.com stable non-free
       state: present
       filename: spotify
+    when: ansible_distribution == "Ubuntu"
 
   - name: Install spotify
     ansible.builtin.package:
-      name:
-        - spotify-client
+      name: spotify-client
+    when: ansible_distribution == "Ubuntu"
+
+#  - name: Install spotify
+#    ansible.builtin.package:
+#      name: lpf-spotify-client
+#    when: ansible_distribution == "Fedora"
+
+
   become: true

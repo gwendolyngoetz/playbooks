@@ -1,5 +1,14 @@
-- name: Install apps used by other things
-  ansible.builtin.package:
-    name:
-      - libnotify-bin
-  become: true
+- block:
+  - name: Install apps used by other things
+    ansible.builtin.package:
+      name:
+        - libnotify-bin
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install apps used by other things
+    ansible.builtin.package:
+      name:
+        - libnotify
+    when: ansible_distribution == "Fedora"
+    become: true
+    

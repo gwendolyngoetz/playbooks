@@ -2,6 +2,7 @@
   - name: Add solaar ppa 
     ansible.builtin.apt_repository:
       repo: ppa:solaar-unifying/stable
+    when: ansible_distribution == "Ubuntu"
 
   - name: Install solaar
     ansible.builtin.package:

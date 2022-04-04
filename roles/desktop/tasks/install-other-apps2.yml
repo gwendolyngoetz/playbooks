@@ -26,4 +26,36 @@
         - youtube-dl
         - zathura
         - zip
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install other apps
+    ansible.builtin.package:
+      name:
+        - arandr
+        - darktable
+        - fd-find
+        - gimp
+        - htop
+        - keepassxc
+        - libreoffice
+        - lxappearance
+        - meld
+        - glx-utils  #for glxinfo
+        - neofetch
+        - newsboat
+        - nfs-utils
+        - polkit-gnome
+        - qt5ct
+        - thunar
+        - tmux
+        - unzip
+        - xdotool
+        - xsel
+        - youtube-dl
+        - zathura
+        - zip
+    when: ansible_distribution == "Fedora"
+
+# sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+
   become: true    

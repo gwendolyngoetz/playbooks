@@ -4,4 +4,13 @@
       name:
         - libssl-dev
         - libxml2-utils
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install dev headers
+    ansible.builtin.package:
+      name:
+        - openssl-devel
+        - libxml2-devel
+    when: ansible_distribution == "Fedora"
+
   become: true
