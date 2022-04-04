@@ -10,10 +10,15 @@
       name: 
         - exa
         - git
-        - network-manager
         - vim
         - firefox
         - rsync
         - acl
+
+  - name: Install base tools
+    ansible.builtin.package:
+      name: 
+        - network-manager
         - apt-utils
+    when: ansible_distribution == "Ubuntu"
   become: true

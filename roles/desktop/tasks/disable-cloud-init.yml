@@ -4,4 +4,5 @@
       path: /etc/cloud/cloud-init.disabled
       state: touch
       mode: 0644
+    when: ansible_distribution == "Ubuntu"
   become: true
