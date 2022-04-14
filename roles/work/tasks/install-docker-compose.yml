@@ -1,15 +1,14 @@
 - block:
+  - name: Create docker cli-plugins folder
+    file:
+      path: $HOME/.docker/cli-plugins
+      state: directory
+
   - name: Install docker-compose
     ansible.builtin.get_url: 
       url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-linux-x86_64
-      dest: /usr/local/bin/docker-compose
+      dest: $HOME/.docker/cli-plugins/docker-compose
       mode: '+x'
-
-  - name: Symlink docker-compose
-    ansible.builtin.file:
-      src: /usr/local/bin/docker-compose
-      dest: /usr/bin/docker-compose
-      state: link
 
   vars:
     docker_compose_version: v2.3.4
