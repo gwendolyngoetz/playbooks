@@ -15,8 +15,3 @@
     community.general.flatpak:
       name: com.rafaelmardojai.Blanket
       method: user
-
-  - name: Install Slack flatpak
-    community.general.flatpak:
-      name: com.slack.Slack
-      method: user
