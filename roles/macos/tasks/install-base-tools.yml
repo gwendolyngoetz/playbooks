@@ -1,0 +1,21 @@
+- block:
+  - name: Install Homebrew Apps
+    community.general.homebrew:
+      name: 
+        - bash
+        - exa
+        - fd
+        - htop
+        - neofetch
+        - neovim
+        - vim
+        - firefox
+        - git
+    when: ansible_distribution == "MacOSX"
+
+  - name: Install Neovim
+    community.general.homebrew:
+      name: neovim
+      install_options: --HEAD
+    when: ansible_distribution == "MacOSX"
+

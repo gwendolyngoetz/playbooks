@@ -1,0 +1,20 @@
+- name: Run Mac Role
+  include_tasks: "{{ item }}"
+  loop:
+    #- install-homebrew.yml
+    - install-base-tools.yml
+    # - load-dotfiles.yml
+    # - install-alacritty.yml
+    # - install-other-apps.yml
+    # - install-obs-studio.yml
+    # - install-streamdeck.yml
+    # - install-other-apps2.yml
+    # - install-bat.yml
+    # - install-pass.yml
+    # - install-fonts.yml
+    # - install-neovim.yml
+    # - install-spotify.yml
+    # - install-dotnet.yml
+    # - install-nodejs.yml
+    # - install-intellij.yml
+    # - install-docker.yml
