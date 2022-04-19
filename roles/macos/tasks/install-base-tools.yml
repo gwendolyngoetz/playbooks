@@ -19,3 +19,9 @@
       install_options: --HEAD
     when: ansible_distribution == "MacOSX"
 
+  - name: Install Docker
+    community.general.homebrew:
+      name: homebrew/cask/docker
+    when: ansible_distribution == "MacOSX"
+
+

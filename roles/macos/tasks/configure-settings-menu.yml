@@ -1,0 +1,6 @@
+- block:
+  - community.general.osx_defaults:
+      domain: com.apple.menuextra.clock
+      key: DateFormat
+      type: string
+      value: "EEE MMM d h:mm a"

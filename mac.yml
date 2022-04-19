@@ -1,7 +1,6 @@
 ---
 - hosts: new
   name: Install Mac
-#  become: true
   become_user: root
   roles:
     - macos
