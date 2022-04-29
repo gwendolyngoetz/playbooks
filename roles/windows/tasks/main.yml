@@ -1,0 +1,7 @@
+- name: Run Windows Role
+  include_tasks: "{{ item }}"
+  loop:
+    - install-base-tools.yml
+    - remove-all-user-folders.yml
+    - update-office-settings.yml
+    - update-outlook-settings.yml

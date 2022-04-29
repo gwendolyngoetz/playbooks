@@ -1,0 +1,48 @@
+- block:
+  # AutoSave
+  - name: Disable Excel AutoSave
+    ansible.windows.win_regedit:
+      path: HKCU:\Software\Microsoft\Office\16.0\Excel
+      name: DontAutoSave
+      data: 1
+      type: dword
+
+  - name: Disable PowerPoint AutoSave
+    ansible.windows.win_regedit:
+      path: HKCU:\Software\Microsoft\Office\16.0\PowerPoint
+      name: DontAutoSave
+      data: 1
+      type: dword
+
+  - name: Disable Word AutoSave
+    ansible.windows.win_regedit:
+      path: HKCU:\Software\Microsoft\Office\16.0\Word
+      name: DontAutoSave
+      data: 1
+      type: dword
+
+  # Start Screen
+  - name: Disable Excel Start Screen
+    ansible.windows.win_regedit:
+      path: HKCU:\Software\Microsoft\Office\16.0\Excel\Options
+      name: DisableBootToOfficeStart
+      data: 1
+      type: dword
+
+  - name: Disable Word Start Screen
+    ansible.windows.win_regedit:
+      path: HKCU:\Software\Microsoft\Office\16.0\PowerPoint\Options
+      name: DisableBootToOfficeStart
+      data: 1
+      type: dword
+
+  - name: Disable Excel Start Screen
+    ansible.windows.win_regedit:
+      path: HKCU:\Software\Microsoft\Office\16.0\Word\Options
+      name: DisableBootToOfficeStart
+      data: 1
+      type: dword
+
+
+  become: true    
+
