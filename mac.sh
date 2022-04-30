@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ansible-playbook -K -i hosts ./mac.yml
+ansible-playbook -K -i hosts ./plays/mac.yml

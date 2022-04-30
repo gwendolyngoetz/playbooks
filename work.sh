@@ -2,4 +2,4 @@
 
 sudo apt install ansible
 
-ansible-playbook -K -i hosts ./work.yml
+ansible-playbook -K -i hosts ./plays/work.yml

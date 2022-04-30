@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ansible-playbook -K -i hosts ./test.yml
+ansible-playbook -K -i hosts ./plays/test.yml
