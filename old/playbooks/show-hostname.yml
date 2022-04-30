@@ -1,5 +1,0 @@
----
-- hosts: local_lxc_containers
-  tasks:
-    - name: show hostname
-      command: echo hostname

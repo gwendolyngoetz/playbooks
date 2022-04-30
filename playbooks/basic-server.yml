@@ -1,0 +1,7 @@
+---
+- hosts: local_vm_servers
+  name: Install Basic Server
+  become_user: root
+  become: yes
+  roles:
+    - basic-server
