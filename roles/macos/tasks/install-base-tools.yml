@@ -3,14 +3,16 @@
     community.general.homebrew:
       name: 
         - bash
+        - bat
         - exa
         - fd
+        - firefox
+        - git
         - htop
         - neofetch
         - neovim
+        - tldr
         - vim
-        - firefox
-        - git
     when: ansible_distribution == "MacOSX"
 
   - name: Install Neovim
