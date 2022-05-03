@@ -6,3 +6,5 @@
         - bluez-tools
         - blueman
   become: true
+  tags:
+  - apps

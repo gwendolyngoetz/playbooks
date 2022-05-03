@@ -9,3 +9,5 @@
       name:
         - solaar
   become: true
+  tags:
+  - apps

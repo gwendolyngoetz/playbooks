@@ -11,6 +11,8 @@
         - "@base-x"
     when: ansible_distribution == "Fedora"
   become: true
+  tags:
+  - desktop
 
 - block:
   - name: Configure .xinitrc to run i3
@@ -18,4 +20,5 @@
       path: $HOME/.xinitrc
       line: exec i3
       create: yes
-
+  tags:
+  - desktop

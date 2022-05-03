@@ -17,3 +17,6 @@
   vars:
     nodejs_version: 16
   become: true
+  tags:
+  - dev
+  

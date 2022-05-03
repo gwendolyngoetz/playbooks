@@ -22,3 +22,5 @@
         - apt-utils
     when: ansible_distribution == "Ubuntu"
   become: true
+  tags:
+  - apps

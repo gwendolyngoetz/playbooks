@@ -4,7 +4,7 @@
       name:
         - pavucontrol
         - alsa-utils
-        
+
   - name: Add to Audio group
     user:
       name: "{{ lookup('env', 'USER') }}"
@@ -12,3 +12,6 @@
       state: present
       append: yes
   become: true
+  tags:
+    - apps
+    - system   

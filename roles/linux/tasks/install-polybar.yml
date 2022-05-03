@@ -40,7 +40,6 @@
         - libxcb-icccm4-dev
     when: ansible_distribution == "Ubuntu"
 
-
   - name: Install polybar required dependencies
     ansible.builtin.package:
       name:
@@ -83,7 +82,9 @@
         - libnl3-devel
     when: ansible_distribution == "Fedora"
   become: true
-        
+  tags:
+  - desktop
+
 - block:
   - name: Clone Polybar Repository
     ansible.builtin.git:
@@ -106,6 +107,8 @@
     ansible.builtin.shell: make -j$(nproc)
     args:
       chdir: $HOME/src/github/system-repos/polybar/build
+  tags:
+  - desktop
 
 - block:
   - name: Run polybar - make install 
@@ -113,3 +116,5 @@
     args:
       chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/polybar/build"
   become: true
+  tags:
+  - desktop

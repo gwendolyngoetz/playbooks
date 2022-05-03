@@ -3,3 +3,5 @@
     ansible.builtin.package:
       name: cups
   become: true
+  tags:
+  - system

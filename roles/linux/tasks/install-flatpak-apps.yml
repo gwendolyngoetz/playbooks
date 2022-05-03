@@ -15,3 +15,5 @@
     community.general.flatpak:
       name: com.rafaelmardojai.Blanket
       method: user
+  tags:
+  - apps

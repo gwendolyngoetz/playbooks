@@ -21,5 +21,6 @@
 #      name: lpf-spotify-client
 #    when: ansible_distribution == "Fedora"
 
-
   become: true
+  tags:
+  - apps

@@ -44,7 +44,9 @@
       dest: $HOME/.docker/cli-plugins
       mode: '+x'
 
-
   vars:
     docker_compose_version: v2.3.4
   become: true
+  tags:
+  - dev
+  - container

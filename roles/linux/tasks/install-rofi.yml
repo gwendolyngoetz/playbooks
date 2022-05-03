@@ -38,3 +38,5 @@
     args:
       chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/rofi/build"
     become: true
+  tags:
+  - desktop

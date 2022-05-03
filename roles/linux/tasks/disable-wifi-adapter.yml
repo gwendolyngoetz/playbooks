@@ -10,3 +10,5 @@
         # 12/12/2021 Block wifi
         blacklist iwlwifi
   become: true
+  tags:
+  - system

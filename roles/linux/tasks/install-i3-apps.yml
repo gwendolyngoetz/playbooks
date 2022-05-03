@@ -8,3 +8,6 @@
         - wmctrl
         - zenity
   become: true
+  tags:
+  - apps
+  - desktop

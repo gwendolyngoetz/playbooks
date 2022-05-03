@@ -31,8 +31,10 @@
   - name: Reload udev rules
     ansible.builtin.command: udevadm control --reload-rules
 
-  - name: install streamdeck ui
-    pip:
+  - name: Install streamdeck ui
+    ansible.builtin.pip:
       name: 
         - streamdeck_ui
   become: true
+  tags:
+  - apps

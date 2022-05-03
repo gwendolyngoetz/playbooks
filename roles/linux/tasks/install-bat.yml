@@ -16,3 +16,5 @@
       dest: $HOME/.local/bin/bat
       state: link  
     when: ansible_distribution == "Ubuntu"
+  tags:
+  - apps

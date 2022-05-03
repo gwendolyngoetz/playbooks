@@ -19,3 +19,5 @@
         - virtualbox
         - virtualbox-ext-pack
   become: true
+  tags:
+  - apps

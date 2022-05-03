@@ -26,3 +26,5 @@
       selection: hold
     when: ansible_distribution == "Ubuntu"
   become: true
+  tags:
+  - system

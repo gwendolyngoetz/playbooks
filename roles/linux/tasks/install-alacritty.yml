@@ -8,3 +8,5 @@
     ansible.builtin.package:
       name: alacritty
   become: true
+  tags:
+  - apps

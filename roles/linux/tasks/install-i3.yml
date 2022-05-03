@@ -85,3 +85,5 @@
     args:
       chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/i3-gaps/build"
     become: true
+  tags:
+  - desktop

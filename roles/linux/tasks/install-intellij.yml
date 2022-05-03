@@ -23,3 +23,5 @@
       path: /tmp/intellij.tar.gz
       state: absent
   become: true
+  tags:
+  - apps

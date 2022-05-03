@@ -16,3 +16,6 @@
 
   - name: Flush font cache
     ansible.builtin.command: fc-cache -fv
+  
+  tags:
+  - desktop

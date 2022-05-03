@@ -51,3 +51,5 @@
     args:
       chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/dunst"
     become: true
+  tags:
+  - desktop

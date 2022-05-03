@@ -14,3 +14,5 @@
       src: $HOME/src/github/system-repos/qt5-dracula-theme/Dracula.conf
       dest: $HOME/.config/qt5ct/colors/Dracula.conf
       remote_src: true
+  tags:
+  - desktop

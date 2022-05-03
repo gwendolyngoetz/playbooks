@@ -11,4 +11,5 @@
         - libnotify
     when: ansible_distribution == "Fedora"
     become: true
-    
+  tags:
+  - desktop
