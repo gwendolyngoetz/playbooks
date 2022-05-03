@@ -1,11 +1,11 @@
 - block:
-  - name: Install Xorg
+  - name: Install Xorg (Ubuntu)
     ansible.builtin.package:
       name:
         - xorg
     when: ansible_distribution == "Ubuntu"
 
-  - name: Install Xorg
+  - name: Install Xorg (Fedora)
     ansible.builtin.package:
       name: 
         - "@base-x"

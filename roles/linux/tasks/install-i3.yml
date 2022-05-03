@@ -7,7 +7,7 @@
         - meson
     become: true
 
-  - name: Install i3 dependency libraries
+  - name: Install i3 dependency libraries (Ubuntu)
     ansible.builtin.package:
       name:
         - libxcb1-dev
@@ -32,7 +32,7 @@
     when: ansible_distribution == "Ubuntu"
     become: true
 
-  - name: Install i3 dependency libraries
+  - name: Install i3 dependency libraries (Fedora)
     ansible.builtin.package:
       name:
         - libxcb-devel 

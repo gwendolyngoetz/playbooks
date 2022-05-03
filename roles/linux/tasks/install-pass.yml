@@ -1,12 +1,12 @@
 - block:
-  - name: Install pass
+  - name: Install pass (Ubuntu)
     ansible.builtin.package:
       name:
         - pass
         - pass-extension-otp
     when: ansible_distribution == "Ubuntu"
 
-  - name: Install pass
+  - name: Install pass (Fedora)
     ansible.builtin.package:
       name:
         - pass

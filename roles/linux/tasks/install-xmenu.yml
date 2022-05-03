@@ -1,5 +1,5 @@
 - block:
-  - name: Install xmenu dependencies
+  - name: Install xmenu dependencies (Ubuntu)
     ansible.builtin.package:
       name:
         - libxinerama-dev
@@ -7,7 +7,7 @@
     when: ansible_distribution == "Ubuntu"
     become: true
     
-  - name: Install xmenu dependencies
+  - name: Install xmenu dependencies (Fedora)
     ansible.builtin.package:
       name:
         - libXinerama-devel

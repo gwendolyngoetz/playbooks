@@ -1,5 +1,5 @@
 - block:
-  - name: Install polybar build dependencies
+  - name: Install polybar build dependencies (Ubuntu)
     ansible.builtin.package:
       name:
         - build-essential
@@ -12,7 +12,7 @@
         - python3-packaging
     when: ansible_distribution == "Ubuntu"
       
-  - name: Install polybar build dependencies
+  - name: Install polybar build dependencies (Fedora)
     ansible.builtin.package:
       name:
         - gcc-c++ 
@@ -24,7 +24,7 @@
         - python3-packaging
     when: ansible_distribution == "Fedora"
 
-  - name: Install polybar required dependencies
+  - name: Install polybar required dependencies (Ubuntu)
     ansible.builtin.package:
       name:
         - libuv1-dev 
@@ -40,7 +40,7 @@
         - libxcb-icccm4-dev
     when: ansible_distribution == "Ubuntu"
 
-  - name: Install polybar required dependencies
+  - name: Install polybar required dependencies (Fedora)
     ansible.builtin.package:
       name:
         - cairo-devel 
@@ -52,7 +52,7 @@
         - xcb-util-wm-devel
     when: ansible_distribution == "Fedora"
 
-  - name: Install polybar optional dependencies
+  - name: Install polybar optional dependencies (Ubuntu)
     ansible.builtin.package:
       name:
         - libxcb-xkb-dev
@@ -67,7 +67,7 @@
         - libnl-genl-3-dev
     when: ansible_distribution == "Ubuntu"
 
-  - name: Install polybar optional dependencies
+  - name: Install polybar optional dependencies (Fedora)
     ansible.builtin.package:
       name:
         - xcb-util-xrm-devel 

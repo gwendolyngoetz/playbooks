@@ -1,5 +1,5 @@
 - block:
-  - name: Install streamdeck dependencies
+  - name: Install streamdeck dependencies (Ubuntu)
     ansible.builtin.package:
       name:
         - python3-pip
@@ -7,7 +7,7 @@
         - libxcb-xinerama0
     when: ansible_distribution == "Ubuntu"
 
-  - name: Install streamdeck dependencies
+  - name: Install streamdeck dependencies (Fedora)
     ansible.builtin.package:
       name:
         - python3-pip

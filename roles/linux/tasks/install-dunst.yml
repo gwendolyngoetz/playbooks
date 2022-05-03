@@ -1,5 +1,5 @@
 - block:
-  - name: Install dunst dependencies
+  - name: Install dunst dependencies (Ubuntu)
     ansible.builtin.package:
       name:
         - libdbus-1-dev
@@ -15,7 +15,7 @@
     when: ansible_distribution == "Ubuntu"
     become: true
 
-  - name: Install dunst dependencies
+  - name: Install dunst dependencies (Fedora)
     ansible.builtin.package:
       name:
         - dbus-devel 

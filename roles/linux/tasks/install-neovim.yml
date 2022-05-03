@@ -1,10 +1,10 @@
 - block:
-  - name: Install Neovim
+  - name: Install Neovim PPA (Ubuntu)
     ansible.builtin.apt_repository:
       repo: ppa:neovim-ppa/unstable
     when: ansible_distribution == "Ubuntu"
 
-  - name: Enable project agriffis/neovim-nightly
+  - name: Enable project agriffis/neovim-nightly (Fedora)
     community.general.copr:
       name: agriffis/neovim-nightly
     when: ansible_distribution == "Fedora"

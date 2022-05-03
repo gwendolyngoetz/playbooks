@@ -1,5 +1,5 @@
 - block:
-  - name: Install required system packages
+  - name: Install required system packages (Ubuntu)
     ansible.builtin.package:
       name: 
         - apt-transport-https
@@ -8,7 +8,7 @@
         - software-properties-common
     when: ansible_distribution == "Ubuntu"
 
-  - name: Install required system packages
+  - name: Install required system packages (Fedora)
     ansible.builtin.package:
       name: 
         - ca-certificates

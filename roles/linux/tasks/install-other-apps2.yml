@@ -1,5 +1,5 @@
 - block:
-  - name: Install other apps
+  - name: Install other apps (Ubuntu)
     ansible.builtin.package:
       name:
         - arandr
@@ -28,7 +28,7 @@
         - zip
     when: ansible_distribution == "Ubuntu"
 
-  - name: Install other apps
+  - name: Install other apps (Fedora)
     ansible.builtin.package:
       name:
         - arandr
