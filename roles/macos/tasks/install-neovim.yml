@@ -1,24 +1,6 @@
 - block:
-  - name: Install neovim build dependencies (Ubuntu)
-    ansible.builtin.package:
-      name: 
-        - ninja-build
-        - gettext
-        - libtool
-        - autoconf
-        - automake
-        - cmake
-        - unzip
-        - curl
-        - doxygen
-        - libtool-bin
-        - g++
-        - pkg-config
-    when: ansible_distribution == "Ubuntu"
-    become: true
-
-  - name: Install neovim build dependencies (Fedora)
-    ansible.builtin.package:
+  - name: Install neovim build dependencies
+    community.general.homebrew:
       name: 
         - ninja-build
         - gettext
@@ -33,8 +15,8 @@
         - gcc-c++
         - make
         - pkgconfig 
-    when: ansible_distribution == "Fedora"
     become: true
+    when: ansible_distribution == "MacOSX"
 
   - name: Clone neovim from github
     ansible.builtin.git:

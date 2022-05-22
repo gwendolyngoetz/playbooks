@@ -3,6 +3,7 @@
   loop:
     #- install-homebrew.yml
     - install-base-tools.yml
+    - install-neovim.yml
     - configure-settings-menu.yml
     - configure-settings-textedit.yml
     - configure-settings-dock.yml
