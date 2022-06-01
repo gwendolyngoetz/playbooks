@@ -10,6 +10,7 @@
         - git
         - htop
         - neofetch
+        - ripgrep
         - tldr
         - vim
     when: ansible_distribution == "MacOSX"

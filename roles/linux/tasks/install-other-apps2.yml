@@ -17,6 +17,7 @@
         - nfs-common
         - policykit-1-gnome
         - qt5ct
+        - ripgrep
         - thunar
         - tmux
         - ttf-mscorefonts-installer
