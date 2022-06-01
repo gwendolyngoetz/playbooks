@@ -11,4 +11,4 @@
         blacklist iwlwifi
   become: true
   tags:
-  - system
+  - hestia
