@@ -36,6 +36,7 @@
     - symlink-theme-folders.yml
     - install-spotify.yml
     - install-dotnet.yml
+    - install-java.yml
     - install-nodejs.yml
     - install-printing.yml
     - install-flatpak.yml

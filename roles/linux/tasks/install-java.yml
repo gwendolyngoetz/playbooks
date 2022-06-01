@@ -1,0 +1,35 @@
+- block:
+  - name: Install OpenJDK-11 (Ubuntu)
+    ansible.builtin.package:
+      name:
+        - openjdk-11-jdk
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install OpenJDK-11 (Fedora)
+    ansible.builtin.package:
+      name: 
+        - java-11-openjdk-devel.x86_64
+    when: ansible_distribution == "Fedora"
+
+  become: true
+  tags:
+  - dev
+
+- block:
+  - name: Download Coursier
+    ansible.builtin.get_url:
+      url: https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz
+      dest: /tmp/cs-x86_64-pc-linux.gz
+
+  - name: Extract Coursier
+    ansible.builtin.unarchive:
+      src: /tmp/cs-x86_64-pc-linux.gz
+      dest: /tmp/cs
+      remote_src: yes
+      mode: '+x'
+  
+  - name: Install Coursier
+    ansible.builtin.command: /tmp/cs setup
+
+  - name: Install Metals
+    ansible.builtin.command: cs install metals
