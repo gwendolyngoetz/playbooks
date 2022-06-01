@@ -1,10 +1,16 @@
 - block:
+  - name: Check if Bluetooth Hardware Exists
+    shell: lsusb | grep Bluetooth | wc --lines
+    register: bluetooth_hardware_count
+    ignore_errors: true
+
   - name: Install Bluetooth
     ansible.builtin.package:
       name:
         - bluez
         - bluez-tools
         - blueman
-  become: true
+    when: (bluetooth_hardware_count.stdout|int) > 0
+    become: true
   tags:
   - apps
