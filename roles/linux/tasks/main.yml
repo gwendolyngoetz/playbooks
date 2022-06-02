@@ -38,6 +38,8 @@
     - install-dotnet.yml
     - install-java.yml
     - install-nodejs.yml
+    - install-npm-packages.yml
+    - install-cargo-packages.yml
     - install-printing.yml
     - install-flatpak.yml
     - install-flatpak-apps.yml

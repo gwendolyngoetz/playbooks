@@ -4,6 +4,7 @@
       name: 
         - bash
         - bat
+        - coursier/formulas/coursier
         - exa
         - fd
         - firefox
@@ -11,8 +12,10 @@
         - htop
         - neofetch
         - ripgrep
+        - rust
         - tldr
         - vim
+        - wget
     when: ansible_distribution == "MacOSX"
 
   - name: Install Neovim

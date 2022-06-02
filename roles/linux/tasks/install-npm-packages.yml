@@ -1,0 +1,18 @@
+- block:
+  - name: Install Prettier
+    community.general.npm:
+      name: prettier
+      global: yes
+
+  - name: Install Neovim Plugin
+    community.general.npm:
+      name: neovim
+      global: yes
+
+  - name: Install Yarn
+    community.general.npm:
+      name: yarn
+      global: yes
+
+  tags:
+  - dev

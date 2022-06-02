@@ -1,0 +1,7 @@
+- block:
+  - name: Install Stylua
+    community.general.cargo:
+      name: stylua
+
+  tags:
+  - dev
