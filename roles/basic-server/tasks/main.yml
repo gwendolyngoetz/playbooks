@@ -1,28 +1,6 @@
-- name: Clear motd directory
-  shell: rm -f /etc/update-motd.d/*
-
-- name: Copy motd
-  copy:
-    src: ../templates/01-custom.j2
-    dest: /etc/update-motd.d/01-custom
-    owner: root
-    group: root
-    mode: '0755'
-    
-- name: Set NTP to use the local NTP server
-  copy:
-    src: ../templates/timesyncd.conf.j2
-    dest: /etc/systemd/timesyncd.conf
-    owner: root
-    group: root
-
-- name: Restart NTP service
-  service:
-    name: systemd-timesyncd
-    state: restarted
-
-
-#- name: Install qemu-guest-agent
-#  apt:
-#    name: qemu-guest-agent
-
+- name: Run Base OS Role
+  include_tasks: "{{ item }}"
+  loop:
+    - set-motd.yml
+    - set-ntp-server.yml
+#    - install-qemu-agent.yml

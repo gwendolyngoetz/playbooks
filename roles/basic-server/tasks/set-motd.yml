@@ -1,0 +1,14 @@
+- block:
+  - name: Clear motd directory
+    shell: rm -f /etc/update-motd.d/*
+
+  - name: Copy motd
+    copy:
+      src: ../templates/01-custom.j2
+      dest: /etc/update-motd.d/01-custom
+      owner: root
+      group: root
+      mode: '0755'
+  become: true
+  tags:
+  - systen
