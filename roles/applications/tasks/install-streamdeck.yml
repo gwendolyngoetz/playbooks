@@ -1,0 +1,40 @@
+- block:
+  - name: Install streamdeck dependencies (Ubuntu)
+    ansible.builtin.package:
+      name:
+        - python3-pip
+        - libhidapi-libusb0
+        - libxcb-xinerama0
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install streamdeck dependencies (Fedora)
+    ansible.builtin.package:
+      name:
+        - python3-pip
+        - hidapi-devel
+        - libxcb
+    when: ansible_distribution == "Fedora"
+
+  - name: Configure udev rules
+    ansible.builtin.blockinfile:
+      path: /etc/udev/rules.d/70-streamdeck.rules
+      mode: 0644
+      owner: root
+      group: root
+      create: yes
+      block: |
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0060", TAG+="uaccess"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="0063", TAG+="uaccess"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006c", TAG+="uaccess"
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="0fd9", ATTRS{idProduct}=="006d", TAG+="uaccess"
+
+  - name: Reload udev rules
+    ansible.builtin.command: udevadm control --reload-rules
+
+  - name: Install streamdeck ui
+    ansible.builtin.pip:
+      name: 
+        - streamdeck_ui
+  become: true
+  tags:
+  - apps

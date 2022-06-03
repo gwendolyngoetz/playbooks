@@ -1,0 +1,5 @@
+- name: Run Desktop Role
+  include_tasks: "{{ item }}"
+  loop:
+    - disable-extra-ethernet-adapter.yml
+    - disable-wifi-adapter.yml

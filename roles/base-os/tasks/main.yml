@@ -1,0 +1,8 @@
+- name: Run Base OS Role
+  include_tasks: "{{ item }}"
+  loop:
+    - install-base-tools.yml
+    - remove-snapd.yml
+    - disable-cloud-init.yml
+    - set-timezone.yml
+    - install-bat.yml

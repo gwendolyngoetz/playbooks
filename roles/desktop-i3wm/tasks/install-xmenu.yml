@@ -1,0 +1,34 @@
+- block:
+  - name: Install xmenu dependencies (Ubuntu)
+    ansible.builtin.package:
+      name:
+        - libxinerama-dev
+        - libimlib2-dev
+    when: ansible_distribution == "Ubuntu"
+    become: true
+    
+  - name: Install xmenu dependencies (Fedora)
+    ansible.builtin.package:
+      name:
+        - libXinerama-devel
+        - imlib2-devel
+    when: ansible_distribution == "Fedora"
+    become: true
+
+  - name: Clone xmenu
+    ansible.builtin.git:
+      repo: https://github.com/phillbush/xmenu.git
+      dest: $HOME/src/github/system-repos/xmenu
+
+  - name: Run xmenu - make
+    ansible.builtin.command: make
+    args:
+      chdir: $HOME/src/github/system-repos/xmenu
+
+  - name: Run xmenu - make install
+    ansible.builtin.command: make install
+    args:
+      chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/xmenu"
+    become: true
+  tags:
+  - desktop

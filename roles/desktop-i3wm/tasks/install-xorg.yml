@@ -1,0 +1,24 @@
+- block:
+  - name: Install Xorg (Ubuntu)
+    ansible.builtin.package:
+      name:
+        - xorg
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install Xorg (Fedora)
+    ansible.builtin.package:
+      name: 
+        - "@base-x"
+    when: ansible_distribution == "Fedora"
+  become: true
+  tags:
+  - desktop
+
+- block:
+  - name: Configure .xinitrc to run i3
+    ansible.builtin.lineinfile:
+      path: $HOME/.xinitrc
+      line: exec i3
+      create: yes
+  tags:
+  - desktop

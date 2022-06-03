@@ -1,0 +1,14 @@
+- name: Run Apps Role
+  include_tasks: "{{ item }}"
+  loop:
+#    - install-virtualbox.yml
+    - install-pass.yml
+    - install-spotify.yml
+    - install-slack.yml
+    - install-flatpak.yml
+    - install-flatpak-apps.yml
+    - install-intellij.yml
+    - install-vscode.yml
+    - install-obs-studio.yml
+    - install-streamdeck.yml
+

@@ -1,0 +1,10 @@
+- block:
+  - name: Disable Cloud Init
+    ansible.builtin.file:
+      path: /etc/cloud/cloud-init.disabled
+      state: touch
+      mode: 0644
+    when: ansible_distribution == "Ubuntu"
+  become: true
+  tags:
+  - system

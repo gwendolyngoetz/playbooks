@@ -1,0 +1,6 @@
+- block:
+  - name: Install Slack package
+    ansible.builtin.deb: https://downloads.slack-edge.com/releases/linux/4.25.0/prod/x64/slack-desktop-4.25.0-amd64.deb
+  become: true
+  tags:
+  - apps

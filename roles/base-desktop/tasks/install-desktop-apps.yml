@@ -1,0 +1,41 @@
+- block:
+  - name: Install other apps (Common)
+    ansible.builtin.package:
+      name:
+        - arandr
+        - darktable
+        - gimp
+        - keepassxc
+        - libreoffice
+        - lxappearance
+        - meld
+        - newsboat
+        - qt5ct
+        - thunar
+        - tmux
+        - ttf-mscorefonts-installer
+        - youtube-dl
+        - zathura
+
+  - name: Install other apps (Ubuntu)
+    ansible.builtin.package:
+      name:
+        - mesa-utils  #for glxinfo
+        - nfs-common
+        - policykit-1-gnome
+        - ttf-mscorefonts-installer
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Install other apps (Fedora)
+    ansible.builtin.package:
+      name:
+        - glx-utils  #for glxinfo
+        - nfs-utils
+        - polkit-gnome
+    when: ansible_distribution == "Fedora"
+
+# sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+
+  become: true    
+  tags:
+  - apps

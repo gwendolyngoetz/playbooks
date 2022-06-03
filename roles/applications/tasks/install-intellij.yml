@@ -1,0 +1,27 @@
+- block:
+  - name: Download intellij package
+    ansible.builtin.get_url:
+      url: https://download.jetbrains.com/product?code=IU&latest&distribution=linux
+      dest: /tmp/intellij.tar.gz
+
+  - name: Make sure /opt/intellij exists
+    ansible.builtin.file:
+      path: /opt/intellij
+      state: directory
+      mode: 0755
+
+  - name: Extract intellij package
+    ansible.builtin.unarchive:
+      src: /tmp/intellij.tar.gz
+      dest: /opt/intellij
+      owner: "{{ lookup('env', 'USER') }}"
+      group: "{{ lookup('env', 'USER') }}"
+      remote_src: yes
+
+  - name: Remove package tar file
+    ansible.builtin.file:
+      path: /tmp/intellij.tar.gz
+      state: absent
+  become: true
+  tags:
+  - apps

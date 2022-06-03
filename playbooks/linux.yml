@@ -4,7 +4,13 @@
 #  become: true
   become_user: root
   roles:
-    - linux
+    - base-os
+    - hestia
+    - base-desktop
+    - desktop-i3wm
+    - sdks
+    - applications
+    - docker
 #  tasks:
 #    - local_action: 
 #        command ansible-galaxy install -r requirements.yml

@@ -1,0 +1,11 @@
+- name: Run Desktop Role
+  include_tasks: "{{ item }}"
+  loop:
+    - install-audio-tools.yml
+    - install-bluetooth.yml
+    - install-alacritty.yml
+    - install-other-apps.yml
+    - install-desktop-apps.yml
+    - install-fonts.yml
+    - install-neovim.yml
+    - install-printing.yml

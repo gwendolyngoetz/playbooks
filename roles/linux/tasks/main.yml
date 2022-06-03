@@ -1,18 +1,31 @@
 - name: Run Desktop Role
   include_tasks: "{{ item }}"
   loop:
+    # base
     - install-base-tools.yml
     - remove-snapd.yml
     - disable-cloud-init.yml
     - set-timezone.yml
+    - install-bat.yml
+
+    # hestia
     - disable-extra-ethernet-adapter.yml
     - disable-wifi-adapter.yml
+
+    # base2
     - install-audio-tools.yml
     - install-bluetooth.yml
-    - install-i3.yml
-    - install-xorg.yml
-    - load-dotfiles.yml
     - install-alacritty.yml
+    - install-other-apps.yml
+    - install-other-apps2.yml
+    - install-fonts.yml
+    - install-neovim.yml
+    - install-printing.yml
+
+    # desktop-i3wm
+    - install-xorg.yml
+    - install-i3.yml
+    - load-dotfiles.yml
     - install-sddm.yml
     - install-polybar.yml
     - install-i3-apps.yml
@@ -21,27 +34,29 @@
     - install-solaar.yml
     - install-polybar-apps.yml
     - install-xmenu.yml
-    - install-other-apps.yml
-    - install-obs-studio.yml
-    - install-streamdeck.yml
-    - install-other-apps2.yml
-#    - install-virtualbox.yml
-    - install-bat.yml
-    - install-pass.yml
     - install-themes-qt.yml
     - install-themes-gtk.yml
-    - install-dev-headers.yml
-    - install-fonts.yml
-    - install-neovim.yml
     - symlink-theme-folders.yml
-    - install-spotify.yml
+
+    # sdks
+    - install-dev-headers.yml
     - install-dotnet.yml
     - install-java.yml
     - install-nodejs.yml
     - install-npm-packages.yml
     - install-cargo-packages.yml
-    - install-printing.yml
+
+    # apps
+#    - install-virtualbox.yml
+    - install-pass.yml
+    - install-spotify.yml
+    - install-slack.yml
     - install-flatpak.yml
     - install-flatpak-apps.yml
     - install-intellij.yml
+    - install-vscode.yml
+    - install-obs-studio.yml
+    - install-streamdeck.yml
+
+    # docker
     - install-docker.yml

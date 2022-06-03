@@ -1,0 +1,7 @@
+- block:
+  - name: Install print support
+    ansible.builtin.package:
+      name: cups
+  become: true
+  tags:
+  - system

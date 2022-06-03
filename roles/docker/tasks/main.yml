@@ -1,0 +1,5 @@
+- name: Run Docker Role
+  include_tasks: "{{ item }}"
+  loop:
+    - install-docker.yml
+    - configure-docker-rootless.yml

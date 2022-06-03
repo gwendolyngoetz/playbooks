@@ -4,4 +4,5 @@
   become_user: root
   become: yes
   roles:
+    - base-os
     - basic-server
