@@ -1,0 +1,4 @@
+- name: Update apt repo and cache
+  include_tasks: "{{ item }}"
+  loop:
+    - upgrade-server.yml
