@@ -9,7 +9,6 @@
     - install-i3-apps.yml
     - install-dunst.yml
     - install-rofi.yml
-    - install-solaar.yml
     - install-polybar-apps.yml
     - install-xmenu.yml
     - install-themes-qt.yml

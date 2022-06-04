@@ -12,5 +12,6 @@
     ansible.builtin.package:
       name:
         - code
+  become: true
   tags:
   - apps

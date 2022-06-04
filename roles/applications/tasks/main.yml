@@ -4,7 +4,8 @@
 #    - install-virtualbox.yml
     - install-pass.yml
     - install-spotify.yml
-    - install-slack.yml
+    - install-solaar.yml
+    #- install-slack.yml
     - install-flatpak.yml
     - install-flatpak-apps.yml
     - install-intellij.yml

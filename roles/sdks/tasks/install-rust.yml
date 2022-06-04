@@ -1,0 +1,13 @@
+- block:
+  - name: Download Installer Rustup
+    ansible.builtin.get_url:
+      url: https://static.rust-lang.org/rustup.sh
+      dest: "/tmp/rustup.sh"
+      mode: "750"
+      validate_certs: no
+
+  - name: Run Installer Rustup
+    ansible.builtin.command:
+      cmd: "./rustup.sh -y"
+      chdir: "/tmp"
+      creates: "{{ lookup('env', 'HOME') }}/.cargo/bin/cargo"

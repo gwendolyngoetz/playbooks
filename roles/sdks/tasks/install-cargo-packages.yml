@@ -1,7 +1,11 @@
 - block:
-  - name: Install Stylua
-    community.general.cargo:
-      name: stylua
+  # - name: Install Stylua
+  #   community.general.cargo:
+  #     name: stylua
 
+  - name: Install Stylua
+    ansible.builtin.shell: 
+      cmd: ./cargo install stylua
+      chdir: "$HOME/.cargo/bin"
   tags:
   - dev

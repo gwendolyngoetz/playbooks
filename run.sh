@@ -1,6 +1,7 @@
 #!/bin/bash
 
 playbook="${1}"
+verbose="${2}"
 
 if [[ -z "${playbook}" ]]; then
     echo "Available playbooks"
@@ -12,6 +13,8 @@ if [[ -z "${playbook}" ]]; then
     exit 1
 fi
 
-
-ansible-playbook -K -i hosts ./playbooks/${playbook}.yml
-
+if [[ "${verbose}" == "verbose" ]]; then
+    ansible-playbook -vvv -K -i hosts ./playbooks/${playbook}.yml
+else
+    ansible-playbook -K -i hosts ./playbooks/${playbook}.yml
+fi

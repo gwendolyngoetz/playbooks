@@ -6,5 +6,6 @@
     - install-java.yml
     - install-nodejs.yml
     - install-npm-packages.yml
+    - install-rust.yml
     - install-cargo-packages.yml
 

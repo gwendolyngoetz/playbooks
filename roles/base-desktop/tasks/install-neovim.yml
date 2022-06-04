@@ -53,7 +53,7 @@
   - name: Run neovim - make install
     ansible.builtin.command: make install
     args:
-      chdir: $HOME/src/github/system-repos/neovim
+      chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/neovim"
     become: true
   tags:
   - apps

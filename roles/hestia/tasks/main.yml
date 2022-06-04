@@ -1,4 +1,4 @@
-- name: Run Desktop Role
+- name: Run Hestia Role
   include_tasks: "{{ item }}"
   loop:
     - disable-extra-ethernet-adapter.yml

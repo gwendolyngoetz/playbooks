@@ -13,6 +13,6 @@
     community.general.npm:
       name: yarn
       global: yes
-
+  become: true
   tags:
   - dev
