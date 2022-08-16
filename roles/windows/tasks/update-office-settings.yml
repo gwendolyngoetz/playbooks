@@ -43,6 +43,13 @@
       data: 1
       type: dword
 
+  - name: Use Classic Save As Dialog
+    ansible.windows.win_regedit:
+      path: HKCU:\Software\Microsoft\Office\16.0\Common\General
+      name: SkipOpenAndSaveAsPlace
+      data: 1
+      type: dword
+
 
   become: true    
 
