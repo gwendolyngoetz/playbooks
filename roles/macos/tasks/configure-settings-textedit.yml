@@ -1,13 +1,15 @@
-- block:
-  - community.general.osx_defaults:
-      domain: com.apple.TextEdit
-      key: RichText
-      type: bool
-      value: false
+- name: Configure Settings - TextEdit
+  block:
+    - name: Set community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.TextEdit
+        key: RichText
+        type: bool
+        value: false
 
-  - community.general.osx_defaults:
-      domain: com.apple.TextEdit
-      key: ShowRuler
-      type: bool
-      value: false
-
+    - name: Set community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.TextEdit
+        key: ShowRuler
+        type: bool
+        value: false

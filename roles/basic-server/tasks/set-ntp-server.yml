@@ -1,15 +1,16 @@
-- block:
-  - name: Set NTP to use the local NTP server
-    copy:
-      src: ../templates/timesyncd.conf.j2
-      dest: /etc/systemd/timesyncd.conf
-      owner: root
-      group: root
-
-  - name: Restart NTP service
-    service:
-      name: systemd-timesyncd
-      state: restarted
+- name: Set NTP Server
   become: true
   tags:
-  - system
+    - system
+  block:
+    - name: Set NTP to use the local NTP server
+      ansible.builtin.copy:
+        src: ../templates/timesyncd.conf.j2
+        dest: /etc/systemd/timesyncd.conf
+        owner: root
+        group: root
+
+    - name: Restart NTP service
+      ansible.builtin.service:
+        name: systemd-timesyncd
+        state: restarted

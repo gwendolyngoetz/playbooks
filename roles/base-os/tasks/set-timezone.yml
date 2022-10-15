@@ -1,7 +1,8 @@
-- block:
-  - name: Set timezone to Pacific
-    community.general.timezone:
-      name: America/Los_Angeles
+- name: Set Timezone
   become: true
   tags:
-  - system
+    - system
+  block:
+    - name: Set timezone to Pacific
+      community.general.timezone:
+        name: America/Los_Angeles

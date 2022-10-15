@@ -1,13 +1,14 @@
-- block:
-  - name: Add solaar ppa 
-    ansible.builtin.apt_repository:
-      repo: ppa:solaar-unifying/stable
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Install solaar
-    ansible.builtin.package:
-      name:
-        - solaar
+- name: Install solaar
   become: true
   tags:
-  - apps
+    - apps
+  block:
+    - name: Add solaar ppa
+      ansible.builtin.apt_repository:
+        repo: ppa:solaar-unifying/stable
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install solaar
+      ansible.builtin.package:
+        name:
+          - solaar

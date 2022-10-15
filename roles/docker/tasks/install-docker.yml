@@ -1,42 +1,42 @@
-- block:
-  - name: Install required system packages (Ubuntu)
-    ansible.builtin.package:
-      name: 
-        - apt-transport-https
-        - ca-certificates
-        - curl
-        - software-properties-common
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Install required system packages (Fedora)
-    ansible.builtin.package:
-      name: 
-        - ca-certificates
-        - curl
-    when: ansible_distribution == "Fedora"
-
-  - name: Add Docker GPG apt Key
-    ansible.builtin.apt_key:
-      url: https://download.docker.com/linux/ubuntu/gpg
-      state: present
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Add Docker Repository
-    ansible.builtin.apt_repository:
-      repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
-      state: present
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Update apt and install docker-ce
-    ansible.builtin.package: 
-      name:
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io
-        - docker-compose-plugin
-    when: ansible_distribution == "Ubuntu"
-
+- name: Install docker
   become: true
   tags:
-  - dev
-  - container
+    - dev
+    - container
+  block:
+    - name: Install required system packages (Ubuntu)
+      ansible.builtin.package:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install required system packages (Fedora)
+      ansible.builtin.package:
+        name:
+          - ca-certificates
+          - curl
+      when: ansible_distribution == "Fedora"
+
+    - name: Add Docker GPG apt Key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Add Docker Repository
+      ansible.builtin.apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+        state: present
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Update apt and install docker-ce
+      ansible.builtin.package:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-compose-plugin
+      when: ansible_distribution == "Ubuntu"

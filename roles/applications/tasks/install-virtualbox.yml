@@ -1,23 +1,24 @@
-- block:
-  - name: Accept virtualbox-ext-pack seen license
-    ansible.builtin.debconf:
-      name: virtualbox-ext-pack
-      question: virtualbox-ext-pack/license
-      value: 'true'
-      vtype: seen
-
-  - name: Accept virtualbox-ext-pack select license
-    ansible.builtin.debconf:
-      name: virtualbox-ext-pack
-      question: virtualbox-ext-pack/license
-      value: 'true'
-      vtype: select
-
-  - name: Install virtualbox
-    ansible.builtin.package:
-      name:
-        - virtualbox
-        - virtualbox-ext-pack
+- name: Install virtualbox
   become: true
   tags:
-  - apps
+    - apps
+  block:
+    - name: Accept virtualbox-ext-pack seen license
+      ansible.builtin.debconf:
+        name: virtualbox-ext-pack
+        question: virtualbox-ext-pack/license
+        value: 'true'
+        vtype: seen
+
+    - name: Accept virtualbox-ext-pack select license
+      ansible.builtin.debconf:
+        name: virtualbox-ext-pack
+        question: virtualbox-ext-pack/license
+        value: 'true'
+        vtype: select
+
+    - name: Install virtualbox
+      ansible.builtin.package:
+        name:
+          - virtualbox
+          - virtualbox-ext-pack

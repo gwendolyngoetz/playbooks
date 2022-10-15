@@ -1,24 +1,25 @@
-- block:
-  - name: Check if Audio Hardware Exists
-    shell: lsmod | grep "^snd" | wc --lines
-    register: audio_hardware_count
-    ignore_errors: true
-
-  - name: Install Audio tools
-    ansible.builtin.package:
-      name:
-        - pavucontrol
-        - alsa-utils
-    when: (audio_hardware_count.stdout|int) > 0
-
-  - name: Add to Audio group
-    user:
-      name: "{{ lookup('env', 'USER') }}"
-      groups: audio
-      state: present
-      append: yes
-    when: (audio_hardware_count.stdout|int) > 0
+- name: Install audio tools
   become: true
   tags:
     - apps
-    - system   
+    - system
+  block:
+    - name: Check if Audio Hardware Exists
+      ansible.builtin.shell: lsmod | grep "^snd" | wc --lines
+      register: audio_hardware_count
+      ignore_errors: true
+
+    - name: Install Audio tools
+      ansible.builtin.package:
+        name:
+          - pavucontrol
+          - alsa-utils
+      when: (audio_hardware_count.stdout|int) > 0
+
+    - name: Add to Audio group
+      ansible.builtin.user:
+        name: "{{ lookup('env', 'USER') }}"
+        groups: audio
+        state: present
+        append: true
+      when: (audio_hardware_count.stdout|int) > 0

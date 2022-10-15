@@ -1,5 +1,5 @@
 - name: Run Desktop Role
-  include_tasks: "{{ item }}"
+  ansible.builtin.include_tasks: '{{ item }}'
   loop:
     - install-xorg.yml
     - install-i3.yml

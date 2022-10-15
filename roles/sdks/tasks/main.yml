@@ -1,5 +1,5 @@
 - name: Run SDK Role
-  include_tasks: "{{ item }}"
+  ansible.builtin.include_tasks: '{{ item }}'
   loop:
     - install-dev-headers.yml
     - install-dotnet.yml
@@ -8,4 +8,3 @@
     - install-npm-packages.yml
     - install-rust.yml
     - install-cargo-packages.yml
-

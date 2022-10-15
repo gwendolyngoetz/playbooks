@@ -1,12 +1,13 @@
-- block:
-  - name: Add alacritty ppa 
-    ansible.builtin.apt_repository:
-      repo: ppa:aslatter/ppa
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Install alacritty
-    ansible.builtin.package:
-      name: alacritty
+- name: Install alacritty
   become: true
   tags:
-  - apps
+    - apps
+  block:
+    - name: Add alacritty ppa
+      ansible.builtin.apt_repository:
+        repo: ppa:aslatter/ppa
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install alacritty
+      ansible.builtin.package:
+        name: alacritty

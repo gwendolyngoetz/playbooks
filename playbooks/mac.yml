@@ -4,6 +4,3 @@
   become_user: root
   roles:
     - macos
-#  tasks:
-#    - local_action: 
-#        command ansible-galaxy install -r requirements.yml

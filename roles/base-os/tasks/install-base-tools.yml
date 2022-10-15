@@ -1,33 +1,34 @@
-- block:
-  - name: Update apt cache
-    apt:
-      update_cache: yes
-    changed_when: false
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Install base tools
-    ansible.builtin.package:
-      name: 
-        - acl
-        - exa
-        - fd-find
-        - git
-        - htop
-        - neofetch
-        - ripgrep
-        - rsync
-        - unzip
-        - vim
-        - xdotool
-        - xsel
-        - zip
-
-  - name: Install base tools
-    ansible.builtin.package:
-      name: 
-        - apt-utils
-        - network-manager
-    when: ansible_distribution == "Ubuntu"
+- name: Install Base Tools
   become: true
   tags:
-  - apps
+    - apps
+  block:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+      changed_when: false
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install base tools
+      ansible.builtin.package:
+        name:
+          - acl
+          - exa
+          - fd-find
+          - git
+          - htop
+          - neofetch
+          - ripgrep
+          - rsync
+          - unzip
+          - vim
+          - xdotool
+          - xsel
+          - zip
+
+    - name: Install base tools
+      ansible.builtin.package:
+        name:
+          - apt-utils
+          - network-manager
+      when: ansible_distribution == "Ubuntu"

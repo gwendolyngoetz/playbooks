@@ -1,53 +1,55 @@
-- block:
-  - name: Install required dependencies (Ubuntu)
-    ansible.builtin.package:
-      name: 
-        - dbus-user-session
-        - uidmap
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Install required dependencies (Fedora)
-    ansible.builtin.package:
-      name:
-        - fuse-overlayfs
-    when: ansible_distribution == "Fedora"
-
-  - name: Disable system-wide docker daemon service
-    ansible.builtin.systemd:
-      name: docker.service
-      state: stopped
-      enabled: no
-
-  - name: Disable system-wide docker daemon socket
-    ansible.builtin.systemd:
-      name: docker.socket
-      state: stopped
-      enabled: no
+- name: Install Docker
   become: true
   tags:
-  - dev
-  - container
+    - dev
+    - container
+  block:
+    - name: Install required dependencies (Ubuntu)
+      ansible.builtin.package:
+        name:
+          - dbus-user-session
+          - uidmap
+      when: ansible_distribution == "Ubuntu"
 
-- block:
-  - name: Run docker rootless setup tool
-    ansible.builtin.command: /usr/bin/dockerd-rootless-setuptool.sh install
+    - name: Install required dependencies (Fedora)
+      ansible.builtin.package:
+        name:
+          - fuse-overlayfs
+      when: ansible_distribution == "Fedora"
 
-  - name: Set path
-    ansible.builtin.lineinfile: 
-      path: $HOME/.bashrc
-      line: export PATH=/usr/bin:$PATH
+    - name: Disable system-wide docker daemon service
+      ansible.builtin.systemd:
+        name: docker.service
+        state: stopped
+        enabled: false
 
-  - name: Set docker host
-    ansible.builtin.lineinfile: 
-      path: $HOME/.bashrc
-      line: export DOCKER_HOST=unix:///run/user/1000/docker.sock
+    - name: Disable system-wide docker daemon socket
+      ansible.builtin.systemd:
+        name: docker.socket
+        state: stopped
+        enabled: false
 
-  - name: Enable user docker daemon socket
-    ansible.builtin.systemd:
-      name: docker.service
-      scope: user
-      state: started
-      enabled: yes
+- name: Run docker rootless setup
   tags:
-  - dev
-  - container
+    - dev
+    - container
+  block:
+    - name: Run docker rootless setup tool
+      ansible.builtin.command: /usr/bin/dockerd-rootless-setuptool.sh install
+
+    - name: Set path
+      ansible.builtin.lineinfile:
+        path: $HOME/.bashrc
+        line: export PATH=/usr/bin:$PATH
+
+    - name: Set docker host
+      ansible.builtin.lineinfile:
+        path: $HOME/.bashrc
+        line: export DOCKER_HOST=unix:///run/user/1000/docker.sock
+
+    - name: Enable user docker daemon socket
+      ansible.builtin.systemd:
+        name: docker.service
+        scope: user
+        state: started
+        enabled: true

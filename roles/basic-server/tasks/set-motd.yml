@@ -1,14 +1,26 @@
-- block:
-  - name: Clear motd directory
-    shell: rm -f /etc/update-motd.d/*
-
-  - name: Copy motd
-    copy:
-      src: ../templates/01-custom.j2
-      dest: /etc/update-motd.d/01-custom
-      owner: root
-      group: root
-      mode: '0755'
+- name: Set motd
   become: true
   tags:
-  - systen
+    - system
+  block:
+    - name: Collect files in motd directory
+      ansible.builtin.find:
+        paths: '/etc/update-motd.d'
+        hidden: true
+        recurse: true
+        file_type: any
+      register: collected_files
+
+    - name: Remove collected files
+      ansible.builtin.file:
+        path: '{{ item.path }}'
+        state: absent
+      with_items: '{{ collected_files }}'
+
+    - name: Copy motd
+      ansible.builtin.copy:
+        src: ../templates/01-custom.j2
+        dest: /etc/update-motd.d/01-custom
+        owner: root
+        group: root
+        mode: '0755'

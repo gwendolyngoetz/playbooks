@@ -1,21 +1,21 @@
-- block:
-  - name: Download Segoe Fonts
-    ansible.builtin.git:
-      repo: https://github.com/mrbvrz/segoe-ui-linux.git
-      dest: $HOME/src/github/system-repos/segoe-ui-linux
-  
-  - name: Create .fonts directory
-    ansible.builtin.file:
-      path: $HOME/.fonts
-      state: directory
-
-  - name: Copy Segoe Fonts
-    ansible.builtin.command: rsync -av -exclude=".*" . $HOME/.fonts
-    args:
-      chdir: $HOME/src/github/system-repos/segoe-ui-linux/font
-
-  - name: Flush font cache
-    ansible.builtin.command: fc-cache -fv
-  
+- name: Install fonts
   tags:
-  - desktop
+    - desktop
+  block:
+    - name: Download Segoe Fonts
+      ansible.builtin.git:
+        repo: https://github.com/mrbvrz/segoe-ui-linux.git
+        dest: $HOME/src/github/system-repos/segoe-ui-linux
+
+    - name: Create .fonts directory
+      ansible.builtin.file:
+        path: $HOME/.fonts
+        state: directory
+
+    - name: Copy Segoe Fonts
+      ansible.builtin.command: rsync -av -exclude=".*" . $HOME/.fonts
+      args:
+        chdir: $HOME/src/github/system-repos/segoe-ui-linux/font
+
+    - name: Flush font cache
+      ansible.builtin.command: fc-cache -fv

@@ -1,8 +1,9 @@
-- block:
-  - name: Install flatpak
-    ansible.builtin.package:
-      name:
-        - flatpak
+- name: Install FlatPak
   become: true
   tags:
-  - apps
+    - apps
+  block:
+    - name: Install flatpak
+      ansible.builtin.package:
+        name:
+          - flatpak

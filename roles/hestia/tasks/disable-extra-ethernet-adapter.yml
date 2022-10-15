@@ -1,22 +1,22 @@
-- block:
-  - name: Disable Extra Ethernet Adapter
-    ansible.builtin.file:
-      path: /etc/netplan/00-installer-config.yaml
-      state: touch
-      mode: 0644
-    when: ansible_distribution == "Ubuntu"
+- name: Disable Extra Ethernet Adapter
   become: true
   tags:
-  - hestia
-
+    - hestia
+  block:
+    - name: Disable Extra Ethernet Adapter
+      ansible.builtin.file:
+        path: /etc/netplan/00-installer-config.yaml
+        state: touch
+        mode: 0644
+      when: ansible_distribution == "Ubuntu"
 # Change the renderer to NetworkManager and make enp7s0 optional
-# 
+#
 #     optional=true
 #     dhcp4=false
 #     dhcp6=false
-# 
+#
 # Sample
-# 
+#
 # network:
 #   version: 2
 #   renderer: NetworkManager
@@ -27,6 +27,5 @@
 #       dhcp4: false
 #       dhcp6: false
 #       optional: true
-
 
 # sudo netplan apply

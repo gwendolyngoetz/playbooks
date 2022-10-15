@@ -1,22 +1,21 @@
-- block:
-  - name: Install nodejs key
-    ansible.builtin.apt_key:
-      url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Install the nodejs repos
-    ansible.builtin.apt_repository:
-      repo: deb https://deb.nodesource.com/node_{{ nodejs_version }}.x {{ ansible_distribution_release }} main
-      filename: nodejs
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Install the nodejs
-    ansible.builtin.package:
-      name: nodejs
-      
+- name: Install NodeJS
   vars:
     nodejs_version: 16
   become: true
   tags:
-  - dev
-  
+    - dev
+  block:
+    - name: Install nodejs key
+      ansible.builtin.apt_key:
+        url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install the nodejs repos
+      ansible.builtin.apt_repository:
+        repo: deb https://deb.nodesource.com/node_{{ nodejs_version }}.x {{ ansible_distribution_release }} main
+        filename: nodejs
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install the nodejs
+      ansible.builtin.package:
+        name: nodejs

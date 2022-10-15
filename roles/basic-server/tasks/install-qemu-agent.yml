@@ -1,8 +1,8 @@
-- block:
-  - name: Install qemu-guest-agent
-    apt:
-      name: qemu-guest-agent
-
+- name: Install QEMU Guest Agent
   become: true
   tags:
-  - system
+    - system
+  block:
+    - name: Install qemu-guest-agent
+      ansible.builtin.apt:
+        name: qemu-guest-agent

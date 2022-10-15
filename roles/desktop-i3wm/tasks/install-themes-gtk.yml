@@ -1,10 +1,11 @@
-- block:
-  - name: Install breeze theme packages
-    ansible.builtin.package:
-      name:
-        - breeze-gtk-theme
-        - breeze-icon-theme
-        - breeze-cursor-theme
+- name: Install theme - GTK
   become: true
   tags:
-  - desktop
+    - desktop
+  block:
+    - name: Install breeze theme packages
+      ansible.builtin.package:
+        name:
+          - breeze-gtk-theme
+          - breeze-icon-theme
+          - breeze-cursor-theme

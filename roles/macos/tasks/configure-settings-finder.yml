@@ -1,62 +1,72 @@
-- block:
-  - community.general.osx_defaults:
-      domain: com.apple.Finder
-      key: QuitMenuItem
-      type: bool
-      value: true
+- name: Configure Settings - Finder
+  block:
+    - name: Community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.Finder
+        key: QuitMenuItem
+        type: bool
+        value: true
 
-  - community.general.osx_defaults:
-      domain: com.apple.Finder
-      key: ShowExternalHardDrivesOnDesktop
-      type: bool
-      value: false
+    - name: Community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.Finder
+        key: ShowExternalHardDrivesOnDesktop
+        type: bool
+        value: false
 
-  - community.general.osx_defaults:
-      domain: com.apple.Finder
-      key: ShowHardDrivesOnDesktop
-      type: bool
-      value: false
+    - name: Community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.Finder
+        key: ShowHardDrivesOnDesktop
+        type: bool
+        value: false
 
-  - community.general.osx_defaults:
-      domain: com.apple.Finder
-      key: ShowMountedServersOnDesktop
-      type: bool
-      value: false
+    - name: Community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.Finder
+        key: ShowMountedServersOnDesktop
+        type: bool
+        value: false
 
-  - community.general.osx_defaults:
-      domain: com.apple.Finder
-      key: ShowRemovableMediaOnDesktop
-      type: bool
-      value: false
+    - name: Community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.Finder
+        key: ShowRemovableMediaOnDesktop
+        type: bool
+        value: false
 
-  - community.general.osx_defaults:
-      domain: com.apple.Finder
-      key: ShowStatusBar
-      type: bool
-      value: false
+    - name: Community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.Finder
+        key: ShowStatusBar
+        type: bool
+        value: false
 
-  - community.general.osx_defaults:
-      domain: com.apple.desktopservices
-      key: DSDontWriteNetworkStores
-      type: bool
-      value: true
+    - name: Community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.desktopservices
+        key: DSDontWriteNetworkStores
+        type: bool
+        value: true
 
-  - community.general.osx_defaults:
-      domain: com.apple.Finder
-      key: FXPreferredViewStyle
-      type: string
-      value: 'clmv' # column view
+    - name: Community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.Finder
+        key: FXPreferredViewStyle
+        type: string
+        value: 'clmv' # column view
 
-  - community.general.osx_defaults:
-      domain: com.apple.Finder
-      key: FXEnableExtensionChangeWarning
-      type: bool
-      value: false
+    - name: Community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.Finder
+        key: FXEnableExtensionChangeWarning
+        type: bool
+        value: false
 
-  - community.general.osx_defaults:
-      domain: NSGlobalDomain
-      key: AppleShowAllExtensions
-      type: bool
-      value: true
-
+    - name: Community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: NSGlobalDomain
+        key: AppleShowAllExtensions
+        type: bool
+        value: true
 # chflags nodieen ~/Library

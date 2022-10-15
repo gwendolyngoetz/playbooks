@@ -1,32 +1,31 @@
-- block:
-  - name: Install Homebrew Apps
-    community.general.homebrew:
-      name: 
-        - bash
-        - bat
-        - coursier/formulas/coursier
-        - exa
-        - fd
-        - firefox
-        - git
-        - htop
-        - neofetch
-        - ripgrep
-        - rust
-        - tldr
-        - vim
-        - wget
-    when: ansible_distribution == "MacOSX"
+- name: Install base tools
+  block:
+    - name: Install Homebrew Apps
+      community.general.homebrew:
+        name:
+          - bash
+          - bat
+          - coursier/formulas/coursier
+          - exa
+          - fd
+          - firefox
+          - git
+          - htop
+          - neofetch
+          - ripgrep
+          - rust
+          - tldr
+          - vim
+          - wget
+      when: ansible_distribution == "MacOSX"
 
-  - name: Install Neovim
-    community.general.homebrew:
-      name: neovim
-      install_options: --HEAD
-    when: ansible_distribution == "MacOSX"
+    - name: Install Neovim
+      community.general.homebrew:
+        name: neovim
+        install_options: --HEAD
+      when: ansible_distribution == "MacOSX"
 
-  - name: Install Docker
-    community.general.homebrew:
-      name: homebrew/cask/docker
-    when: ansible_distribution == "MacOSX"
-
-
+    - name: Install Docker
+      community.general.homebrew:
+        name: homebrew/cask/docker
+      when: ansible_distribution == "MacOSX"

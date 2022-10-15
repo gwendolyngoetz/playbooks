@@ -1,22 +1,22 @@
-- block:
-  - name: Install OBS Studio dependencies
-    ansible.builtin.package:
-      name:
-        - ffmpeg
-        - v4l2loopback-dkms
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Add obs studio ppa 
-    ansible.builtin.apt_repository:
-      repo: ppa:obsproject/obs-studio
-    when: ansible_distribution == "Ubuntu"
-
-  - name: Install obs studio
-    ansible.builtin.package:
-      name:
-        - obs-studio
-    when: ansible_distribution == "Ubuntu"
-        
+- name: Install OBS Studio
   become: true
   tags:
-  - apps
+    - apps
+  block:
+    - name: Install OBS Studio dependencies
+      ansible.builtin.package:
+        name:
+          - ffmpeg
+          - v4l2loopback-dkms
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Add obs studio ppa
+      ansible.builtin.apt_repository:
+        repo: ppa:obsproject/obs-studio
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install obs studio
+      ansible.builtin.package:
+        name:
+          - obs-studio
+      when: ansible_distribution == "Ubuntu"

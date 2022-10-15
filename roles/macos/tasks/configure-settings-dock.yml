@@ -1,26 +1,29 @@
-- block:
-  - community.general.osx_defaults:
-      domain: com.apple.dock
-      key: autohide
-      type: bool
-      value: true
+- name: Configure settings - Dock
+  block:
+    - name: Set community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: autohide
+        type: bool
+        value: true
 
-  - community.general.osx_defaults:
-      domain: com.apple.dock
-      key: tilesize
-      type: int
-      value: 72
+    - name: Set community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: tilesize
+        type: int
+        value: 72
 
-  - community.general.osx_defaults:
-      domain: com.apple.dock
-      key: show-recents
-      type: bool
-      value: false
+    - name: Set community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: show-recents
+        type: bool
+        value: false
 
-  - community.general.osx_defaults:
-      domain: com.apple.dock
-      key: orientation
-      type: string
-      value: bottom
-
-
+    - name: Set community.general.osx_defaults
+      community.general.osx_defaults:
+        domain: com.apple.dock
+        key: orientation
+        type: string
+        value: bottom

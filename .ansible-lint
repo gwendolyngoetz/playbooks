@@ -1,0 +1,7 @@
+skip_list:
+  - partial-become
+  - latest[git]
+  - risky-file-permissions
+  - no-changed-when
+  - command-instead-of-shell
+  - command-instead-of-module

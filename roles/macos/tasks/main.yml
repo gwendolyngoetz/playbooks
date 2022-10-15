@@ -1,11 +1,10 @@
 - name: Run Mac Role
-  include_tasks: "{{ item }}"
+  ansible.builtin.include_tasks: '{{ item }}'
   loop:
-    #- install-homebrew.yml
     - install-base-tools.yml
+    # - install-homebrew.yml
     - install-neovim.yml
     - configure-settings-menu.yml
     - configure-settings-textedit.yml
     - configure-settings-dock.yml
     - configure-settings-finder.yml
-    # - load-dotfiles.yml
