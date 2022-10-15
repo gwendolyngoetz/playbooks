@@ -6,7 +6,5 @@
     - install-spotify.yml
     - install-solaar.yml
     # - install-slack.yml
-    - install-flatpak.yml
-    - install-flatpak-apps.yml
     - install-obs-studio.yml
     - install-streamdeck.yml

@@ -1,0 +1,29 @@
+- name: Install Blanket
+  tags:
+    - apps
+  vars:
+    repo_path: 'src/github/system-repos/blanket'
+  block:
+    - name: Install dependencies
+      ansible.builtin.package:
+        name:
+          - meson
+          - ninja-build
+      become: true
+
+    - name: Clone repository
+      ansible.builtin.git:
+        repo: https://github.com/rafaelmardojai/blanket
+        dest: '$HOME/{{ repo_path }}'
+        recursive: true
+
+    - name: Run meson
+      ansible.builtin.command: meson builddir --prefix=/usr/local
+      args:
+        chdir: '$HOME/{{ repo_path }}'
+
+    - name: Run ninja
+      ansible.builtin.command: ninja -C builddir install
+      args:
+        chdir: "{{ lookup('env', 'HOME') }}/{{ repo_path }}"
+      become: true
