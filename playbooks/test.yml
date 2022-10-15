@@ -1,6 +1,0 @@
----
-- hosts: new
-  name: Test playbook
-  become_user: root
-  roles:
-    - test

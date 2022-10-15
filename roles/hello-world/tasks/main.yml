@@ -1,0 +1,6 @@
+- name: Hello World
+  become: true
+  block:
+    - name: Print Message
+      ansible.builtin.debug:
+        msg: 'Hello World'
