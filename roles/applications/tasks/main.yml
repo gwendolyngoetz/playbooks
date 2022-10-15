@@ -1,6 +1,7 @@
 - name: Run Apps Role
   ansible.builtin.include_tasks: '{{ item }}'
   loop:
+    - install-desktop-apps.yml
     # - install-virtualbox.yml
     - install-pass.yml
     - install-spotify.yml

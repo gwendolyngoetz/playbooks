@@ -1,0 +1,16 @@
+- name: Install Desktop Apps
+  become: true
+  tags:
+    - apps
+  block:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+      changed_when: false
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install base tools
+      ansible.builtin.package:
+        name:
+          - firefox
+      when: ansible_distribution == "Ubuntu"
