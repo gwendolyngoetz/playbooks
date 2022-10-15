@@ -1,3 +1,5 @@
+[![Lint](https://github.com/gwendolyngoetz/playbooks/actions/workflows/lint.yml/badge.svg)](https://github.com/gwendolyngoetz/playbooks/actions/workflows/lint.yml)
+
 # Playbooks
 Ansible playbooks
 
