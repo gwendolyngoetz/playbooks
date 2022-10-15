@@ -8,6 +8,5 @@
     # - install-slack.yml
     - install-flatpak.yml
     - install-flatpak-apps.yml
-    - install-vscode.yml
     - install-obs-studio.yml
     - install-streamdeck.yml
