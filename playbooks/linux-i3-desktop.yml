@@ -10,3 +10,4 @@
     - sdks
     - applications
     - docker
+    - docker-rootless

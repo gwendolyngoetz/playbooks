@@ -2,4 +2,3 @@
   ansible.builtin.include_tasks: '{{ item }}'
   loop:
     - install-docker.yml
-    - configure-docker-rootless.yml
