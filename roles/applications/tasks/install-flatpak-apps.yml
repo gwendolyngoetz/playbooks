@@ -9,11 +9,6 @@
         flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
         method: user
 
-    - name: Install pinta flatpak - Pinta simple image editor
-      community.general.flatpak:
-        name: com.github.PintaProject.Pinta
-        method: user
-
     - name: Install blanket flatpak - Background sounds
       community.general.flatpak:
         name: com.rafaelmardojai.Blanket
