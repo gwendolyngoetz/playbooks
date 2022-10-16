@@ -3,6 +3,13 @@
 playbook="${1}"
 verbose="${2}"
 
+ansible_installed=$(which ansible-playbook > /dev/null; echo $?)
+
+if [ "${ansible_installed}" != 0 ]; then
+  echo "ansible-playbook is not installed or on the path"
+  exit 1
+fi
+
 if [[ -z "${playbook}" ]]; then
     echo "Available playbooks"
     echo "-------------------"
