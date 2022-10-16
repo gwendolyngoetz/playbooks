@@ -3,14 +3,16 @@
   tags:
     - dev
   block:
-    - name: Install OpenJDK-11 (Ubuntu)
-      ansible.builtin.package:
-        name:
-          - openjdk-11-jdk
-      when: ansible_distribution == "Ubuntu"
+    # - name: Install OpenJDK-11 (Ubuntu)
 
-    - name: Install OpenJDK-11 (Fedora)
-      ansible.builtin.package:
-        name:
-          - java-11-openjdk-devel.x86_64
-      when: ansible_distribution == "Fedora"
+    - name: Download Installer SDKMAN
+      ansible.builtin.get_url:
+        url: https://get.sdkman.io/?rcupdate=false
+        dest: '/tmp/sdkman.sh'
+        mode: '750'
+
+    - name: Run SDKMAN Installer
+      ansible.builtin.command: '/tmp/sdkman.sh'
+
+    - name: Install Java Temurin 11
+      ansible.builtin.command: sdk install java $(sdk list java | grep "11.*-tem" | awk '{print $(NF)}')
