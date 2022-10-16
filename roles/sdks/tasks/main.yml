@@ -4,6 +4,7 @@
     - install-dev-headers.yml
     - install-dotnet.yml
     - install-java.yml
+    - install-metals.yml
     - install-nodejs.yml
     - install-npm-packages.yml
     - install-rust.yml
