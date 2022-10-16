@@ -2,7 +2,6 @@
   become: true
   tags:
     - dev
-    - container
   when: ansible_distribution == "Ubuntu"
   block:
     - name: Install required system packages
@@ -27,7 +26,6 @@
   become: true
   tags:
     - dev
-    - container
   when: ansible_distribution == "Fedora"
   block:
     - name: Install required system packages
@@ -42,7 +40,6 @@
   become: true
   tags:
     - dev
-    - container
   block:
     - name: Update apt and install docker-ce
       ansible.builtin.package:

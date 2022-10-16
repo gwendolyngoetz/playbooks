@@ -2,7 +2,6 @@
   become: true
   tags:
     - dev
-    - container
   block:
     - name: Install required dependencies (Ubuntu)
       ansible.builtin.package:
@@ -32,7 +31,6 @@
 - name: Run docker rootless setup
   tags:
     - dev
-    - container
   block:
     - name: Run docker rootless setup tool
       ansible.builtin.command: /usr/bin/dockerd-rootless-setuptool.sh install
