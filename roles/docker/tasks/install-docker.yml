@@ -1,37 +1,49 @@
-- name: Install docker
+- name: Install docker (Ubuntu)
   become: true
   tags:
     - dev
     - container
+  when: ansible_distribution == "Ubuntu"
   block:
-    - name: Install required system packages (Ubuntu)
+    - name: Install required system packages
       ansible.builtin.package:
         name:
           - apt-transport-https
           - ca-certificates
           - curl
           - software-properties-common
-      when: ansible_distribution == "Ubuntu"
-
-    - name: Install required system packages (Fedora)
-      ansible.builtin.package:
-        name:
-          - ca-certificates
-          - curl
-      when: ansible_distribution == "Fedora"
 
     - name: Download Docker GPG Key
       ansible.builtin.get_url:
         url: https://download.docker.com/linux/ubuntu/gpg
         dest: /etc/apt/trusted.gpg.d/docker.gpg
-      when: ansible_distribution == "Ubuntu"
 
     - name: Add Docker Repository
       ansible.builtin.apt_repository:
         repo: 'deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable'
         state: present
-      when: ansible_distribution == "Ubuntu"
 
+- name: Install docker (Fedora)
+  become: true
+  tags:
+    - dev
+    - container
+  when: ansible_distribution == "Fedora"
+  block:
+    - name: Install required system packages
+      ansible.builtin.package:
+        name:
+          - dnf-plugins-core
+
+    - name: Add Docker Repository
+      ansible.builtin.command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+
+- name: Install docker
+  become: true
+  tags:
+    - dev
+    - container
+  block:
     - name: Update apt and install docker-ce
       ansible.builtin.package:
         name:
@@ -39,4 +51,3 @@
           - docker-ce-cli
           - containerd.io
           - docker-compose-plugin
-      when: ansible_distribution == "Ubuntu"
