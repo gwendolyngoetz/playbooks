@@ -9,5 +9,6 @@
     - desktop-i3wm
     - sdks
     - applications
+    - neovim
     - docker
     - docker-rootless

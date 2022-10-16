@@ -5,3 +5,4 @@
   roles:
     - base-os
     - basic-server
+    - neovim

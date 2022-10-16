@@ -7,5 +7,4 @@
     - install-other-apps.yml
     - install-desktop-apps.yml
     - install-fonts.yml
-    - install-neovim.yml
     - install-printing.yml

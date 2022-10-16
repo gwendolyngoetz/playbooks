@@ -39,6 +39,25 @@
       when: ansible_distribution == "Fedora"
       become: true
 
+    - name: Install neovim build dependencies (MacOSX)
+      community.general.homebrew:
+        name:
+          - ninja-build
+          - gettext
+          - libtool
+          - autoconf
+          - automake
+          - cmake
+          - unzip
+          - curl
+          - patch
+          - gcc
+          - gcc-c++
+          - make
+          - pkgconfig
+      become: true
+      when: ansible_distribution == "MacOSX"
+
     - name: Clone neovim from github
       ansible.builtin.git:
         repo: https://www.github.com/neovim/neovim.git
