@@ -2,19 +2,13 @@
   become: true
   tags:
     - dev
+  when: ansible_distribution == "Ubuntu"
   block:
     - name: Install Microsoft Signing Key
       ansible.builtin.apt:
-        deb: https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb
-      when: ansible_distribution == "Ubuntu"
-
-    - name: Update apt cache
-      ansible.builtin.apt:
-        update_cache: true
-      changed_when: false
-      when: ansible_distribution == "Ubuntu"
+        deb: https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
 
     - name: Install dotnet 6
-      ansible.builtin.package:
+      ansible.builtin.apt:
         name: dotnet-sdk-6.0
-      when: ansible_distribution == "Ubuntu"
+        update_cache: true
