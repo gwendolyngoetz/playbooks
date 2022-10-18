@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Role - add-users
+      include_role:
+        name: ../../roles/add-users

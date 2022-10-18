@@ -4,10 +4,11 @@
     - dev
   block:
     - name: Install dev headers (Ubuntu)
-      ansible.builtin.package:
+      ansible.builtin.apt:
         name:
           - libssl-dev
           - libxml2-utils
+        update_cache: true
       when: ansible_distribution == "Ubuntu"
 
     - name: Install dev headers (Fedora)

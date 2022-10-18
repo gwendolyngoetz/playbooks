@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Role - sdks
+      include_role:
+        name: ../../roles/sdks

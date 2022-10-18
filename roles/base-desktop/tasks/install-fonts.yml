@@ -2,6 +2,12 @@
   tags:
     - desktop
   block:
+    - name: Install fonts (Ubuntu)
+      ansible.builtin.package:
+        name:
+          - ttf-mscorefonts-installer
+      when: ansible_distribution == "Ubuntu"
+
     - name: Download Segoe Fonts
       ansible.builtin.git:
         repo: https://github.com/mrbvrz/segoe-ui-linux.git
@@ -19,3 +25,5 @@
 
     - name: Flush font cache
       ansible.builtin.command: fc-cache -fv
+
+  # sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm

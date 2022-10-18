@@ -3,8 +3,9 @@
     - apps
   block:
     - name: Install neovim build dependencies (Ubuntu)
-      ansible.builtin.package:
+      ansible.builtin.apt:
         name:
+          - git
           - ninja-build
           - gettext
           - libtool
@@ -17,12 +18,14 @@
           - libtool-bin
           - g++
           - pkg-config
+        update_cache: true
       when: ansible_distribution == "Ubuntu"
       become: true
 
     - name: Install neovim build dependencies (Fedora)
       ansible.builtin.package:
         name:
+          - git
           - ninja-build
           - gettext
           - libtool
@@ -42,6 +45,7 @@
     - name: Install neovim build dependencies (MacOSX)
       community.general.homebrew:
         name:
+          - git
           - ninja-build
           - gettext
           - libtool

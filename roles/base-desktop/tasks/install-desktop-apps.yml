@@ -9,16 +9,14 @@
           - arandr
           - darktable
           - gimp
-          - grub-customizer
           - keepassxc
-          - libreoffice
+          #- libreoffice
           - lxappearance
           - meld
           - newsboat
           - qt5ct
           - thunar
           - tmux
-          - ttf-mscorefonts-installer
           - youtube-dl
           - zathura
 
@@ -28,7 +26,6 @@
           - mesa-utils # for glxinfo
           - nfs-common
           - policykit-1-gnome
-          - ttf-mscorefonts-installer
       when: ansible_distribution == "Ubuntu"
 
     - name: Install other apps (Fedora)
@@ -38,5 +35,3 @@
           - nfs-utils
           - polkit-gnome
       when: ansible_distribution == "Fedora"
-
-  # sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm

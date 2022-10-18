@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Role - docker
+      include_role:
+        name: ../../roles/docker

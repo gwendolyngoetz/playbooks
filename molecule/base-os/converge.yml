@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Role - base-os
+      include_role:
+        name: ../../roles/base-os

@@ -2,11 +2,18 @@
   become: true
   tags:
     - apps
+  when: ansible_distribution == "Ubuntu"
   block:
-    - name: Add alacritty ppa
+    - name: Download GPG Key
+      ansible.builtin.get_url:
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3a160895cc2ce253085d08a552b24df7d43b5377
+        dest: /etc/apt/keyrings/alacritty.asc
+
+    - name: Add Repository
       ansible.builtin.apt_repository:
-        repo: ppa:aslatter/ppa
-      when: ansible_distribution == "Ubuntu"
+        repo: 'deb [arch=amd64 signed-by=/etc/apt/keyrings/alacritty.asc] https://ppa.launchpadcontent.net/aslatter/ppa/ubuntu/ {{ ansible_distribution_release }} main'
+        state: present
+        filename: alacritty
 
     - name: Install alacritty
       ansible.builtin.package:

@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Role - desktop-i3wm
+      include_role:
+        name: ../../roles/desktop-i3wm
