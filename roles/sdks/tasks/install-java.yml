@@ -3,7 +3,13 @@
   tags:
     - dev
   block:
-    # - name: Install OpenJDK-11 (Ubuntu)
+    - name: Install Dependencies
+      ansible.builtin.apt:
+        name:
+          - curl
+          - unzip
+          - zip
+        update_cache: true
 
     - name: Download Installer SDKMAN
       ansible.builtin.get_url:
@@ -14,5 +20,10 @@
     - name: Run SDKMAN Installer
       ansible.builtin.command: '/tmp/sdkman.sh'
 
+    # . {{ lookup('env', 'HOME') }}/.sdkman/bin/sdkman-init.sh
     - name: Install Java Temurin 11
-      ansible.builtin.command: sdk install java $(sdk list java | grep "11.*-tem" | awk '{print $(NF)}')
+      ansible.builtin.shell: |
+        . {{ lookup('env', 'HOME') }}/.sdkman/bin/sdkman-init.sh
+        sdk install java $(sdk list java | grep "11.*-tem" | awk '{print $(NF)}')
+      args:
+        executable: /bin/bash
