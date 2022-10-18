@@ -6,10 +6,10 @@ Ansible playbooks
 
 ## Run Script
 
-./run.sh [role-name]
+`./run-playbook.sh [playbook-name]`
 
-- Without parameters list available roles
-- With parameters run role
+- Without parameters list available playbooks
+- With parameters run playbook
 
 ## Playbooks
 
@@ -48,3 +48,16 @@ Ansible playbooks
 - dev
 - hestia
 - system
+
+## Testing
+
+Using [molecule](https://molecule.readthedocs.io) to test roles
+
+`./test-role.sh [role-name]`
+
+- Without parameters list available roles
+- With parameters run role
+
+### Example
+
+`ANSIBLE_VAULT_PASSWORD_FILE=./vars/vault.pw molecule test --scenario-name add-users`
