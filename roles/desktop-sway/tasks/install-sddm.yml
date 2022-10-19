@@ -1,0 +1,74 @@
+- name: Install SDDM
+  tags:
+    - desktop
+  block:
+    - name: Install sddm
+      ansible.builtin.package:
+        name: sddm
+      become: true
+
+    - name: Generate default SDDM config file
+      ansible.builtin.shell: sddm --example-config | tee /etc/sddm.conf
+      become: true
+
+    - name: Clone Chili SDDM Theme
+      ansible.builtin.git:
+        repo: https://github.com/MarianArlt/sddm-chili.git
+        dest: $HOME/src/github/system-repos/sddm-chili
+
+    - name: Create chili theme directory
+      ansible.builtin.file:
+        path: /usr/share/sddm/themes/chili
+        state: directory
+      become: true
+
+    - name: Copy chili theme to sddm themes folder
+      ansible.builtin.command: rsync -av -exclude=".*" . /usr/share/sddm/themes/chili
+      args:
+        chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/sddm-chili"
+      become: true
+
+    - name: Install chili theme dependencies
+      ansible.builtin.package:
+        name:
+          - qml-module-qtquick-controls
+          - qml-module-qtquick-controls2
+      when: ansible_distribution == "Ubuntu"
+      become: true
+
+    - name: Install chili theme dependencies
+      ansible.builtin.package:
+        name:
+          - qt5-qtquickcontrols
+          - qt5-qtquickcontrols2
+          - qt5-qtgraphicaleffects
+      when: ansible_distribution == "Fedora"
+      become: true
+
+    - name: Set SDDM theme
+      ansible.builtin.shell: sed -i 's/^Current=[a-zA-Z0-9-]*$/Current=chili/g' /etc/sddm.conf
+      become: true
+
+    - name: Set up user icon
+      ansible.builtin.file:
+        src: $HOME/.face
+        dest: $HOME/.face.icon
+        state: link
+
+    - name: Give sddm user access to $HOME
+      ansible.posix.acl:
+        path: "{{ lookup('env', 'HOME') }}"
+        entity: sddm
+        etype: user
+        permissions: x
+        state: present
+      become: true
+
+    - name: Give sddm user access to $HOME/.face.icon
+      ansible.posix.acl:
+        path: "{{ lookup('env', 'HOME') }}/.face.icon"
+        entity: sddm
+        etype: user
+        permissions: r
+        state: present
+      become: true

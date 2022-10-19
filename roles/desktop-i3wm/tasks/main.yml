@@ -1,4 +1,4 @@
-- name: Run Desktop Role
+- name: Run i3wm Desktop Role
   ansible.builtin.include_tasks: '{{ item }}'
   loop:
     - install-xorg.yml

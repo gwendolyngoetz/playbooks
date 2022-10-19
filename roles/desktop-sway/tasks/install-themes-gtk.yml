@@ -1,0 +1,16 @@
+- name: Install theme - GTK
+  become: true
+  tags:
+    - desktop
+  block:
+    - name: Install breeze theme packages
+      ansible.builtin.package:
+        name:
+          - breeze-gtk-theme
+          - breeze-icon-theme
+          - breeze-cursor-theme
+
+- name: Set GTK prefer-dark mode
+  block:
+    - name: Set prefer-dark
+      ansible.builtin.command: gsettings set org.gnome.desktop.interface color-scheme prefer-dark

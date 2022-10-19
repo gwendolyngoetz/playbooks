@@ -1,12 +1,12 @@
 ---
 - hosts: new
-  name: Install Linux Desktop - i3wm
+  name: Install Linux Desktop - Sway WM
   become_user: root
   roles:
     - base-os
     - hestia
     - base-desktop
-    - desktop-i3wm
+    - desktop-sway
     - sdks
     - applications
     - neovim

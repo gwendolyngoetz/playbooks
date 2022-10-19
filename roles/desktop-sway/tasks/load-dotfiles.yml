@@ -1,0 +1,17 @@
+- name: Load Dotfiles
+  tags:
+    - desktop
+  block:
+    - name: Clone dotfiles
+      ansible.builtin.git:
+        repo: https://www.github.com/gwendolyngoetz/dotfiles.git
+        dest: $HOME/.dotfiles
+        clone: true
+        update: true
+        bare: true
+
+    - name: Checkout dotfiles
+      ansible.builtin.shell: |
+        alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+        config checkout -f
+        config config --local status.showUntrackedFiles no

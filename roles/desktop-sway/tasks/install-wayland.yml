@@ -1,0 +1,10 @@
+- name: Install Wayland
+  become: true
+  tags:
+    - desktop
+  block:
+    - name: Install Wayland (Ubuntu)
+      ansible.builtin.package:
+        name:
+          - wayland
+      when: ansible_distribution == "Ubuntu"
