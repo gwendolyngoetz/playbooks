@@ -4,4 +4,6 @@
   block:
     - name: Install Stylua
       community.general.cargo:
-        name: stylua
+        name:
+          - stylua
+          - git-delta
