@@ -1,20 +1,25 @@
 - name: Make Theme Folders
   tags:
     - desktop
+  vars:
+    home: '{{ lookup("env", "HOME")}}'
+    themes_dir: '{{ home }}/.themes'
+    fonts_dir: '{{ home }}/.fonts'
+    icons_dir: '{{ home }}/.icons'
   block:
     - name: Make .themes directory
       ansible.builtin.file:
-        path: $HOME/.themes
+        path: '{{ themes_dir }}'
         state: directory
 
     - name: Make .fonts directory
       ansible.builtin.file:
-        path: $HOME/.fonts
+        path: '{{ fonts_dir }}'
         state: directory
 
     - name: Make .icons directory
       ansible.builtin.file:
-        path: $HOME/.icons
+        path: '{{ icons_dir }}'
         state: directory
 
 - name: Symlink Theme Folders
@@ -24,18 +29,18 @@
   block:
     - name: Link .themes to root
       ansible.builtin.file:
-        src: "{{ lookup('env', 'HOME') }}/.themes"
+        src: '{{ themes_dir }}'
         dest: /root/.themes
         state: link
 
     - name: Link .fonts to root
       ansible.builtin.file:
-        src: "{{ lookup('env', 'HOME') }}/.fonts"
+        src: '{{ fonts_dir }}'
         dest: /root/.fonts
         state: link
 
     - name: Link .icons to root
       ansible.builtin.file:
-        src: "{{ lookup('env', 'HOME') }}/.icons"
+        src: '{{ icons_dir }}'
         dest: /root/.icons
         state: link
