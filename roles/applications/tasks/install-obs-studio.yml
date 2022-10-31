@@ -2,21 +2,27 @@
   become: true
   tags:
     - apps
+  vars:
+    ubuntu_key: '/etc/apt/keyrings/obsstudio.asc'
+  when: ansible_distribution == "Ubuntu"
   block:
     - name: Install OBS Studio dependencies
       ansible.builtin.package:
         name:
           - ffmpeg
           - v4l2loopback-dkms
-      when: ansible_distribution == "Ubuntu"
 
-    - name: Add obs studio ppa
+    - name: Download OBS Studio GPG Key
+      ansible.builtin.get_url:
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xbc7345f522079769f5bbe987efc71127f425e228
+        dest: '{{ ubuntu_key }}'
+
+    - name: Add OBS Studio Repository
       ansible.builtin.apt_repository:
-        repo: ppa:obsproject/obs-studio
-      when: ansible_distribution == "Ubuntu"
+        repo: 'deb [arch=amd64 signed-by={{ ubuntu_key }}] https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu {{ ansible_distribution_release }} main'
+        state: present
+        filename: obsstudio
 
-    - name: Install obs studio
+    - name: Install OBS Studio
       ansible.builtin.package:
-        name:
-          - obs-studio
-      when: ansible_distribution == "Ubuntu"
+        name: obs-studio
