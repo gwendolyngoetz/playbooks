@@ -1,14 +1,15 @@
 - name: Add user
   become: true
   vars:
-    var_username: gwendolyn
+    adduser_username: gwendolyn
+    adduser_password: { { vault_gwendolyn_password } }
   block:
     - name: Add my user account
       ansible.builtin.user:
-        name: '{{ var_username }}'
+        name: '{{ adduser_username }}'
         createhome: true
         shell: /bin/bash
         groups: sudo
 
     - name: set password
-      ansible.builtin.shell: /usr/bin/openssl passwd -6 -salt "p3x515" "{{ vault_gwendolyn_password }}" | awk '{print "{{ var_username }}:"$1}' | chpasswd -e
+      ansible.builtin.shell: /usr/bin/openssl passwd -6 -salt "p3x515" "{{ adduser_password }}" | awk '{print "{{ adduser_username }}:"$1}' | chpasswd -e
