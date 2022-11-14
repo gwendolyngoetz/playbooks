@@ -29,4 +29,4 @@ jobs:
           python -m pip install ansible-lint
 
       - name: Lint
-        run: ansible-lint -p playbooks/*
+        run: find ./roles -type f -name '*.yml' -exec ansible-lint {} \+
