@@ -29,7 +29,13 @@ jobs:
       - name: Install Ansible Galaxy roles
         run: ansible-galaxy install -r requirements.yml
 
+      - name: Cache Ansible Packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.ansible
+
       - name: Lint Playbooks and Roles
         run: |
           find ./playbooks -type f -name '*.yml' -exec ansible-lint {} \+
-          ansible-lint playbooks/*
+        #ansible-lint playbooks/*
