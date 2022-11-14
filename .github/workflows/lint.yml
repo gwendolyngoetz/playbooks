@@ -32,5 +32,7 @@ jobs:
       - name: Install Ansible Galaxy roles
         run: ansible-galaxy install -r requirements.yml
 
-      - name: Lint
-        run: find ./roles -type f -name '*.yml' -exec ansible-lint {} \+
+      - name: Lint Playbooks and Roles
+        run: |
+          find ./playbooks -type f -name '*.yml' -exec ansible-lint {} \+
+          ansible-lint playbooks/*
