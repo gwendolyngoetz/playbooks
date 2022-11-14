@@ -2,7 +2,7 @@
   tags:
     - desktop
   vars:
-    home: '{{ lookup("env", "HOME")}}'
+    home: '{{ lookup("env", "HOME") }}'
     themes_dir: '{{ home }}/.themes'
     fonts_dir: '{{ home }}/.fonts'
     icons_dir: '{{ home }}/.icons'

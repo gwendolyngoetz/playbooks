@@ -2,7 +2,7 @@
   tags:
     - desktop
   vars:
-    home: '{{ lookup("env", "HOME")}}'
+    home: '{{ lookup("env", "HOME") }}'
     sddmchili_repo: '{{ home }}/src/github/system-repos/sddm-chili'
   block:
     - name: Install sddm
@@ -58,7 +58,7 @@
         dest: '{{ home }}/.face.icon'
         state: link
 
-    - name: Give sddm user access to {{ home }}
+    - name: Give sddm user access to user's home directory
       ansible.posix.acl:
         path: '{{ home }}'
         entity: sddm
@@ -67,7 +67,7 @@
         state: present
       become: true
 
-    - name: Give sddm user access to {{ home }}/.face.icon
+    - name: Give sddm user access to ~/.face.icon
       ansible.posix.acl:
         path: '{{ home }}/.face.icon'
         entity: sddm
