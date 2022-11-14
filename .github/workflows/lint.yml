@@ -32,8 +32,8 @@ jobs:
       - name: Cache Ansible Packages
         uses: actions/cache@v3
         with:
-          path: |
-            ~/.ansible
+          path: ~/.ansible
+          key: ${{ runner.os }}-ansible
 
       - name: Lint Playbooks and Roles
         run: |
