@@ -2,7 +2,7 @@
   become: true
   vars:
     adduser_username: gwendolyn
-    adduser_password: { { vault_gwendolyn_password } }
+    adduser_password: {{ vault_gwendolyn_password }}
   block:
     - name: Add my user account
       ansible.builtin.user:

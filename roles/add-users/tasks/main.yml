@@ -1,5 +1,5 @@
 ---
 - name: Add users
-  include_tasks: '{{ item }}'
+  ansible.builtin.include_tasks: '{{ item }}'
   loop:
     - add-users.yml

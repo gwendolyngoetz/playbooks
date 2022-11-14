@@ -1,24 +1,23 @@
-- block:
-  - name: End Events Five Minutes Early
-    ansible.windows.win_regedit:
-      path: HKCU:\Software\Microsoft\Office\16.0\Outlook\Options\Calendar
-      name: EndEventsEarly
-      data: 1
-      type: dword
+- name: 'Updating Outlook Settings'
+  become: true
+  block:
+    - name: End Events Five Minutes Early
+      ansible.windows.win_regedit:
+        path: HKCU:\Software\Microsoft\Office\16.0\Outlook\Options\Calendar
+        name: EndEventsEarly
+        data: 1
+        type: dword
 
-  - name: End Events Five Minutes Early
-    ansible.windows.win_regedit:
-      path: HKCU:\Software\Microsoft\Office\16.0\Outlook\Options\Calendar
-      name: EndEarlyLong
-      data: 5
-      type: dword
+    - name: End Events Five Minutes Early
+      ansible.windows.win_regedit:
+        path: HKCU:\Software\Microsoft\Office\16.0\Outlook\Options\Calendar
+        name: EndEarlyLong
+        data: 5
+        type: dword
 
-  - name: End Events Five Minutes Early
-    ansible.windows.win_regedit:
-      path: HKCU:\Software\Microsoft\Office\16.0\Outlook\Options\Calendar
-      name: EndEarlyShort
-      data: 5
-      type: dword
-
-  become: true    
-
+    - name: End Events Five Minutes Early
+      ansible.windows.win_regedit:
+        path: HKCU:\Software\Microsoft\Office\16.0\Outlook\Options\Calendar
+        name: EndEarlyShort
+        data: 5
+        type: dword

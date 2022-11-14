@@ -1,5 +1,5 @@
 - name: Run Windows Role
-  include_tasks: "{{ item }}"
+  ansible.builtin.include_tasks: '{{ item }}'
   loop:
     - install-base-tools.yml
     - remove-all-user-folders.yml
