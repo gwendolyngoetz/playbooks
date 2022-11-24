@@ -1,0 +1,6 @@
+---
+- hosts: local_vm_servers
+  name: Docker
+  become_user: root
+  roles:
+    - docker
