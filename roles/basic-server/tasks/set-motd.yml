@@ -13,9 +13,11 @@
 
     - name: Remove collected files
       ansible.builtin.file:
-        path: '{{ item.path }}'
+        path: '{{ file_to_remove.path }}'
         state: absent
-      with_items: '{{ collected_files }}'
+      with_items: '{{ collected_files.files }}'
+      loop_control:
+        loop_var: file_to_remove
 
     - name: Copy motd
       ansible.builtin.copy:
