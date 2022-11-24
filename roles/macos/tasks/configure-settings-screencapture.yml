@@ -1,0 +1,29 @@
+- name: Configure Settings - Screen Capture
+  block:
+    - name: Set screencapture name
+      community.general.osx_defaults:
+        domain: com.apple.screencapture
+        key: name
+        type: string
+        value: screen
+
+    - name: Do not add date to screencapture
+      community.general.osx_defaults:
+        domain: com.apple.screencapture
+        key: include-date
+        type: bool
+        value: false
+
+    - name: Set screencapture filetype
+      community.general.osx_defaults:
+        domain: com.apple.screencapture
+        key: type
+        type: string
+        value: png # currently the default
+
+    - name: Set screencapture storage path
+      community.general.osx_defaults:
+        domain: com.apple.screencapture
+        key: location
+        type: string
+        value: ~/screenshots
