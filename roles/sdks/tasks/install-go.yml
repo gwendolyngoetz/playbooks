@@ -1,0 +1,14 @@
+- name: Install Go
+  block:
+    - name: Download Installer Go
+      ansible.builtin.get_url:
+        url: https://go.dev/dl/go1.19.4.linux-amd64.tar.gz
+        dest: '/tmp/go-installer.tar.gz'
+        mode: '750'
+        validate_certs: false
+
+    - name: Run Go Installer
+      ansible.builtin.command:
+        cmd: 'tar -C $HOME/.golang/bin -xvf ./go-installer.tar.gz'
+        chdir: '/tmp'
+        creates: '$HOME/.golang/bin/go'

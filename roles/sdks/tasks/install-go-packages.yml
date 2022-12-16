@@ -1,0 +1,7 @@
+- name: Install Go Packages
+  tags:
+    - dev
+  block:
+    - name: Install gum
+      ansible.builtin.command:
+        cmd: 'go install github.com/charmbracelet/gum@latest'

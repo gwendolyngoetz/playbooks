@@ -9,3 +9,5 @@
     - install-npm-packages.yml
     - install-rust.yml
     - install-cargo-packages.yml
+    - install-go.yml
+    - install-go-packages.yml
