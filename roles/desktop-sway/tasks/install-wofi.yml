@@ -1,0 +1,50 @@
+- name: Install wofi
+  tags:
+    - desktop
+  block:
+    - name: Install wofi
+      ansible.builtin.package:
+        name:
+          - wofi
+
+    #    - name: Install wofi dependencies
+    #      ansible.builtin.package:
+    #        name:
+    #          - libwayland-dev
+    #          - libgtk-3-dev
+    #          - pkg-config
+    #          - meson
+    #      become: true
+    #
+    #    - name: Clone wofi
+    #      ansible.builtin.git:
+    #        repo: https://hg.sr.ht/~scoopta/wofi
+    #        dest: $HOME/src/github/system-repos/wofi
+    #        recursive: true
+    #
+    #    - name: Make wofi build directory
+    #      ansible.builtin.file:
+    #        path: $HOME/src/github/system-repos/wofi/build
+    #        state: directory
+    #        mode: 0755
+    #
+    #    - name: Run wofi - autoreconf
+    #      ansible.builtin.command: autoreconf -i
+    #      args:
+    #        chdir: $HOME/src/github/system-repos/wofi
+    #
+    #    - name: Run wofi - configure
+    #      ansible.builtin.command: ../configure --disable-check
+    #      args:
+    #        chdir: $HOME/src/github/system-repos/wofi/build
+    #
+    #    - name: Run wofi - make
+    #      ansible.builtin.command: make
+    #      args:
+    #        chdir: $HOME/src/github/system-repos/wofi/build
+    #
+    #    - name: Run wofi - make install
+    #      ansible.builtin.command: make install
+    #      args:
+    #        chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/wofi/build"
+    #      become: true

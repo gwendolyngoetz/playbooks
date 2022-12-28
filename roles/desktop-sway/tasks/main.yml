@@ -5,12 +5,10 @@
     - install-sway.yml
     - load-dotfiles.yml
     - install-sddm.yml
-    # - install-polybar.yml
+    - install-waybar.yml
     - install-sway-apps.yml
-    # - install-dunst.yml
-    # - install-rofi.yml
-    # - install-polybar-apps.yml
-    # - install-xmenu.yml
+    - install-dunst.yml
+    - install-wofi.yml
     - install-themes-qt.yml
     - install-themes-gtk.yml
     - symlink-theme-folders.yml

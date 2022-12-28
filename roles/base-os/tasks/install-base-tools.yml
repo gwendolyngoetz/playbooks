@@ -17,6 +17,7 @@
           - fd-find
           - git
           - htop
+          - jq
           - neofetch
           - ripgrep
           - rsync
