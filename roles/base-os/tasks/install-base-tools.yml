@@ -3,6 +3,23 @@
   tags:
     - apps
   block:
+    - name: Install base tools
+      ansible.builtin.apt:
+        update_cache: yes
+        state: present
+        pkg:
+          - software-properties-common
+
+    - name: Enable apt universe
+      ansible.builtin.command: add-apt-repository universe -y
+
+    - name: Update apt repo and cache
+      ansible.builtin.apt:
+        update_cache: true
+        force_apt_get: true
+        cache_valid_time: 3600
+      when: ansible_distribution == "Ubuntu"
+
     - name: Update apt cache
       ansible.builtin.apt:
         update_cache: true
@@ -10,8 +27,10 @@
       when: ansible_distribution == "Ubuntu"
 
     - name: Install base tools
-      ansible.builtin.package:
-        name:
+      ansible.builtin.apt:
+        update_cache: yes
+        state: present
+        pkg:
           - acl
           - exa
           - fd-find
