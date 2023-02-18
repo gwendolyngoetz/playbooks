@@ -6,31 +6,15 @@
       ansible.builtin.package:
         name:
           - libdbus-1-dev
-          - libglib2.0-dev
-          - libgtk2.0-dev
-          - libnotify-dev
-          - libpango1.0-dev
           - libx11-dev
-          - libxdg-basedir-dev
           - libxinerama-dev
           - libxrandr-dev
           - libxss-dev
+          - libglib2.0-dev
+          - libpango1.0-dev
+          - libgtk-3-dev
+          - libxdg-basedir-dev
       when: ansible_distribution == "Ubuntu"
-      become: true
-
-    - name: Install dunst dependencies (Fedora)
-      ansible.builtin.package:
-        name:
-          - dbus-devel
-          - libX11-devel
-          - libXrandr-devel
-          - glib2-devel
-          - pango-devel
-          - gtk3-devel
-          - libxdg-basedir-devel
-          - libXScrnSaver-devel
-          - libnotify-devel
-      when: ansible_distribution == "Fedora"
       become: true
 
     - name: Clone dunst

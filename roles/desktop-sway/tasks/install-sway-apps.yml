@@ -1,10 +1,10 @@
-- name: Install i3 apps
+- name: Install sway apps
   become: true
   tags:
     - apps
     - desktop
   block:
-    - name: Install apps used by i3
+    - name: Install apps used by sway
       ansible.builtin.package:
         name:
           - feh

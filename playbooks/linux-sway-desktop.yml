@@ -1,5 +1,5 @@
 ---
-- hosts: new
+- hosts: new_wayland
   name: Install Linux Desktop - Sway WM
   become_user: root
   roles:

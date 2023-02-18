@@ -6,5 +6,5 @@
     - name: Install Wayland (Ubuntu)
       ansible.builtin.package:
         name:
-          - wayland
+          - wayland-protocols
       when: ansible_distribution == "Ubuntu"

@@ -1,5 +1,8 @@
 [new]
 ceto
 
+[new_wayland]
+10.1.1.139
+
 [local_vm_servers]
 ceto

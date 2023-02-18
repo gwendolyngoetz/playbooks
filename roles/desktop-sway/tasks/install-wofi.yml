@@ -6,6 +6,7 @@
       ansible.builtin.package:
         name:
           - wofi
+      become: true
 
     #    - name: Install wofi dependencies
     #      ansible.builtin.package:
