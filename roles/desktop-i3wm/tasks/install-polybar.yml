@@ -100,7 +100,7 @@
       ansible.builtin.file:
         path: $HOME/src/github/system-repos/polybar/build
         state: directory
-        mode: 0755
+        mode: '0755'
 
     - name: Run polybar - cmake
       ansible.builtin.command: cmake ..

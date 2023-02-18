@@ -70,7 +70,7 @@
       ansible.builtin.file:
         path: $HOME/src/github/system-repos/i3-gaps/build
         state: directory
-        mode: 0755
+        mode: '0755'
 
     - name: Run i3 - meson
       ansible.builtin.command: meson ..

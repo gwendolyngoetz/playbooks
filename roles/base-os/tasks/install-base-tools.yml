@@ -5,7 +5,7 @@
   block:
     - name: Install base tools
       ansible.builtin.apt:
-        update_cache: yes
+        update_cache: true
         state: present
         pkg:
           - software-properties-common
@@ -28,7 +28,7 @@
 
     - name: Install base tools
       ansible.builtin.apt:
-        update_cache: yes
+        update_cache: true
         state: present
         pkg:
           - acl

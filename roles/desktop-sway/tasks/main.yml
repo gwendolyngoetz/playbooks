@@ -7,7 +7,7 @@
     - install-sddm.yml
     - install-waybar.yml
     - install-sway-apps.yml
-    #- install-dunst.yml
+    # - install-dunst.yml
     - install-wofi.yml
     - install-themes-qt.yml
     - install-themes-gtk.yml

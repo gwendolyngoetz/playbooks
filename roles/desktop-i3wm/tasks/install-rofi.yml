@@ -19,7 +19,7 @@
       ansible.builtin.file:
         path: $HOME/src/github/system-repos/rofi/build
         state: directory
-        mode: 0755
+        mode: '0755'
 
     - name: Run rofi - autoreconf
       ansible.builtin.command: autoreconf -i

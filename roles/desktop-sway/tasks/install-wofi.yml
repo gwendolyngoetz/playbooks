@@ -27,7 +27,7 @@
     #      ansible.builtin.file:
     #        path: $HOME/src/github/system-repos/wofi/build
     #        state: directory
-    #        mode: 0755
+    #        mode: '0755'
     #
     #    - name: Run wofi - autoreconf
     #      ansible.builtin.command: autoreconf -i

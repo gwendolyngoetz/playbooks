@@ -6,7 +6,7 @@
     - name: Disable Wifi Adapter
       ansible.builtin.blockinfile:
         path: /etc/modprobe.d/blacklist.conf
-        mode: 0644
+        mode: '0644'
         owner: root
         group: root
         create: true
