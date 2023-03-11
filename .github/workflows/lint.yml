@@ -37,3 +37,29 @@ jobs:
 
       - name: Lint Playbooks and Roles
         run: bin/lint-playbooks.sh
+
+  lint-windows:
+    runs-on: windows-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - run: pip install --upgrade pip
+      - run: pip install -r requirements.txt
+
+      - name: Install Ansible Galaxy roles
+        run: ansible-galaxy install -r requirements.yml
+
+      - name: Cache Ansible Packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.ansible
+          key: ${{ runner.os }}-ansible
+
+      - name: Lint Playbooks and Roles
+        run: ansible-lint ./playbooks/windows.yml
