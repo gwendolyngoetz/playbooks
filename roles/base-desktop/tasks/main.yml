@@ -1,6 +1,7 @@
 - name: Run Desktop Role
   ansible.builtin.include_tasks: '{{ item }}'
   loop:
+    - ../../shared/tasks/install-base-tools.yml
     - install-audio-tools.yml
     - install-bluetooth.yml
     - install-alacritty.yml

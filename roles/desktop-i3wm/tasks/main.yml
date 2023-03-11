@@ -1,6 +1,7 @@
 - name: Run i3wm Desktop Role
   ansible.builtin.include_tasks: '{{ item }}'
   loop:
+    - ../../shared/tasks/install-base-tools.yml
     - install-xorg.yml
     - install-i3.yml
     - load-dotfiles.yml

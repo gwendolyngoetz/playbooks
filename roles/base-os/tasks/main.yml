@@ -1,7 +1,7 @@
 - name: Run Base OS Role
   ansible.builtin.include_tasks: '{{ item }}'
   loop:
-    - install-base-tools.yml
+    - ../../shared/tasks/install-base-tools.yml
     - remove-snapd.yml
     - disable-cloud-init.yml
     - set-timezone.yml
