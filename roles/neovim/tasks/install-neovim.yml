@@ -1,6 +1,9 @@
 - name: Install neovim
   tags:
     - apps
+  vars:
+    home: '{{ lookup("env", "HOME") }}'
+    neovim_repo: '{{ home }}/src/github/system-repos/neovim'
   block:
     - name: Install neovim build dependencies (Ubuntu)
       ansible.builtin.apt:
@@ -65,7 +68,7 @@
     - name: Clone neovim from github
       ansible.builtin.git:
         repo: https://www.github.com/neovim/neovim.git
-        dest: $HOME/src/github/system-repos/neovim
+        dest: '{{ neovim_repo }}'
         version: d367ed9b23d481998d297d812f54b950e5511c24
         refspec: '+refs/pull/*:refs/heads/*'
         clone: true
@@ -74,10 +77,10 @@
     - name: Run neovim - make
       ansible.builtin.command: make CMAKE_BUILD_TYPE=Release
       args:
-        chdir: $HOME/src/github/system-repos/neovim
+        chdir: '{{ neovim_repo }}'
 
     - name: Run neovim - make install
       ansible.builtin.command: make install
       args:
-        chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/neovim"
+        chdir: '{{ neovim_repo }}'
       become: true
