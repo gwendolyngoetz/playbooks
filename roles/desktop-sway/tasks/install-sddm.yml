@@ -1,6 +1,9 @@
 - name: Install SDDM
   tags:
     - desktop
+  vars:
+    home: '{{ lookup("env", "HOME") }}'
+    sddmchili_repo: '{{ home }}/src/github/system-repos/sddm-chili'
   block:
     - name: Install sddm
       ansible.builtin.package:
@@ -14,7 +17,7 @@
     - name: Clone Chili SDDM Theme
       ansible.builtin.git:
         repo: https://github.com/MarianArlt/sddm-chili.git
-        dest: $HOME/src/github/system-repos/sddm-chili
+        dest: '{{ sddmchili_repo }}'
 
     - name: Create chili theme directory
       ansible.builtin.file:
@@ -25,7 +28,7 @@
     - name: Copy chili theme to sddm themes folder
       ansible.builtin.command: rsync -av -exclude=".*" . /usr/share/sddm/themes/chili
       args:
-        chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/sddm-chili"
+        chdir: '{{ sddmchili_repo }}'
       become: true
 
     - name: Install chili theme dependencies
@@ -51,13 +54,13 @@
 
     - name: Set up user icon
       ansible.builtin.file:
-        src: $HOME/.face
-        dest: $HOME/.face.icon
+        src: '{{ home }}/.face'
+        dest: '{{ home }}/.face.icon'
         state: link
 
     - name: Give sddm user access to $HOME
       ansible.posix.acl:
-        path: "{{ lookup('env', 'HOME') }}"
+        path: '{{ home }}'
         entity: sddm
         etype: user
         permissions: x
@@ -66,7 +69,7 @@
 
     - name: Give sddm user access to $HOME/.face.icon
       ansible.posix.acl:
-        path: "{{ lookup('env', 'HOME') }}/.face.icon"
+        path: '{{ home }}/.face.icon'
         entity: sddm
         etype: user
         permissions: r
