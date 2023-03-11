@@ -1,6 +1,9 @@
 - name: Install i3
   tags:
     - desktop
+  vars:
+    home: '{{ lookup("env", "HOME") }}'
+    i3_repo: '{{ home }}/src/github/system-repos/i3-gaps'
   block:
     - name: Install i3 build tools
       ansible.builtin.package:
@@ -62,28 +65,28 @@
     - name: Clone i3 from github
       ansible.builtin.git:
         repo: https://www.github.com/Airblader/i3.git
-        dest: $HOME/src/github/system-repos/i3-gaps
+        dest: '{{ i3_repo }}'
         clone: true
         update: true
 
     - name: Make i3 build directory
       ansible.builtin.file:
-        path: $HOME/src/github/system-repos/i3-gaps/build
+        path: '{{ i3_repo }}/build'
         state: directory
         mode: '0755'
 
     - name: Run i3 - meson
       ansible.builtin.command: meson ..
       args:
-        chdir: $HOME/src/github/system-repos/i3-gaps/build
+        chdir: '{{ i3_repo }}/build'
 
     - name: Run i3 - ninja
       ansible.builtin.command: ninja
       args:
-        chdir: $HOME/src/github/system-repos/i3-gaps/build
+        chdir: '{{ i3_repo }}/build'
 
     - name: Run i3 - ninja install
       ansible.builtin.command: ninja install
       args:
-        chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/i3-gaps/build"
+        chdir: '{{ i3_repo }}/build'
       become: true
