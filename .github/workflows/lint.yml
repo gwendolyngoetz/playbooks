@@ -36,6 +36,4 @@ jobs:
           key: ${{ runner.os }}-ansible
 
       - name: Lint Playbooks and Roles
-        run: |
-          find ./playbooks -type f -name '*.yml' -exec ansible-lint {} \+
-        #ansible-lint playbooks/*
+        run: bin/lint-playbooks.sh
