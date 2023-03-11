@@ -6,7 +6,7 @@ Ansible playbooks
 
 ## Run Script
 
-`./run-playbook.sh [playbook-name]`
+`bin/run-playbook.sh [playbook-name]`
 
 - Without parameters list available playbooks
 - With parameters run playbook
@@ -53,7 +53,7 @@ Ansible playbooks
 
 Using [molecule](https://molecule.readthedocs.io) to test roles
 
-`./test-role.sh [role-name]`
+`bin/test-role.sh [role-name]`
 
 - Without parameters list available roles
 - With parameters run role

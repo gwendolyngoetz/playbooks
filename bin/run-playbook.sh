@@ -1,5 +1,7 @@
 #!/bin/bash
 
+pushd "$(git rev-parse --show-toplevel)" > /dev/null || exit
+
 playbook="${1}"
 verbose="${2}"
 
@@ -21,7 +23,8 @@ if [[ -z "${playbook}" ]]; then
 fi
 
 if [[ "${verbose}" == "verbose" ]]; then
-    ansible-playbook -vvv -K -i hosts ./playbooks/${playbook}.yml
+    ansible-playbook -vvv -K -i hosts "./playbooks/${playbook}.yml"
 else
-    ansible-playbook -K -i hosts ./playbooks/${playbook}.yml
+    ansible-playbook -K -i hosts "./playbooks/${playbook}.yml"
 fi
+

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pushd "$(git rev-parse --show-toplevel)" >> /dev/null || exit
+pushd "$(git rev-parse --show-toplevel)" > /dev/null || exit
 
 find ./playbooks \
     -type f \
