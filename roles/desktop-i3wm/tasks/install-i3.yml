@@ -3,7 +3,7 @@
     - desktop
   vars:
     home: '{{ lookup("env", "HOME") }}'
-    i3_repo: '{{ home }}/src/github/system-repos/i3-gaps'
+    i3_repo: '{{ home }}/src/github/system-repos/i3'
   block:
     - name: Install i3 build tools
       ansible.builtin.package:
@@ -64,7 +64,7 @@
 
     - name: Clone i3 from github
       ansible.builtin.git:
-        repo: https://www.github.com/Airblader/i3.git
+        repo: https://www.github.com/i3/i3.git
         dest: '{{ i3_repo }}'
         clone: true
         update: true
