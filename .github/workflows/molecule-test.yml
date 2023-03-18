@@ -15,10 +15,11 @@ jobs:
   build-matrix:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
       - id: set_matrix
-        # run: echo "role_matrix=$(ls roles --hide=windows --hide=shared | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
-        # run: echo 'role_matrix=["add-users","applications","base-desktop","base-os","basic-server","desktop-i3wm","desktop-sway","docker","docker-rootless","hello-world","hestia","macos","neovim","sdks","upgrade-server"]' >> $GITHUB_OUTPUT
-        run: echo 'role_matrix=["applications","base-desktop","base-os"]' >> $GITHUB_OUTPUT
+        run: echo "role_matrix=$(ls roles --hide=windows --hide=shared | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+        #run: echo 'role_matrix=["applications","base-desktop","base-os"]' >> $GITHUB_OUTPUT
     outputs:
       role_matrix: ${{ steps.set_matrix.outputs.role_matrix }}
 
