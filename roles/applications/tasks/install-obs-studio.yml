@@ -4,6 +4,7 @@
     - apps
   vars:
     ubuntu_key: '/etc/apt/keyrings/obsstudio.asc'
+    obs_ppa: 'https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu'
   when: ansible_distribution == "Ubuntu"
   block:
     - name: Install OBS Studio dependencies
@@ -19,7 +20,7 @@
 
     - name: Add OBS Studio Repository
       ansible.builtin.apt_repository:
-        repo: 'deb [arch=amd64 signed-by={{ ubuntu_key }}] https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu {{ ansible_distribution_release }} main'
+        repo: 'deb [arch=amd64 signed-by={{ ubuntu_key }}] {{ obs_ppa }} {{ ansible_distribution_release }} main'
         state: present
         filename: obsstudio
 
