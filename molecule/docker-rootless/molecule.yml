@@ -4,8 +4,8 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: Ubuntu
-    image: geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu2204}-ansible:latest
+  - name: ${DISTRO:-ubuntu2204}
+    image: geerlingguy/docker-${DISTRO:-ubuntu2204}-ansible:latest
     pre_build_image: true
     privileged: true
     #command: /lib/systemd/systemd
