@@ -20,6 +20,12 @@ jobs:
     outputs:
       role_matrix: ${{ steps.set-matrix.outputs.role_matrix }}
 
+  printer:
+    runs-on: ubuntu-latest
+    steps:
+      - id: printer
+        run: echo ${{ needs.build-matrix.outputs.role_matrix }}
+
   molecule-test:
     runs-on: ubuntu-latest
     strategy:
