@@ -22,6 +22,7 @@ jobs:
 
   printer:
     runs-on: ubuntu-latest
+    needs: build-matrix
     steps:
       - id: printer
         run: echo ${{ fromJson(needs.build-matrix.outputs.role_matrix) }}
