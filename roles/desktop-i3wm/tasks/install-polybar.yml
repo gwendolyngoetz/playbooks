@@ -2,6 +2,9 @@
   become: true
   tags:
     - desktop
+  vars:
+    home: '{{ lookup("env", "HOME") }}'
+    polybar_path: '{{ home }}/src/github/system-repos/polybar'
   block:
     - name: Install polybar build dependencies (Ubuntu)
       ansible.builtin.package:
@@ -93,24 +96,24 @@
     - name: Clone Polybar Repository
       ansible.builtin.git:
         repo: https://github.com/polybar/polybar.git
-        dest: $HOME/src/github/system-repos/polybar
+        dest: '{{ polybar_path }}'
         recursive: true
 
     - name: Make polybar build directory
       ansible.builtin.file:
-        path: $HOME/src/github/system-repos/polybar/build
+        path: '{{ polybar_path }}/build'
         state: directory
         mode: '0755'
 
     - name: Run polybar - cmake
       ansible.builtin.command: cmake ..
       args:
-        chdir: $HOME/src/github/system-repos/polybar/build
+        chdir: '{{ polybar_path }}/build'
 
     - name: Run polybar - make
       ansible.builtin.shell: make -j$(nproc)
       args:
-        chdir: $HOME/src/github/system-repos/polybar/build
+        chdir: '{{ polybar_path }}/build'
 
 - name: Run polybar Install
   become: true
@@ -120,4 +123,4 @@
     - name: Run polybar - make install
       ansible.builtin.command: make install
       args:
-        chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/polybar/build"
+        chdir: '{{ polybar_path }}/build'

@@ -1,6 +1,9 @@
 - name: Install dunst
   tags:
     - desktop
+  vars:
+    home: '{{ lookup("env", "HOME") }}'
+    dunst_path: '{{ home }}/src/github/system-repos/dunst'
   block:
     - name: Install dunst dependencies (Ubuntu)
       ansible.builtin.package:
@@ -36,21 +39,21 @@
     - name: Clone dunst
       ansible.builtin.git:
         repo: https://github.com/dunst-project/dunst.git
-        dest: $HOME/src/github/system-repos/dunst
+        dest: '{{ dunst_path }}'
 
     - name: Make dunst build directory
       ansible.builtin.file:
-        path: $HOME/src/github/system-repos/dunst/build
+        path: '{{ dunst_path }}/build'
         state: directory
         mode: '0755'
 
     - name: Run dunst - make
       ansible.builtin.command: make WAYLAND=0 SYSTEMD=0 SYSCONFDIR=/etc/xdg
       args:
-        chdir: $HOME/src/github/system-repos/dunst
+        chdir: '{{ dunst_path }}'
 
     - name: Run dunst - make install
       ansible.builtin.command: make WAYLAND=0 SYSTEMD=0 SYSCONFDIR=/etc/xdg install
       args:
-        chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/dunst"
+        chdir: '{{ dunst_path }}'
       become: true
