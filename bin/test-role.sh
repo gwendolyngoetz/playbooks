@@ -3,6 +3,8 @@
 pushd "$(git rev-parse --show-toplevel)" > /dev/null || exit
 
 role="${1}"
+distro="${2}"
+
 
 molecule_installed=$(which molecule > /dev/null; echo $?)
 
@@ -21,5 +23,6 @@ if [[ -z "${role}" ]]; then
     exit 1
 fi
 
-ANSIBLE_VAULT_PASSWORD_FILE=./vars/vault.test.pw molecule test --scenario-name "${role}"
+MOLECULE_DISTRO=${distro} ANSIBLE_VAULT_PASSWORD_FILE=./vars/vault.test.pw molecule test --scenario-name "${role}"
+
 

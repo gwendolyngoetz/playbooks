@@ -12,9 +12,12 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  test:
+  molecule-test:
     runs-on: ubuntu-latest
-
+    strategy:
+      fail-fast: false
+      matrix:
+        distro: [ubuntu2204, debian11, fedora37]
     steps:
       - uses: actions/checkout@v3
 
@@ -36,4 +39,4 @@ jobs:
           key: ${{ runner.os }}-ansible
 
       - name: Test Playbooks
-        run: bin/test-role.sh base-os
+        run: bin/test-role.sh base-os ${{ matrix.distro }}
