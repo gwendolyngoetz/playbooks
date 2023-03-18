@@ -9,29 +9,31 @@
         state: present
         pkg:
           - software-properties-common
+      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
 
     - name: Enable apt universe
       ansible.builtin.command: add-apt-repository universe -y
       tags: molecule-idempotence-notest
+      when: ansible_distribution == "Ubuntu"
 
     - name: Update apt repo and cache
       ansible.builtin.apt:
         update_cache: true
         force_apt_get: true
         cache_valid_time: 3600
-      when: ansible_distribution == "Ubuntu"
+      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
 
-    - name: Update apt cache
-      ansible.builtin.apt:
-        update_cache: true
-      changed_when: false
-      when: ansible_distribution == "Ubuntu"
+    - name: Install base tools (Fedora)
+      ansible.builtin.package:
+        name:
+          - util-linux
+      when: ansible_distribution == "Fedora"
 
-    - name: Install base tools
+    - name: Install base tools (Ubuntu or Debian)
       ansible.builtin.apt:
-        update_cache: true
         state: present
         pkg:
+          - apt-utils
           - acl
           - exa
           - fd-find
@@ -39,6 +41,7 @@
           - htop
           - jq
           - neofetch
+          - network-manager
           - ripgrep
           - rsync
           - unzip
@@ -46,10 +49,4 @@
           - xdotool
           - xsel
           - zip
-
-    - name: Install base tools
-      ansible.builtin.package:
-        name:
-          - apt-utils
-          - network-manager
-      when: ansible_distribution == "Ubuntu"
+      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
