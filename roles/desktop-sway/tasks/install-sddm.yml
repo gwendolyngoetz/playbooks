@@ -23,6 +23,7 @@
       ansible.builtin.file:
         path: /usr/share/sddm/themes/chili
         state: directory
+        mode: '0644'
       become: true
 
     - name: Copy chili theme to sddm themes folder

@@ -6,16 +6,19 @@
       ansible.builtin.file:
         path: $HOME/.themes
         state: directory
+        mode: '0755'
 
     - name: Make .fonts directory
       ansible.builtin.file:
         path: $HOME/.fonts
         state: directory
+        mode: '0755'
 
     - name: Make .icons directory
       ansible.builtin.file:
         path: $HOME/.icons
         state: directory
+        mode: '0755'
 
 - name: Symlink Theme Folders
   become: true

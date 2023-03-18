@@ -17,6 +17,7 @@
       ansible.builtin.get_url:
         url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xbc7345f522079769f5bbe987efc71127f425e228
         dest: '{{ ubuntu_key }}'
+        mode: '0644'
 
     - name: Add OBS Studio Repository
       ansible.builtin.apt_repository:

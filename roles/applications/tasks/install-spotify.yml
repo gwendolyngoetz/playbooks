@@ -10,6 +10,7 @@
       ansible.builtin.get_url:
         url: https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg
         dest: '{{ ubuntu_key }}'
+        mode: '0644'
 
     - name: Add Spotify Repository
       ansible.builtin.apt_repository:

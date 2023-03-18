@@ -9,6 +9,7 @@
         dest: /etc/systemd/timesyncd.conf
         owner: root
         group: root
+        mode: '0644'
 
     - name: Restart NTP service
       ansible.builtin.service:

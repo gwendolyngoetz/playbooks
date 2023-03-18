@@ -10,6 +10,7 @@
       ansible.builtin.get_url:
         url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3a160895cc2ce253085d08a552b24df7d43b5377
         dest: '{{ ubuntu_key }}'
+        mode: '0644'
 
     - name: Add Alacritty Repository
       ansible.builtin.apt_repository:

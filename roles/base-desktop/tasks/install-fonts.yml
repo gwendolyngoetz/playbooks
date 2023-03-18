@@ -17,6 +17,7 @@
       ansible.builtin.file:
         path: $HOME/.fonts
         state: directory
+        mode: '0640'
 
     - name: Copy Segoe Fonts
       ansible.builtin.command: rsync -av -exclude=".*" . $HOME/.fonts
