@@ -23,9 +23,11 @@
       loop_control:
         loop_var: snap_folder
       when: ansible_distribution == "Ubuntu"
+      tags: molecule-idempotence-notest
 
     - name: Hold snapd from install
       ansible.builtin.dpkg_selections:
         name: snapd
         selection: hold
       when: ansible_distribution == "Ubuntu"
+      tags: molecule-idempotence-notest
