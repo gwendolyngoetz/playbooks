@@ -1,2 +1,4 @@
 ansible==7.3.0
 ansible-lint==6.14.2
+molecule==4.0.3
+molecule-docker==2.1.0
