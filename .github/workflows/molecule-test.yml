@@ -16,7 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: set-matrix
-        run: echo "role_matrix=$(ls roles --hide=windows --hide=shared | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+        # run: echo "role_matrix=$(ls roles --hide=windows --hide=shared | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+        run: echo 'role_matrix=["add-users","applications","base-desktop","base-os","basic-server","desktop-i3wm","desktop-sway","docker","docker-rootless","hello-world","hestia","macos","neovim","sdks","upgrade-server"]' >> $GITHUB_OUTPUT
     outputs:
       role_matrix: ${{ steps.set-matrix.outputs.role_matrix }}
 
