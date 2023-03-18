@@ -6,4 +6,4 @@ find ./playbooks \
     -type f \
     -name '*.yml' \
     ! -name 'windows.yml' \
-    -exec ansible-lint {} \+
+    -exec ansible-lint -c .ansible-lint.yml {} \+
