@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: printer
-        run: echo ${{ needs.build-matrix.outputs.role_matrix }}
+        run: echo ${{ fromJson(needs.build-matrix.outputs.role_matrix) }}
 
   molecule-test:
     runs-on: ubuntu-latest
