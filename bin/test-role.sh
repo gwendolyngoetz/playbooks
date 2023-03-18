@@ -21,5 +21,5 @@ if [[ -z "${role}" ]]; then
     exit 1
 fi
 
-ANSIBLE_VAULT_PASSWORD_FILE=./vars/vault.pw molecule test --scenario-name "${role}"
+ANSIBLE_VAULT_PASSWORD_FILE=./vars/vault.test.pw molecule test --scenario-name "${role}"
 
