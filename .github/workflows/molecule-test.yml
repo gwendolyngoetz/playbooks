@@ -18,6 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         distro: [ubuntu2204, debian11, fedora37]
+        role: [$(ls roles --hide=windows --hide=shared -m)]
     steps:
       - uses: actions/checkout@v3
 
@@ -39,4 +40,4 @@ jobs:
           key: ${{ runner.os }}-ansible
 
       - name: Test Playbooks
-        run: bin/test-role.sh base-os ${{ matrix.distro }}
+        run: bin/test-role.sh ${{ matrix.role }} ${{ matrix.distro }}
