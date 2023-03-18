@@ -12,13 +12,21 @@ on:
   workflow_dispatch: {}
 
 jobs:
+  build-matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - id: set-matrix
+        run: echo "::set-output name=role_matrix::$(ls roles --hide=windows --hide=shared | jq -R -s -c 'split("\n")[:-1]')"
+    outputs:
+      role_matrix: ${{ steps.set-matrix.outputs.role_matrix }}
+
   molecule-test:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         distro: [ubuntu2204, debian11, fedora37]
-        role: [${{ $(ls roles --hide=windows --hide=shared -m) }}]
+        role: ${{ fromJson(needs.build-matrix.outputs.role_matrix) }}
     steps:
       - uses: actions/checkout@v3
 
