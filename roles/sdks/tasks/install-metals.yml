@@ -7,7 +7,7 @@
         mode: '0644'
 
     - name: Extract Coursier
-      ansible.builtin.shell:
+      ansible.builtin.command:
         cmd: gzip -d cs-x86_64-pc-linux.gz
         chdir: /tmp
 
@@ -19,7 +19,7 @@
         remote_src: true
 
     - name: Install Scala
-      ansible.builtin.shell:
+      ansible.builtin.command:
         cmd: ./cs setup --yes
         chdir: /tmp
 
@@ -34,6 +34,6 @@
         state: absent
 
     - name: Install Metals
-      ansible.builtin.shell:
+      ansible.builtin.command:
         cmd: ./cs install metals
         chdir: "{{ lookup('env', 'HOME') }}/.local/share/coursier/bin"

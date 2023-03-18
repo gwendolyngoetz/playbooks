@@ -1,6 +1,10 @@
 - name: Install fonts
   tags:
     - desktop
+  vars:
+    home: '{{ lookup("env", "HOME") }}'
+    segoe_path: '{{ home }}/src/github/system-repos/segoe-ui-linux'
+    fonts_path: '{{ home }}/.fonts'
   block:
     - name: Install fonts (Ubuntu)
       ansible.builtin.package:
@@ -11,18 +15,18 @@
     - name: Download Segoe Fonts
       ansible.builtin.git:
         repo: https://github.com/mrbvrz/segoe-ui-linux.git
-        dest: $HOME/src/github/system-repos/segoe-ui-linux
+        dest: '{{ segoe_path }}'
 
     - name: Create .fonts directory
       ansible.builtin.file:
-        path: $HOME/.fonts
+        path: '{{ fonts_path }}'
         state: directory
         mode: '0640'
 
     - name: Copy Segoe Fonts
-      ansible.builtin.command: rsync -av -exclude=".*" . $HOME/.fonts
-      args:
-        chdir: $HOME/src/github/system-repos/segoe-ui-linux/font
+      ansible.posix.synchronize:
+        src: '{{ segoe_path }}/font'
+        dest: '{{ fonts_path }}'
 
     - name: Flush font cache
       ansible.builtin.command: fc-cache -fv

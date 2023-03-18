@@ -27,9 +27,9 @@
       become: true
 
     - name: Copy chili theme to sddm themes folder
-      ansible.builtin.command: rsync -av -exclude=".*" . /usr/share/sddm/themes/chili
-      args:
-        chdir: '{{ sddmchili_path }}'
+      ansible.posix.synchronize:
+        src: '{{ sddmchili_path }}'
+        dest: '/usr/share/sddm/themes/chili'
       become: true
 
     - name: Install chili theme dependencies
