@@ -1,0 +1,54 @@
+name: Molecule Tests All
+
+on:
+  # push:
+  #   branches: ['master']
+  #   paths-ignore:
+  #     - '**.md'
+  # pull_request:
+  #   branches: ['master']
+  #   paths-ignore:
+  #     - '**.md'
+  workflow_dispatch: {}
+
+jobs:
+  build-matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - id: set_matrix
+        run: echo "role_matrix=$(ls roles --hide=windows --hide=shared --hide=macos | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+    outputs:
+      role_matrix: ${{ steps.set_matrix.outputs.role_matrix }}
+
+  molecule-test:
+    runs-on: ubuntu-latest
+    needs: build-matrix
+    strategy:
+      fail-fast: false
+      matrix:
+        distro: [ubuntu2204, debian11, fedora37]
+        role: ${{ fromJson(needs.build-matrix.outputs.role_matrix) }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - run: pip install --upgrade pip
+      - run: pip install -r requirements.txt
+
+      - name: Install Ansible Galaxy roles
+        run: ansible-galaxy install -r requirements.yml
+
+      - name: Cache Ansible Packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.ansible
+          key: ${{ runner.os }}-ansible
+
+      - name: Test Playbooks
+        run: bin/test-role.sh ${{ matrix.role }} ${{ matrix.distro }}
