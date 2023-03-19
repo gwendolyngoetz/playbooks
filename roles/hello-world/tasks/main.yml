@@ -3,4 +3,4 @@
   block:
     - name: Print Message
       ansible.builtin.debug:
-        msg: 'Hello World!'
+        msg: 'Hello World'
