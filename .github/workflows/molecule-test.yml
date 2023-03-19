@@ -1,14 +1,10 @@
 name: Molecule Tests
 
 on:
-  # push:
-  #   branches: ['master']
-  #   paths-ignore:
-  #     - '**.md'
-  # pull_request:
-  #   branches: ['master']
-  #   paths-ignore:
-  #     - '**.md'
+  push:
+    branches: ['master']
+    paths-ignore:
+      - '**.md'
   workflow_dispatch: {}
 
 jobs:
@@ -16,9 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # or 2
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+        with:
+          dir_names: true
+          dir_names_max_depth: 2
+          files: roles
+          json: true
 
       - id: set_matrix
-        run: echo "role_matrix=$(ls roles --hide=windows --hide=shared --hide=macos | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
+        run: echo role_matrix=$(echo ${{ steps.changed-files.outputs.all_changed_files }} | jq '.[] |= sub("roles/";"")') >> $GITHUB_OUTPUT
     outputs:
       role_matrix: ${{ steps.set_matrix.outputs.role_matrix }}
 
