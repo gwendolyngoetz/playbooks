@@ -11,7 +11,20 @@
         group: root
         mode: '0644'
 
-    - name: Restart NTP service
-      ansible.builtin.service:
+    - name: Install timesyncd
+      ansible.builtin.apt:
+        update-cache: true
+        state: present
         name: systemd-timesyncd
+
+    - name: Restart NTP service
+      ansible.builtin.systemd:
         state: restarted
+        daemon_reload: true
+        name: systemd-timesyncd.service
+      tags: molecule-idempotence-notest
+
+    # - name: Restart NTP service
+    #   ansible.builtin.service:
+    #     name: systemd-timesyncd
+    #     state: restarted

@@ -6,6 +6,7 @@ driver:
 platforms:
   - name: ${DISTRO:-ubuntu2204}
     image: geerlingguy/docker-${DISTRO:-ubuntu2204}-ansible:latest
+    command: ''
     pre_build_image: true
     privileged: true
     volumes:
