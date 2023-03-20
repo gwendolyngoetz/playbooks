@@ -9,6 +9,7 @@
           - python3-pip
           - libhidapi-libusb0
           - libxcb-xinerama0
+          - udev
       when: ansible_distribution == "Ubuntu"
 
     - name: Install streamdeck dependencies (Fedora)
