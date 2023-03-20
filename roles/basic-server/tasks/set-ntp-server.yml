@@ -11,11 +11,11 @@
         group: root
         mode: '0644'
 
-    - name: Install timesyncd
+    - name: Update apt repo and cache
       ansible.builtin.apt:
-        update-cache: true
-        state: present
-        name: systemd-timesyncd
+        update_cache: true
+        force_apt_get: true
+        cache_valid_time: 3600
 
     - name: Restart NTP service
       ansible.builtin.systemd:
@@ -23,8 +23,12 @@
         daemon_reload: true
         name: systemd-timesyncd.service
       tags: molecule-idempotence-notest
+  when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
 
-    # - name: Restart NTP service
-    #   ansible.builtin.service:
-    #     name: systemd-timesyncd
-    #     state: restarted
+  block:
+    - name: Install timesyncd (Fedora)
+      ansible.builtin.dnf:
+        update_cache: true
+        state: present
+        name: chrony
+  when: ansible_distribution == "Fedora"

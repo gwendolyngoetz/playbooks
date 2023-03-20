@@ -20,6 +20,16 @@
         loop_var: file_to_remove
       tags: molecule-idempotence-notest
 
+    - name: Make /etc/update-motd.d directory
+      ansible.builtin.file:
+        path: '/etc/update-motd.d'
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+      tags: molecule-idempotence-notest
+      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
+
     - name: Copy motd
       ansible.builtin.copy:
         src: ../templates/01-custom.j2
