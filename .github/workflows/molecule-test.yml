@@ -37,8 +37,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        distro: [ubuntu2204, debian11, fedora37]
         role: ${{ fromJson(needs.build-matrix.outputs.role_matrix) }}
+        distro: [ubuntu2204, debian11, fedora37]
     steps:
       - uses: actions/checkout@v3
 
