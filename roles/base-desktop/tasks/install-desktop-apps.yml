@@ -3,14 +3,31 @@
   tags:
     - apps
   block:
-    - name: Install other apps (Common)
+    - name: Install other apps (Debian)
+      ansible.builtin.apt:
+        update_cache: true
+        name:
+          - arandr
+          - darktable
+          - gimp
+          - keepassxc
+          - lxappearance
+          # - meld
+          - newsboat
+          - qt5ct
+          # - thunar
+          - tmux
+          - youtube-dl
+          - zathura
+      when: ansible_distribution == "Debian"
+
+    - name: Install other apps (Ubuntu)
       ansible.builtin.package:
         name:
           - arandr
           - darktable
           - gimp
           - keepassxc
-          # - libreoffice
           - lxappearance
           - meld
           - newsboat
@@ -20,9 +37,6 @@
           - youtube-dl
           - zathura
 
-    - name: Install other apps (Ubuntu)
-      ansible.builtin.package:
-        name:
           - mesa-utils # for glxinfo
           - nfs-common
           - policykit-1-gnome
@@ -31,6 +45,19 @@
     - name: Install other apps (Fedora)
       ansible.builtin.package:
         name:
+          - arandr
+          - darktable
+          - gimp
+          - keepassxc
+          - lxappearance
+          - meld
+          - newsboat
+          - qt5ct
+          - thunar
+          - tmux
+          - youtube-dl
+          - zathura
+
           - glx-utils # for glxinfo
           - nfs-utils
           - polkit-gnome
