@@ -1,15 +1,27 @@
 - name: Add user
   become: true
   vars:
-    adduser_username: gwendolyn
-    adduser_password: '{{ vault_gwendolyn_password }}'
+    username: '{{ vault_username }}'
+    password: '{{ vault_password }}'
+    salt: '{{ vault_salt }}'
+    sudo_group: ''
   block:
+    - name: Set sudo group name (Ubuntu)
+      ansible.builtin.set_fact:
+        sudo_group: 'sudo'
+      when: (ansible_distribution == "Ubuntu" or ansible_distribution == "Debian")
+
+    - name: Set sudo group name (Fedora)
+      ansible.builtin.set_fact:
+        sudo_group: 'wheel'
+      when: ansible_distribution == "Fedora"
+
     - name: Add my user account
       ansible.builtin.user:
-        name: '{{ adduser_username }}'
+        name: '{{ username }}'
+        password: '{{ password | password_hash("sha512", salt) }}'
+        state: present
         createhome: true
         shell: /bin/bash
-        groups: sudo
-
-    - name: Set password
-      ansible.builtin.shell: /usr/bin/openssl passwd -6 -salt "p3x515" "{{ adduser_password }}" | awk '{print "{{ adduser_username }}:"$1}' | chpasswd -e
+        groups: '{{ sudo_group }}'
+        update_password: on_create
