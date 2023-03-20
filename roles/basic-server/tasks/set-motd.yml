@@ -28,7 +28,6 @@
         group: root
         mode: '0755'
       tags: molecule-idempotence-notest
-      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
 
     - name: Copy motd
       ansible.builtin.copy:
