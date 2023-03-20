@@ -11,7 +11,7 @@
         file_type: any
       register: collected_files
 
-    - name: Remove collected files
+    - name: Remove Collected Files
       ansible.builtin.file:
         path: '{{ file_to_remove.path }}'
         state: absent
