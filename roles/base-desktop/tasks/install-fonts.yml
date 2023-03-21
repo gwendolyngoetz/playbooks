@@ -24,15 +24,6 @@
         state: directory
         mode: '0640'
 
-    # - name: Copy Segoe Fonts
-    #   ansible.posix.synchronize:
-    #     src: '{{ segoe_path }}/font/'
-    #     dest: '{{ fonts_path }}/'
-    #     mode: pull
-    #     rsync_opts:
-    #       - '-av'
-    #       - '--exclude=".*"'
-
     - name: Copy Segoe Fonts
       ansible.builtin.command: 'rsync -av -exclude=".*" . {{ fonts_path }}'
       args:
