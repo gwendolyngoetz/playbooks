@@ -13,7 +13,6 @@
 
     - name: Enable apt universe
       ansible.builtin.command: add-apt-repository universe -y
-      tags: molecule-idempotence-notest
       when: ansible_distribution == "Ubuntu"
 
     - name: Update apt repo and cache
