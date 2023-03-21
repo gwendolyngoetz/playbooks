@@ -3,6 +3,10 @@
   hosts: all
   vars_files: ../../vars/vault.test.yml
   tasks:
+    - name: Role - add user
+      include_role:
+        name: ../../roles/add-users
+
     - name: Role - base-desktop
       include_role:
         name: ../../roles/base-desktop
