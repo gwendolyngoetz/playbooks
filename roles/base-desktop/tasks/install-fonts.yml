@@ -28,7 +28,7 @@
       ansible.posix.synchronize:
         src: '{{ segoe_path }}/font/'
         dest: '{{ fonts_path }}/'
-        mode: '0640'
+        mode: pull
 
     - name: Flush font cache
       ansible.builtin.command: fc-cache -fv
