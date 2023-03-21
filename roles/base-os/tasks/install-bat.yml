@@ -9,7 +9,7 @@
         name: bat
       become: true
 
-    - name: Make sure {{ home }}/.local/bin exists
+    - name: 'Make sure ~/.local/bin exists'
       ansible.builtin.file:
         path: '{{ home }}/.local/bin'
         state: directory
