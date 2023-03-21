@@ -3,6 +3,10 @@
   hosts: all
   vars_files: ../../vars/vault.test.yml
   pre_tasks:
+    - name: Role - add user
+      include_role:
+        name: ../../roles/add-users
+
     - name: Update Apt
       become: true
       ansible.builtin.apt:
