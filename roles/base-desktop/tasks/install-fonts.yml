@@ -2,7 +2,8 @@
   tags:
     - desktop
   vars:
-    home: '{{ lookup("env", "HOME") }}'
+    username: '{{ vault_username }}'
+    home: '{{ vault_home }}'
     segoe_path: '{{ home }}/src/github/system-repos/segoe-ui-linux'
     fonts_path: '{{ home }}/.fonts'
   block:
