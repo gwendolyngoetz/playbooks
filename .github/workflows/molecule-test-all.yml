@@ -22,7 +22,7 @@ jobs:
     outputs:
       role_matrix: ${{ steps.set_matrix.outputs.role_matrix }}
 
-  molecule-test:
+  test:
     runs-on: ubuntu-latest
     needs: build-matrix
     strategy:
