@@ -18,7 +18,6 @@
       with_items: '{{ collected_files.files }}'
       loop_control:
         loop_var: file_to_remove
-      tags: molecule-idempotence-notest
 
     - name: Make /etc/update-motd.d directory
       ansible.builtin.file:
@@ -27,7 +26,6 @@
         owner: root
         group: root
         mode: '0755'
-      tags: molecule-idempotence-notest
 
     - name: Copy motd
       ansible.builtin.copy:
@@ -36,4 +34,3 @@
         owner: root
         group: root
         mode: '0755'
-      tags: molecule-idempotence-notest
