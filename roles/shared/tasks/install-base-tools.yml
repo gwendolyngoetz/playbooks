@@ -26,6 +26,22 @@
       ansible.builtin.package:
         name:
           - util-linux
+
+          - acl
+          - exa
+          - fd-find
+          - git
+          - htop
+          - jq
+          - neofetch
+          # - network-manager
+          - ripgrep
+          - rsync
+          - unzip
+          - vim
+          - xdotool
+          - xsel
+          - zip
       when: ansible_distribution == "Fedora"
 
     - name: Install base tools (Ubuntu or Debian)
