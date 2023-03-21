@@ -24,14 +24,19 @@
         state: directory
         mode: '0640'
 
+    # - name: Copy Segoe Fonts
+    #   ansible.posix.synchronize:
+    #     src: '{{ segoe_path }}/font/'
+    #     dest: '{{ fonts_path }}/'
+    #     mode: pull
+    #     rsync_opts:
+    #       - '-av'
+    #       - '--exclude=".*"'
+
     - name: Copy Segoe Fonts
-      ansible.posix.synchronize:
-        src: '{{ segoe_path }}/font/'
-        dest: '{{ fonts_path }}/'
-        mode: pull
-        rsync_opts:
-          - '-av'
-          - '--exclude=".*"'
+      ansible.builtin.command: 'rsync -av -exclude=".*" . {{ fonts_path }}'
+      args:
+        chdir: '{{ segoe_path }}/font'
 
     - name: Flush font cache
       ansible.builtin.command: fc-cache -fv
