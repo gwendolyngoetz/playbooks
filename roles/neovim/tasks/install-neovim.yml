@@ -2,7 +2,7 @@
   tags:
     - apps
   vars:
-    home: '{{ lookup("env", "HOME") }}'
+    home: '{{ vault_home }}'
     neovim_repo: '{{ home }}/src/github/system-repos/neovim'
   block:
     - name: Install neovim build dependencies (Ubuntu)
