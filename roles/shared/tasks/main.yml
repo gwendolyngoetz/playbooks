@@ -1,0 +1,4 @@
+- name: Run Shared Role
+  ansible.builtin.include_tasks: '{{ item }}'
+  loop:
+    - install-base-tools.yml

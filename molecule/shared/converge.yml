@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  vars_files: ../../vars/vault.test.yml
+  tasks:
+    - name: Role - shared
+      include_role:
+        name: ../../roles/shared
