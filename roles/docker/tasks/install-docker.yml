@@ -43,6 +43,7 @@
   become: true
   tags:
     - dev
+  when: (ansible_distribution == "Ubuntu" or ansible_distribution == "Fedora")
   block:
     - name: Update apt and install docker-ce
       ansible.builtin.package:
@@ -51,3 +52,13 @@
           - docker-ce-cli
           - containerd.io
           - docker-compose-plugin
+
+- name: Install docker (Debian)
+  become: true
+  tags:
+    - dev
+  when: ansible_distribution == "Debian"
+  block:
+    - name: Install
+      ansible.builtin.fail:
+        msg: Install docker on Debian is not configured
