@@ -29,6 +29,9 @@
         src: '{{ segoe_path }}/font/'
         dest: '{{ fonts_path }}/'
         mode: pull
+        rsync_opts:
+          - '-av'
+          - '--exclude=".*"'
 
     - name: Flush font cache
       ansible.builtin.command: fc-cache -fv
