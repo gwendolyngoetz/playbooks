@@ -42,7 +42,7 @@
       tags: notest
       ansible.builtin.command: needs-restarting -r
       register: reboot_required
-      ignore_errors: yes
+      ignore_errors: true
       failed_when: false
       changed_when: reboot_required.rc != 0
       notify: Reboot server
