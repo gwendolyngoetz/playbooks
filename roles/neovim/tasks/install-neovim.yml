@@ -5,7 +5,7 @@
     home: '{{ vault_home }}'
     neovim_repo: '{{ home }}/src/github/system-repos/neovim'
   block:
-    - name: Install neovim build dependencies (Ubuntu)
+    - name: Install neovim build dependencies (Ubuntu or Debian)
       ansible.builtin.apt:
         name:
           - git
@@ -22,7 +22,7 @@
           - g++
           - pkg-config
         update_cache: true
-      when: ansible_distribution == "Ubuntu"
+      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
       become: true
 
     - name: Install neovim build dependencies (Fedora)
