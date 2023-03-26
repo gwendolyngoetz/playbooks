@@ -1,5 +1,6 @@
 skip_list:
-  - partial-become
+  - command-instead-of-module
   - latest[git]
   - no-changed-when
-  - command-instead-of-module
+  - package-latest
+  - partial-become
