@@ -2,13 +2,21 @@
   become: true
   tags:
     - hestia
+  when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Fedora")
   block:
+    - name: Make /etc/netplan directory
+      ansible.builtin.file:
+        path: '/etc/netplan'
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
     - name: Disable Extra Ethernet Adapter
       ansible.builtin.file:
         path: /etc/netplan/00-installer-config.yaml
         state: touch
         mode: '0644'
-      when: ansible_distribution == "Ubuntu"
 # Change the renderer to NetworkManager and make enp7s0 optional
 #
 #     optional=true
