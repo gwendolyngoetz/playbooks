@@ -11,7 +11,9 @@
       become: true
 
     - name: Generate default SDDM config file
-      ansible.builtin.shell: sddm --example-config | tee /etc/sddm.conf
+      ansible.builtin.shell: |
+        set -o pipefail
+        sddm --example-config | tee /etc/sddm.conf
       become: true
 
     - name: Clone Chili SDDM Theme

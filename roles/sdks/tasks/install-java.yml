@@ -23,6 +23,7 @@
     # . {{ lookup('env', 'HOME') }}/.sdkman/bin/sdkman-init.sh
     - name: Install Java Temurin 11
       ansible.builtin.shell: |
+        set -o pipefail
         . {{ lookup('env', 'HOME') }}/.sdkman/bin/sdkman-init.sh
         sdk install java $(sdk list java | grep "11.*-tem" | awk '{print $(NF)}')
       args:
