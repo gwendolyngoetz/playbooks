@@ -1,5 +1,13 @@
 - name: Install Rust
+  vars:
+    home: '{{ vault_home }}'
   block:
+    - name: Install Dependencies
+      ansible.builtin.package:
+        name:
+          - curl
+      become: true
+
     - name: Download Installer Rustup
       ansible.builtin.get_url:
         url: https://static.rust-lang.org/rustup.sh
@@ -11,4 +19,4 @@
       ansible.builtin.command:
         cmd: './rustup.sh -y'
         chdir: '/tmp'
-        creates: "{{ lookup('env', 'HOME') }}/.cargo/bin/cargo"
+        creates: '{{ home }}/.cargo/bin/cargo'

@@ -1,18 +1,22 @@
 - name: Install NodeJS
   vars:
-    nodejs_version: 16
+    nodejs_version: 18
+    nodejs_key: '/etc/apt/keyrings/nodejs.asc'
   become: true
   tags:
     - dev
   block:
-    - name: Install nodejs key
-      ansible.builtin.apt_key:
+    - name: Download Nodejs GPG Key
+      ansible.builtin.get_url:
         url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+        dest: '{{ nodejs_key }}'
+        mode: '0644'
       when: ansible_distribution == "Ubuntu"
 
-    - name: Install the nodejs repos
+    - name: Add Nodejs Repository
       ansible.builtin.apt_repository:
-        repo: deb https://deb.nodesource.com/node_{{ nodejs_version }}.x {{ ansible_distribution_release }} main
+        repo: deb [arch=amd64 signed-by={{ nodejs_key }}] https://deb.nodesource.com/node_{{ nodejs_version }}.x {{ ansible_distribution_release }} main
+        state: present
         filename: nodejs
       when: ansible_distribution == "Ubuntu"
 

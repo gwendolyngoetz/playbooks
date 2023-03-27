@@ -1,7 +1,10 @@
 - name: Install java-11-openjdk-devel
-  become: true
   tags:
     - dev
+  vars:
+    sdkman_installer: '/tmp/sdkman.sh'
+    sdkman_dir: '{{ vault_home }}/.sdkman'
+    sdkman_init: '{{ sdkman_dir }}/bin/sdkman-init.sh'
   block:
     - name: Install Dependencies
       ansible.builtin.apt:
@@ -10,21 +13,24 @@
           - unzip
           - zip
         update_cache: true
+      become: true
 
     - name: Download Installer SDKMAN
       ansible.builtin.get_url:
         url: https://get.sdkman.io/?rcupdate=false
-        dest: '/tmp/sdkman.sh'
+        dest: '{{ sdkman_installer }}'
         mode: '750'
 
     - name: Run SDKMAN Installer
-      ansible.builtin.command: '/tmp/sdkman.sh'
+      ansible.builtin.command: '/bin/bash {{ sdkman_installer }}'
+      environment:
+        SDKMAN_DIR: '{{ sdkman_dir }}'
 
-    # . {{ lookup('env', 'HOME') }}/.sdkman/bin/sdkman-init.sh
     - name: Install Java Temurin 11
       ansible.builtin.shell: |
-        set -o pipefail
-        . {{ lookup('env', 'HOME') }}/.sdkman/bin/sdkman-init.sh
-        sdk install java $(sdk list java | grep "11.*-tem" | awk '{print $(NF)}')
+        java_version=$(source {{ sdkman_init }} && sdk list java | grep "11.*-tem" | awk '{print $(NF)} | head --lines 1')
+        source {{ sdkman_init }} && sdk install java ${java_version}
+      environment:
+        SDKMAN_DIR: '{{ sdkman_dir }}'
       args:
         executable: /bin/bash
