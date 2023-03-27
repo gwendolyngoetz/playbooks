@@ -9,7 +9,7 @@
         mode: '750'
         validate_certs: false
 
-    - name: Make /etc/update-motd.d directory
+    - name: Make go directory
       ansible.builtin.file:
         path: '{{ golang_dir }}'
         state: directory
