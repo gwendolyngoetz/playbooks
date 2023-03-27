@@ -28,6 +28,7 @@
 
     - name: Install Java Temurin 11
       ansible.builtin.shell: |
+        set -o pipefail
         java_version=$(source {{ sdkman_init }} && sdk list java | grep "11.*-tem" | awk '{print $(NF)} | head --lines 1')
         source {{ sdkman_init }} && sdk install java ${java_version}
       environment:
