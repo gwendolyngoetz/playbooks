@@ -2,7 +2,7 @@
   tags:
     - dev
   block:
-    - name: Install Stylua
+    - name: Install Cargo Packages
       community.general.cargo:
         name:
           - stylua
