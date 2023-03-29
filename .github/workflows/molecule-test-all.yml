@@ -51,4 +51,4 @@ jobs:
           key: ${{ runner.os }}-ansible
 
       - name: Test Playbooks
-        run: bin/test-role.sh ${{ matrix.role }} ${{ matrix.distro }}
+        run: bin/test-role.sh ${{ matrix.role }} test ${{ matrix.distro }}
