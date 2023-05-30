@@ -5,7 +5,7 @@
   pre_tasks:
     - name: Role - add user
       include_role:
-        name: ../../roles/add-users
+        name: ../../roles/add_users
   tasks:
     - name: Role - hestia
       include_role:

@@ -5,8 +5,8 @@
   pre_tasks:
     - name: Role - add user
       include_role:
-        name: ../../roles/add-users
+        name: ../../roles/add_users
   tasks:
-    - name: Role - desktop-i3wm
+    - name: Role - base_desktop
       include_role:
-        name: ../../roles/desktop-i3wm
+        name: ../../roles/base_desktop

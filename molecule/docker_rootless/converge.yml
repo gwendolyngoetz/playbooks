@@ -5,12 +5,12 @@
   pre_tasks:
     - name: Role - add user
       include_role:
-        name: ../../roles/add-users
+        name: ../../roles/add_users
   tasks:
     - name: Role - docker
       include_role:
         name: ../../roles/docker
 
-    - name: Role - docker-rootless
+    - name: Role - docker_rootless
       include_role:
-        name: ../../roles/docker-rootless
+        name: ../../roles/docker_rootless

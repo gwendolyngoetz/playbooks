@@ -5,8 +5,8 @@
   pre_tasks:
     - name: Role - add user
       include_role:
-        name: ../../roles/add-users
+        name: ../../roles/add_users
   tasks:
-    - name: Role - hello-world
+    - name: Role - hello_world
       include_role:
-        name: ../../roles/hello-world
+        name: ../../roles/hello_world

@@ -5,8 +5,8 @@
   pre_tasks:
     - name: Role - add user
       include_role:
-        name: ../../roles/add-users
+        name: ../../roles/add_users
   tasks:
-    - name: Role - base-os
+    - name: Role - upgrade_server
       include_role:
-        name: ../../roles/base-os
+        name: ../../roles/upgrade_server
