@@ -3,4 +3,4 @@
   name: Hello World Playbook
   become_user: root
   roles:
-    - hello-world
+    - hello_world

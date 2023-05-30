@@ -2,8 +2,8 @@
   tags:
     - apps
   vars:
-    home: '{{ lookup("env", "HOME") }}'
-    blanket_path: '{{ home }}/src/github/system-repos/blanket'
+    applications_blanket_path: '{{ vault_home }}/src/github/system-repos/blanket'
+
   block:
     - name: Update apt cache
       ansible.builtin.apt:
@@ -29,18 +29,18 @@
     - name: Clone repository
       ansible.builtin.git:
         repo: https://github.com/rafaelmardojai/blanket
-        dest: '{{ blanket_path }}'
+        dest: '{{ applications_blanket_path }}'
         recursive: true
 
     - name: Run meson
       ansible.builtin.command: meson builddir --prefix=/usr/local
       args:
-        chdir: '{{ blanket_path }}'
-        creates: '{{ blanket_path }}/builddir'
+        chdir: '{{ applications_blanket_path }}'
+        creates: '{{ applications_blanket_path }}/builddir'
 
     - name: Run ninja
       ansible.builtin.command: ninja -C builddir install
       args:
-        chdir: '{{ blanket_path }}'
+        chdir: '{{ applications_blanket_path }}'
         creates: '/usr/local/bin/blanket'
       become: true

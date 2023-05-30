@@ -2,26 +2,25 @@
   tags:
     - desktop
   vars:
-    home: '{{ lookup("env", "HOME") }}'
-    themes_dir: '{{ home }}/.themes'
-    fonts_dir: '{{ home }}/.fonts'
-    icons_dir: '{{ home }}/.icons'
+    desktop_i3wm_themes_dir: '{{ vault_home }}/.themes'
+    desktop_i3wm_fonts_dir: '{{ vault_home }}/.fonts'
+    desktop_i3wm_icons_dir: '{{ vault_home }}/.icons'
   block:
     - name: Make .themes directory
       ansible.builtin.file:
-        path: '{{ themes_dir }}'
+        path: '{{ desktop_i3wm_themes_dir }}'
         state: directory
         mode: '0755'
 
     - name: Make .fonts directory
       ansible.builtin.file:
-        path: '{{ fonts_dir }}'
+        path: '{{ desktop_i3wm_fonts_dir }}'
         state: directory
         mode: '0755'
 
     - name: Make .icons directory
       ansible.builtin.file:
-        path: '{{ icons_dir }}'
+        path: '{{ desktop_i3wm_icons_dir }}'
         state: directory
         mode: '0755'
 
@@ -32,18 +31,18 @@
   block:
     - name: Link .themes to root
       ansible.builtin.file:
-        src: '{{ themes_dir }}'
+        src: '{{ desktop_i3wm_themes_dir }}'
         dest: /root/.themes
         state: link
 
     - name: Link .fonts to root
       ansible.builtin.file:
-        src: '{{ fonts_dir }}'
+        src: '{{ desktop_i3wm_fonts_dir }}'
         dest: /root/.fonts
         state: link
 
     - name: Link .icons to root
       ansible.builtin.file:
-        src: '{{ icons_dir }}'
+        src: '{{ desktop_i3wm_icons_dir }}'
         dest: /root/.icons
         state: link

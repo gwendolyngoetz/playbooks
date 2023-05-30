@@ -2,8 +2,6 @@
   become: true
   tags:
     - system
-  vars:
-    home: '{{ vault_home }}'
   block:
     - name: Remove snapd
       ansible.builtin.apt:
@@ -21,7 +19,7 @@
         - /var/snap
         - /var/lib/snapd
         - /root/snap # root
-        - '{{ home }}/snap' # nonroot
+        - '{{ vault_home }}/snap' # nonroot
       loop_control:
         loop_var: snap_folder
       when: ansible_distribution == "Ubuntu"

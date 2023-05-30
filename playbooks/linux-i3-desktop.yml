@@ -3,12 +3,12 @@
   name: Install Linux Desktop - i3wm
   become_user: root
   roles:
-    - base-os
+    - base_os
     - hestia
-    - base-desktop
-    - desktop-i3wm
+    - base_desktop
+    - desktop_i3wm
     - sdks
     - applications
     - neovim
     - docker
-    - docker-rootless
+    - docker_rootless

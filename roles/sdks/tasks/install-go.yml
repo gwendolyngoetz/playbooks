@@ -1,6 +1,6 @@
 - name: Install Go
   vars:
-    golang_dir: '{{ vault_home }}/.golang/bin'
+    sdks_golang_dir: '{{ vault_home }}/.golang/bin'
   block:
     - name: Download Installer Go
       ansible.builtin.get_url:
@@ -11,12 +11,12 @@
 
     - name: Make go directory
       ansible.builtin.file:
-        path: '{{ golang_dir }}'
+        path: '{{ sdks_golang_dir }}'
         state: directory
         mode: '0750'
 
     - name: Run Go Installer
       ansible.builtin.command:
-        cmd: 'tar -C {{ golang_dir }} -xvf ./go-installer.tar.gz'
+        cmd: 'tar -C {{ sdks_golang_dir }} -xvf ./go-installer.tar.gz'
         chdir: '/tmp'
-        creates: '{{ golang_dir }}/go'
+        creates: '{{ sdks_golang_dir }}/go'

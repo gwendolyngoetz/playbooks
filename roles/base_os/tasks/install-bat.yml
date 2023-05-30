@@ -2,7 +2,7 @@
   tags:
     - apps
   vars:
-    home: '{{ vault_home }}'
+    base_os_bat_path: '{{ vault_home }}/.local/bin'
   block:
     - name: Install bat
       ansible.builtin.package:
@@ -11,13 +11,13 @@
 
     - name: 'Make sure ~/.local/bin exists'
       ansible.builtin.file:
-        path: '{{ home }}/.local/bin'
+        path: '{{ base_os_bat_path }}'
         state: directory
         mode: '0755'
 
     - name: Set up user icon
       ansible.builtin.file:
         src: /usr/bin/batcat
-        dest: '{{ home }}/.local/bin/bat'
+        dest: '{{ base_os_bat_path }}/bat'
         state: link
       when: ansible_distribution == "Ubuntu"

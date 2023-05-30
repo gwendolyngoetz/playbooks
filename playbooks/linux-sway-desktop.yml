@@ -3,12 +3,12 @@
   name: Install Linux Desktop - Sway WM
   become_user: root
   roles:
-    - base-os
+    - base_os
     - hestia
-    - base-desktop
-    - desktop-sway
+    - base_desktop
+    - desktop_sway
     - sdks
     - applications
     - neovim
     - docker
-    - docker-rootless
+    - docker_rootless

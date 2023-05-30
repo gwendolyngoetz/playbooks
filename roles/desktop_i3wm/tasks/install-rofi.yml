@@ -2,8 +2,7 @@
   tags:
     - desktop
   vars:
-    home: '{{ lookup("env", "HOME") }}'
-    rofi_path: '{{ home }}/src/github/system-repos/rofi'
+    desktop_i3wm_rofi_path: '{{ vault_home }}/src/github/system-repos/rofi'
   block:
     - name: Install rofi dependencies
       ansible.builtin.package:
@@ -15,32 +14,32 @@
     - name: Clone rofi
       ansible.builtin.git:
         repo: https://github.com/davatorium/rofi.git
-        dest: '{{ rofi_path }}'
+        dest: '{{ desktop_i3wm_rofi_path }}'
         recursive: true
 
     - name: Make rofi build directory
       ansible.builtin.file:
-        path: '{{ rofi_path }}/build'
+        path: '{{ desktop_i3wm_rofi_path }}/build'
         state: directory
         mode: '0755'
 
     - name: Run rofi - autoreconf
       ansible.builtin.command: autoreconf -i
       args:
-        chdir: '{{ rofi_path }}'
+        chdir: '{{ desktop_i3wm_rofi_path }}'
 
     - name: Run rofi - configure
       ansible.builtin.command: ../configure --disable-check
       args:
-        chdir: '{{ rofi_path }}/build'
+        chdir: '{{ desktop_i3wm_rofi_path }}/build'
 
     - name: Run rofi - make
       ansible.builtin.command: make
       args:
-        chdir: '{{ rofi_path }}/build'
+        chdir: '{{ desktop_i3wm_rofi_path }}/build'
 
     - name: Run rofi - make install
       ansible.builtin.command: make install
       args:
-        chdir: '{{ rofi_path }}/build'
+        chdir: '{{ desktop_i3wm_rofi_path }}/build'
       become: true

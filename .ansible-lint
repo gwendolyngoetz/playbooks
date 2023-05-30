@@ -1,6 +1,7 @@
 skip_list:
   - command-instead-of-module
   - latest[git]
+  - yaml[line-length]
   - no-changed-when
   - package-latest
   - partial-become

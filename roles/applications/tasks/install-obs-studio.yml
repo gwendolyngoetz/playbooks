@@ -3,8 +3,8 @@
   tags:
     - apps
   vars:
-    ubuntu_key: '/etc/apt/keyrings/obsstudio.asc'
-    obs_ppa: 'https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu'
+    applications_ubuntu_key: '/etc/apt/keyrings/obsstudio.asc'
+    applications_obs_ppa: 'https://ppa.launchpadcontent.net/obsproject/obs-studio/ubuntu'
   when: ansible_distribution == "Ubuntu"
   block:
     - name: Install OBS Studio dependencies
@@ -16,12 +16,12 @@
     - name: Download OBS Studio GPG Key
       ansible.builtin.get_url:
         url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xbc7345f522079769f5bbe987efc71127f425e228
-        dest: '{{ ubuntu_key }}'
+        dest: '{{ applications_ubuntu_key }}'
         mode: '0644'
 
     - name: Add OBS Studio Repository
       ansible.builtin.apt_repository:
-        repo: 'deb [arch=amd64 signed-by={{ ubuntu_key }}] {{ obs_ppa }} {{ ansible_distribution_release }} main'
+        repo: 'deb [arch=amd64 signed-by={{ applications_ubuntu_key }}] {{ applications_obs_ppa }} {{ ansible_distribution_release }} main'
         state: present
         filename: obsstudio
 

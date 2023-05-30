@@ -9,13 +9,13 @@
         hidden: true
         recurse: true
         file_type: any
-      register: collected_files
+      register: basic_server_collected_files
 
     - name: Remove Collected Files
       ansible.builtin.file:
         path: '{{ file_to_remove.path }}'
         state: absent
-      with_items: '{{ collected_files.files }}'
+      with_items: '{{ basic_server_collected_files.files }}'
       loop_control:
         loop_var: file_to_remove
 

@@ -3,6 +3,6 @@
   name: Install Basic Server
   become_user: root
   roles:
-    - base-os
-    - basic-server
+    - base_os
+    - basic_server
     - neovim

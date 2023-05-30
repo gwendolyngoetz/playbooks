@@ -3,26 +3,26 @@
   tags:
     - apps
   vars:
-    ubuntu_vault_key: '/etc/apt/trusted.gpg.d/hashicorp-vault.asc'
-    fedora_vault_repo: 'https://rpm.releases.hashicorp.com/fedora/hashicorp.repo'
+    applications_ubuntu_vault_key: '/etc/apt/trusted.gpg.d/hashicorp-vault.asc'
+    applications_fedora_vault_repo: 'https://rpm.releases.hashicorp.com/fedora/hashicorp.repo'
   block:
     - name: Download Vault GPG Key
       ansible.builtin.get_url:
         url: https://apt.releases.hashicorp.com/gpg
-        dest: '{{ ubuntu_vault_key }}'
+        dest: '{{ applications_ubuntu_vault_key }}'
         mode: '0644'
       when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
 
     - name: Add Vault Repository (Ubuntu or Debian)
       ansible.builtin.apt_repository:
-        repo: 'deb [signed-by={{ ubuntu_vault_key }}] https://apt.releases.hashicorp.com $(lsb_release -cs) main'
+        repo: 'deb [signed-by={{ applications_ubuntu_vault_key }}] https://apt.releases.hashicorp.com $(lsb_release -cs) main'
         state: present
         filename: spotify
       when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
 
     - name: Add Vault Repository (Fedora)
       ansible.builtin.command:
-        cmd: dnf config-manager --add-repo {{ fedora_vault_repo }}
+        cmd: dnf config-manager --add-repo {{ applications_fedora_vault_repo }}
       when: ansible_distribution == "Fedora"
 
     - name: Install Vault

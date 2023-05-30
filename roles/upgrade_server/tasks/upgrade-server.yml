@@ -14,7 +14,7 @@
         force_apt_get: true
 
     - name: Check if reboot is needed (Ubuntu or Debian)
-      register: reboot_required_file
+      register: upgrade_server_reboot_required_file
       ansible.builtin.stat:
         path: /var/run/reboot-required
         get_md5: false
@@ -27,7 +27,7 @@
         pre_reboot_delay: 0
         post_reboot_delay: 30
         test_command: uptime
-      when: reboot_required_file.stat.exists
+      when: upgrade_server_reboot_required_file.stat.exists
 
 - name: Upgrade Server (Fedora)
   become: true
@@ -41,8 +41,8 @@
     - name: Check if a reboot is required (Fedora)
       tags: notest
       ansible.builtin.command: needs-restarting -r
-      register: reboot_required
+      register: upgrade_server_reboot_required
       ignore_errors: true
       failed_when: false
-      changed_when: reboot_required.rc != 0
+      changed_when: upgrade_server_reboot_required.rc != 0
       notify: Reboot server

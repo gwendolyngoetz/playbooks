@@ -3,4 +3,4 @@
   name: Install Basic Server
   become_user: root
   roles:
-    - upgrade-server
+    - upgrade_server

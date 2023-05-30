@@ -2,8 +2,7 @@
   tags:
     - apps
   vars:
-    home: '{{ vault_home }}'
-    neovim_repo: '{{ home }}/src/github/system-repos/neovim'
+    neovim_repo: '{{ vault_home }}/src/github/system-repos/neovim'
   block:
     - name: Install neovim build dependencies (Ubuntu or Debian)
       ansible.builtin.apt:

@@ -1,6 +1,4 @@
 - name: Install Rust
-  vars:
-    home: '{{ vault_home }}'
   block:
     - name: Install Dependencies
       ansible.builtin.package:
@@ -19,4 +17,4 @@
       ansible.builtin.command:
         cmd: './rustup.sh -y'
         chdir: '/tmp'
-        creates: '{{ home }}/.cargo/bin/cargo'
+        creates: '{{ vault_home }}/.cargo/bin/cargo'
