@@ -10,10 +10,3 @@
           - libxml2-utils
         update_cache: true
       when: ansible_distribution == "Ubuntu"
-
-    - name: Install dev headers (Fedora)
-      ansible.builtin.package:
-        name:
-          - openssl-devel
-          - libxml2-devel
-      when: ansible_distribution == "Fedora"

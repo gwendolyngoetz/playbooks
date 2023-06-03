@@ -20,21 +20,6 @@
       when: ansible_distribution == "Ubuntu"
       become: true
 
-    - name: Install dunst dependencies (Fedora)
-      ansible.builtin.package:
-        name:
-          - dbus-devel
-          - libX11-devel
-          - libXrandr-devel
-          - glib2-devel
-          - pango-devel
-          - gtk3-devel
-          - libxdg-basedir-devel
-          - libXScrnSaver-devel
-          - libnotify-devel
-      when: ansible_distribution == "Fedora"
-      become: true
-
     - name: Clone dunst
       ansible.builtin.git:
         repo: https://github.com/dunst-project/dunst.git

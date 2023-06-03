@@ -37,30 +37,6 @@
       when: ansible_distribution == "Ubuntu"
       become: true
 
-    - name: Install i3 dependency libraries (Fedora)
-      ansible.builtin.package:
-        name:
-          - libxcb-devel
-          - xcb-util-keysyms-devel
-          - xcb-util-devel
-          - xcb-util-wm-devel
-          - xcb-util-xrm-devel
-          - yajl-devel
-          - libXrandr-devel
-          - startup-notification-devel
-          - libev-devel
-          - xcb-util-cursor-devel
-          - libXinerama-devel
-          - libxkbcommon-devel
-          - libxkbcommon-x11-devel
-          - pcre-devel
-          - pango-devel
-          - gcc
-          - automake
-          - perl-devel
-      when: ansible_distribution == "Fedora"
-      become: true
-
     - name: Clone i3 from github
       ansible.builtin.git:
         repo: https://www.github.com/i3/i3.git

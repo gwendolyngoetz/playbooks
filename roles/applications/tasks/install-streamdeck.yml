@@ -12,14 +12,6 @@
           - udev
       when: ansible_distribution == "Ubuntu"
 
-    - name: Install streamdeck dependencies (Fedora)
-      ansible.builtin.package:
-        name:
-          - python3-pip
-          - hidapi-devel
-          - libxcb
-      when: ansible_distribution == "Fedora"
-
     - name: Configure udev rules
       ansible.builtin.blockinfile:
         path: /etc/udev/rules.d/70-streamdeck.rules

@@ -2,7 +2,7 @@
   become: true
   tags:
     - hestia
-  when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Fedora")
+  when: ansible_distribution == "Ubuntu"
   block:
     - name: Make /etc/netplan directory
       ansible.builtin.file:

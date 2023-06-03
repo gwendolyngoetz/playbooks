@@ -41,15 +41,6 @@
       when: ansible_distribution == "Ubuntu"
       become: true
 
-    - name: Install chili theme dependencies
-      ansible.builtin.package:
-        name:
-          - qt5-qtquickcontrols
-          - qt5-qtquickcontrols2
-          - qt5-qtgraphicaleffects
-      when: ansible_distribution == "Fedora"
-      become: true
-
     - name: Set SDDM theme
       ansible.builtin.shell: sed -i 's/^Current=[a-zA-Z0-9-]*$/Current=chili/g' /etc/sddm.conf
       become: true

@@ -10,11 +10,4 @@
           - pass-extension-otp
       when: ansible_distribution == "Ubuntu"
 
-    - name: Install pass (Fedora)
-      ansible.builtin.package:
-        name:
-          - pass
-          - pass-otp
-      when: ansible_distribution == "Fedora"
-
   # Configure gpg

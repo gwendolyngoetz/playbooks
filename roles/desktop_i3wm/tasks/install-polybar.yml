@@ -18,18 +18,6 @@
           - python3-packaging
       when: ansible_distribution == "Ubuntu"
 
-    - name: Install polybar build dependencies (Fedora)
-      ansible.builtin.package:
-        name:
-          - gcc-c++
-          - clang
-          - git
-          - cmake
-          - '@development-tools'
-          - python3-sphinx
-          - python3-packaging
-      when: ansible_distribution == "Fedora"
-
     - name: Install polybar required dependencies (Ubuntu)
       ansible.builtin.package:
         name:
@@ -46,18 +34,6 @@
           - libxcb-icccm4-dev
       when: ansible_distribution == "Ubuntu"
 
-    - name: Install polybar required dependencies (Fedora)
-      ansible.builtin.package:
-        name:
-          - cairo-devel
-          - libuv-devel
-          - xcb-util-devel
-          - libxcb-devel
-          - xcb-proto
-          - xcb-util-image-devel
-          - xcb-util-wm-devel
-      when: ansible_distribution == "Fedora"
-
     - name: Install polybar optional dependencies (Ubuntu)
       ansible.builtin.package:
         name:
@@ -72,21 +48,6 @@
           - libcurl4-openssl-dev
           - libnl-genl-3-dev
       when: ansible_distribution == "Ubuntu"
-
-    - name: Install polybar optional dependencies (Fedora)
-      ansible.builtin.package:
-        name:
-          - xcb-util-xrm-devel
-          - xcb-util-cursor-devel
-          - alsa-lib-devel
-          - pulseaudio-libs-devel
-          - i3
-          - jsoncpp-devel
-          - libmpdclient-devel
-          - libcurl-devel
-          - wireless-tools-devel
-          - libnl3-devel
-      when: ansible_distribution == "Fedora"
 
 - name: Clone Polybar Repository
   tags:

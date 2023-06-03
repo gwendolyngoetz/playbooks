@@ -24,26 +24,6 @@
       when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
       become: true
 
-    - name: Install neovim build dependencies (Fedora)
-      ansible.builtin.package:
-        name:
-          - git
-          - ninja-build
-          - gettext
-          - libtool
-          - autoconf
-          - automake
-          - cmake
-          - unzip
-          - curl
-          - patch
-          - gcc
-          - gcc-c++
-          - make
-          - pkgconfig
-      when: ansible_distribution == "Fedora"
-      become: true
-
     - name: Install neovim build dependencies (MacOSX)
       community.general.homebrew:
         name:

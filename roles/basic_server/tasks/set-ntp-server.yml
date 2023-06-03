@@ -32,10 +32,3 @@
         daemon_reload: true
         name: systemd-timesyncd.service
       when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
-
-    - name: Install timesyncd (Fedora)
-      ansible.builtin.dnf:
-        update_cache: true
-        state: present
-        name: chrony
-      when: ansible_distribution == "Fedora"

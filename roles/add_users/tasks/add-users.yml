@@ -11,11 +11,6 @@
         sudo_group: 'sudo'
       when: (ansible_distribution == "Ubuntu" or ansible_distribution == "Debian")
 
-    - name: Set sudo group name (Fedora)
-      ansible.builtin.set_fact:
-        sudo_group: 'wheel'
-      when: ansible_distribution == "Fedora"
-
     - name: Add my user account
       ansible.builtin.user:
         name: '{{ username }}'

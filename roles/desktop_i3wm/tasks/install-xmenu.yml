@@ -10,14 +10,6 @@
       when: ansible_distribution == "Ubuntu"
       become: true
 
-    - name: Install xmenu dependencies (Fedora)
-      ansible.builtin.package:
-        name:
-          - libXinerama-devel
-          - imlib2-devel
-      when: ansible_distribution == "Fedora"
-      become: true
-
     - name: Clone xmenu
       ansible.builtin.git:
         repo: https://github.com/phillbush/xmenu.git

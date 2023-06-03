@@ -10,12 +10,6 @@
           - uidmap
       when: ansible_distribution == "Ubuntu"
 
-    - name: Install required dependencies (Fedora)
-      ansible.builtin.package:
-        name:
-          - fuse-overlayfs
-      when: ansible_distribution == "Fedora"
-
     - name: Disable system-wide docker daemon service
       ansible.builtin.systemd:
         name: docker.service

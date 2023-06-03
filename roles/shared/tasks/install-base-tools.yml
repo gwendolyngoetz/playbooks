@@ -22,28 +22,6 @@
         cache_valid_time: 3600
       when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
 
-    - name: Install base tools (Fedora)
-      ansible.builtin.package:
-        name:
-          - util-linux
-
-          - acl
-          - exa
-          - fd-find
-          - git
-          - htop
-          - jq
-          - neofetch
-          # - network-manager
-          - ripgrep
-          - rsync
-          - unzip
-          - vim
-          - xdotool
-          - xsel
-          - zip
-      when: ansible_distribution == "Fedora"
-
     - name: Install base tools (Ubuntu or Debian)
       ansible.builtin.apt:
         state: present

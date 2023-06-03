@@ -9,12 +9,6 @@
           - xorg
       when: ansible_distribution == "Ubuntu"
 
-    - name: Install Xorg (Fedora)
-      ansible.builtin.package:
-        name:
-          - '@base-x'
-      when: ansible_distribution == "Fedora"
-
 - name: Configure xinitrc
   tags:
     - desktop
