@@ -1,5 +1,5 @@
 ansible==8.3.0
 ansible-lint==6.18.0
 passlib==1.7.4
-molecule==6.0.1
+molecule==6.0.2
 molecule-plugins[docker]==23.5.0
