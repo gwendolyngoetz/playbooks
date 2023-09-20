@@ -48,7 +48,7 @@
       ansible.builtin.git:
         repo: https://www.github.com/neovim/neovim.git
         dest: '{{ neovim_repo }}'
-        version: e5f4394eb7a27a9e5eaab088e6acf5553c64cf59
+        version: 0fd8eb8aae101815c699048a4dbc6ac7c5e35a9d
         refspec: '+refs/pull/*:refs/heads/*'
         clone: true
         update: true
