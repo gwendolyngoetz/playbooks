@@ -17,7 +17,6 @@
       register: upgrade_server_reboot_required_file
       ansible.builtin.stat:
         path: /var/run/reboot-required
-        get_md5: false
 
     - name: Reboot if kernel updated (Ubuntu or Debian)
       ansible.builtin.reboot:

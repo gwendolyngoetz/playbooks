@@ -1,6 +1,6 @@
 ---
-- hosts: new
-  name: Install Mac
+- name: Install Mac
+  hosts: new
   become_user: root
   roles:
     - macos

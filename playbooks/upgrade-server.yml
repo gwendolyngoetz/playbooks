@@ -1,6 +1,6 @@
 ---
-- hosts: local_vm_servers
-  name: Install Basic Server
+- name: Install Basic Server
+  hosts: local_vm_servers
   become_user: root
   roles:
     - upgrade_server
