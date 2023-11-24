@@ -23,5 +23,5 @@ if [[ -z "${role}" ]]; then
     exit 1
 fi
 
-DISTRO=${distro} ANSIBLE_VAULT_PASSWORD_FILE=./vars/vault.test.pw molecule "${command}" --scenario-name "${role}"
+DISTRO=${distro} ANSIBLE_VAULT_PASSWORD_FILE="$(pwd)/vars/vault.test.pw" molecule "${command}" --scenario-name "${role}"
 
