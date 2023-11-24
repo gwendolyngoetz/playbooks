@@ -10,6 +10,7 @@
         name:
           - ttf-mscorefonts-installer
       when: ansible_distribution == "Ubuntu"
+      become: true
 
     - name: Download Segoe Fonts
       ansible.builtin.git:
@@ -20,7 +21,7 @@
       ansible.builtin.file:
         path: '{{ base_desktop_fonts_path }}'
         state: directory
-        mode: '0640'
+        mode: '0750'
 
     - name: Copy Segoe Fonts
       ansible.builtin.command: 'rsync -av -exclude=".*" . {{ base_desktop_fonts_path }}'
