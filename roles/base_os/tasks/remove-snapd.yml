@@ -24,8 +24,11 @@
         loop_var: snap_folder
       when: ansible_distribution == "Ubuntu"
 
-    - name: Hold snapd from install
-      ansible.builtin.dpkg_selections:
-        name: snapd
-        selection: hold
-      when: ansible_distribution == "Ubuntu"
+    - name: Add nosnap.pref file in apt
+      ansible.builtin.blockinfile:
+        path: /etc/apt/preferences.d/nosnap.pref
+        block: |
+          Package: snapd
+          Pin: release a=*
+          Pin-Priority: -10
+      when: ansible_os_family == "Debian"
