@@ -24,6 +24,12 @@
         loop_var: snap_folder
       when: ansible_distribution == "Ubuntu"
 
+    - name: Create nosnap.pref file
+      ansible.builtin.file:
+        path: /etc/apt/preferences.d/nosnap.pref
+        state: touch
+        mode: '0644'
+
     - name: Add nosnap.pref file in apt
       ansible.builtin.blockinfile:
         path: /etc/apt/preferences.d/nosnap.pref
