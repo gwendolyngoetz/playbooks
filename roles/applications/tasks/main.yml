@@ -1,12 +1,35 @@
 - name: Run Apps Role
-  ansible.builtin.include_tasks: '{{ item }}'
-  loop:
-    - ../../shared/tasks/main.yml
-    - install-desktop-apps.yml
-    # - install-virtualbox.yml
-    - install-pass.yml
-    - install-spotify.yml
-    - install-solaar.yml
-    # - install-slack.yml
-    - install-obs-studio.yml
-    - install-streamdeck.yml
+  ansible.builtin.include_tasks:
+    file: ../../shared/tasks/main.yml
+
+- name: Run Apps Role
+  ansible.builtin.include_tasks:
+    file: install-desktop-apps.yml
+
+#- name: Run Apps Role
+#  ansible.builtin.include_tasks:
+#    file: install-virtualbox.yml
+
+- name: Run Apps Role
+  ansible.builtin.include_tasks:
+    file: install-pass.yml
+
+- name: Run Apps Role
+  ansible.builtin.include_tasks:
+    file: install-spotify.yml
+
+- name: Run Apps Role
+  ansible.builtin.include_tasks:
+    file: install-solaar.yml
+
+# - name: Run Apps Role
+#   ansible.builtin.include_tasks:
+#     file: install-slack.yml
+
+- name: Run Apps Role
+  ansible.builtin.include_tasks:
+    file: install-obs-studio.yml
+
+- name: Run Apps Role
+  ansible.builtin.include_tasks:
+    file: install-streamdeck.yml
