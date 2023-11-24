@@ -22,9 +22,11 @@ if [[ -z "${playbook}" ]]; then
     exit 1
 fi
 
+cmds=()
+
 if [[ "${verbose}" == "verbose" ]]; then
-    ansible-playbook -vvv -K -i hosts "./playbooks/${playbook}.yml"
-else
-    ansible-playbook -K -i hosts "./playbooks/${playbook}.yml"
+    cmds=(-vvv)
 fi
+
+ansible-playbook "${cmds[@]}" -K -i hosts "./playbooks/${playbook}.yml" --vault-password-file ./vars/vault.pw
 
