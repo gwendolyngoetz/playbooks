@@ -1,0 +1,6 @@
+---
+- name: Google Coral
+  hosts: local_vm_servers
+  become_user: root
+  roles:
+    - google_coral

@@ -1,0 +1,4 @@
+- name: Run Google Coral Role
+  ansible.builtin.include_tasks: '{{ item }}'
+  loop:
+    - install-google-coral.yml

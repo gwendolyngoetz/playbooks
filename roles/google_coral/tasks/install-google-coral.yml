@@ -1,0 +1,31 @@
+- name: Install Google Coral
+  become: true
+  tags:
+    - homeassistant
+  when: ansible_distribution == "Ubuntu"
+  block:
+    - name: Install required system packages
+      ansible.builtin.apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        update_cache: true
+
+    - name: Download Google Coral GPG Key
+      ansible.builtin.get_url:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        dest: /etc/apt/keyrings/google-coral.asc
+        mode: '0644'
+
+    - name: Add Google Coral Repository
+      ansible.builtin.apt_repository:
+        repo: 'deb [arch=amd64 signed-by=/etc/apt/keyrings/google-coral.asc] https://packages.cloud.google.com/apt coral-edgetpu-stable main'
+        state: present
+        filename: google-coral
+
+    - name: Install Google Coral
+      ansible.builtin.package:
+        name:
+          - libedgetpu1-std
