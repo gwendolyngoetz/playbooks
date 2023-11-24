@@ -36,4 +36,4 @@ jobs:
           key: ${{ runner.os }}-ansible
 
       - name: Lint Playbooks and Roles
-        run: bin/lint-playbooks.sh
+        run: bin/lint.sh
