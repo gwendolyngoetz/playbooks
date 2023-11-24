@@ -11,7 +11,7 @@
 
     - name: Generate default SDDM config file
       ansible.builtin.shell: |
-        set -o pipefail
+        echo "set -o pipefail"
         sddm --example-config | tee /etc/sddm.conf
       become: true
 
@@ -28,9 +28,9 @@
       become: true
 
     - name: Copy chili theme to sddm themes folder
-      ansible.posix.synchronize:
-        src: '{{ sddmchili_path }}'
-        dest: '/usr/share/sddm/themes/chili'
+      ansible.builtin.command: 'rsync -av -exclude=".*" . /usr/share/sddm/themes/chili'
+      args:
+        chdir: '{{ desktop_sway_sddmchili_repo }}'
       become: true
 
     - name: Install chili theme dependencies

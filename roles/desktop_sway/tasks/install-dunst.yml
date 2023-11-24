@@ -29,7 +29,7 @@
         mode: '0755'
 
     - name: Run dunst - make
-      ansible.builtin.command: make WAYLAND=0 SYSTEMD=0 SYSCONFDIR=/etc/xdg
+      ansible.builtin.command: make WAYLAND=1 SYSTEMD=0 SYSCONFDIR=/etc/xdg
       args:
         chdir: $HOME/src/github/system-repos/dunst
 

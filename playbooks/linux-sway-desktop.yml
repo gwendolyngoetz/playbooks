@@ -3,12 +3,12 @@
   hosts: new_wayland
   become_user: root
   roles:
-    - base_os
-    - hestia
-    - base_desktop
-    - desktop_sway
-    - sdks
-    - applications
+    # - base_os
+    # - hestia
+    # - base_desktop
+    # - desktop_sway
+    # - sdks
+    # - applications
     - neovim
-    - docker
-    - docker_rootless
+    # - docker
+    # - docker_rootless
