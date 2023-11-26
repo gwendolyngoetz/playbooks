@@ -12,6 +12,11 @@
           - udev
       when: ansible_distribution == "Ubuntu"
 
+    - name: Start udev service
+      ansible.builtin.service:
+        name: udev
+        state: started
+
     - name: Configure udev rules
       ansible.builtin.blockinfile:
         path: /etc/udev/rules.d/70-streamdeck.rules
