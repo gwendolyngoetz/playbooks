@@ -1,0 +1,8 @@
+[new]
+ansible-target
+
+[new_wayland]
+ansible-target
+
+[local_vm_servers]
+ansible-target
