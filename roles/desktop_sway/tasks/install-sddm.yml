@@ -12,7 +12,7 @@
 
     - name: Generate default SDDM config file
       ansible.builtin.shell: |
-        echo "set -o pipefail"
+        set -o pipefail
         sddm --example-config | tee /etc/sddm.conf
       become: true
 
