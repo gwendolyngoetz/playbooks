@@ -2,8 +2,11 @@
 
 pushd "$(git rev-parse --show-toplevel)" > /dev/null || exit
 
-find ./playbooks \
-    -type f \
-    -name '*.yml' \
-    ! -name 'windows.yml' \
-    -exec ansible-lint {} \+
+# find ./playbooks \
+#     -type f \
+#     -name '*.yml' \
+#     ! -name 'windows.yml' \
+#     -exec ansible-lint {} \+
+
+ansible-lint ./roles/*
+
