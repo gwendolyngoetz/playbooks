@@ -2,5 +2,7 @@
 - name: Google Coral
   hosts: local_vm_servers
   become_user: root
+  vars_files:
+    - ../vars/vault.yml
   roles:
     - google_coral

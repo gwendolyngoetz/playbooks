@@ -2,6 +2,8 @@
 - name: Install Linux Desktop - Sway WM
   hosts: new_wayland
   become_user: root
+  vars_files:
+    - ../vars/vault.yml
   roles:
     # - base_os
     # - hestia
