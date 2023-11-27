@@ -1,6 +1,7 @@
+---
 - name: Install Homebrew
   block:
     - name: Install Homebrew Apps
       ansible.builtin.debug:
-        msg: 'Not configured yet'
+        msg: Not configured yet
       when: ansible_distribution == "MacOSX"

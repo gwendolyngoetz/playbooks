@@ -1,3 +1,4 @@
+---
 - name: Install streamdeck
   become: true
   tags:
@@ -20,7 +21,7 @@
     - name: Configure udev rules
       ansible.builtin.blockinfile:
         path: /etc/udev/rules.d/70-streamdeck.rules
-        mode: '0644'
+        mode: "0644"
         owner: root
         group: root
         create: true

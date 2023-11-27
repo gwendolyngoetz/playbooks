@@ -1,22 +1,23 @@
+---
 - name: Add user
   become: true
   vars:
-    username: '{{ vault_username }}'
-    password: '{{ vault_password }}'
-    salt: '{{ vault_salt }}'
-    sudo_group: ''
+    username: "{{ vault_username }}"
+    password: "{{ vault_password }}"
+    salt: "{{ vault_salt }}"
+    sudo_group: ""
   block:
     - name: Set sudo group name (Ubuntu)
       ansible.builtin.set_fact:
-        sudo_group: 'sudo'
+        sudo_group: sudo
       when: (ansible_distribution == "Ubuntu" or ansible_distribution == "Debian")
 
     - name: Add my user account
       ansible.builtin.user:
-        name: '{{ username }}'
+        name: "{{ username }}"
         password: '{{ password | password_hash("sha512", salt) }}'
         state: present
         createhome: true
         shell: /bin/bash
-        groups: '{{ sudo_group }}'
+        groups: "{{ sudo_group }}"
         update_password: on_create

@@ -1,7 +1,8 @@
+---
 - name: Install NodeJS
   vars:
     sdks_nodejs_version: 18
-    sdks_nodejs_key: '/etc/apt/keyrings/nodejs.asc'
+    sdks_nodejs_key: /etc/apt/keyrings/nodejs.asc
   become: true
   tags:
     - dev
@@ -9,8 +10,8 @@
     - name: Download Nodejs GPG Key
       ansible.builtin.get_url:
         url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-        dest: '{{ sdks_nodejs_key }}'
-        mode: '0644'
+        dest: "{{ sdks_nodejs_key }}"
+        mode: "0644"
       when: ansible_distribution == "Ubuntu"
 
     - name: Add Nodejs Repository

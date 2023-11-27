@@ -1,3 +1,4 @@
+---
 - name: Install base tools
   block:
     - name: Install Homebrew Apps

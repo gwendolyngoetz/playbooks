@@ -1,4 +1,5 @@
-- name: 'Install Base Tools'
+---
+- name: Install Base Tools
   become: true
   block:
     - name: Disable Logon Background Image

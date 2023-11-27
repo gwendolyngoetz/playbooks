@@ -1,3 +1,4 @@
+---
 - name: Run Apps Role
   ansible.builtin.include_tasks:
     file: ../../shared/tasks/main.yml

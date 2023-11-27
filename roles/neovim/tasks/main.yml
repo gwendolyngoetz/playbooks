@@ -1,4 +1,5 @@
+---
 - name: Run Neovim Role
-  ansible.builtin.include_tasks: '{{ item }}'
+  ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - install-neovim.yml

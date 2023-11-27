@@ -1,7 +1,8 @@
+---
 - name: Use touch id for sudo
   block:
     - name: Use touch id for sudo
       ansible.builtin.blockinfile:
         path: /etc/pam.d/sudo
-        block: 'auth       sufficient      pam_tid.so'
+        block: auth       sufficient      pam_tid.so
       when: ansible_distribution == "MacOSX"

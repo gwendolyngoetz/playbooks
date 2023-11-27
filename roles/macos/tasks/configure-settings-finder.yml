@@ -1,3 +1,4 @@
+---
 - name: Configure Settings - Finder
   block:
     - name: Community.general.osx_defaults
@@ -54,7 +55,7 @@
         domain: com.apple.Finder
         key: FXPreferredViewStyle
         type: string
-        value: 'clmv' # column view
+        value: clmv # column view
 
     - name: Community.general.osx_defaults
       community.general.osx_defaults:

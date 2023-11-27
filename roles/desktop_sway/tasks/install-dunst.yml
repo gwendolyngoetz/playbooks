@@ -1,3 +1,4 @@
+---
 - name: Install dunst
   tags:
     - desktop
@@ -26,7 +27,7 @@
       ansible.builtin.file:
         path: $HOME/src/github/system-repos/dunst/build
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Run dunst - make
       ansible.builtin.command: make WAYLAND=1 SYSTEMD=0 SYSCONFDIR=/etc/xdg

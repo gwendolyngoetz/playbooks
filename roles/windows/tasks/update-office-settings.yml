@@ -1,4 +1,5 @@
-- name: 'Update Office Settings'
+---
+- name: Update Office Settings
   become: true
   block:
     # AutoSave

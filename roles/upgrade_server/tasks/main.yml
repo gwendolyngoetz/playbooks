@@ -1,4 +1,5 @@
+---
 - name: Update apt repo and cache
-  ansible.builtin.include_tasks: '{{ item }}'
+  ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - upgrade-server.yml

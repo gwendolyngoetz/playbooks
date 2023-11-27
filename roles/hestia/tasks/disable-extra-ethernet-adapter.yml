@@ -1,3 +1,4 @@
+---
 - name: Disable Extra Ethernet Adapter
   become: true
   tags:
@@ -6,17 +7,17 @@
   block:
     - name: Make /etc/netplan directory
       ansible.builtin.file:
-        path: '/etc/netplan'
+        path: /etc/netplan
         state: directory
         owner: root
         group: root
-        mode: '0755'
+        mode: "0755"
 
     - name: Disable Extra Ethernet Adapter
       ansible.builtin.file:
         path: /etc/netplan/00-installer-config.yaml
         state: touch
-        mode: '0644'
+        mode: "0644"
 # Change the renderer to NetworkManager and make enp7s0 optional
 #
 #     optional=true

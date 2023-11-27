@@ -1,3 +1,4 @@
+---
 - name: Upgrade Server (Ubuntu or Debian)
   become: true
   when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
@@ -20,7 +21,7 @@
 
     - name: Reboot if kernel updated (Ubuntu or Debian)
       ansible.builtin.reboot:
-        msg: 'Reboot initiated for kernel updates'
+        msg: Reboot initiated for kernel updates
         connect_timeout: 5
         reboot_timeout: 300
         pre_reboot_delay: 0

@@ -1,4 +1,5 @@
-- name: 'Removing All User Folders'
+---
+- name: Removing All User Folders
   become: true
   block:
     # Desktop

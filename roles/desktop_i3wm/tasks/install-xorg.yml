@@ -1,3 +1,4 @@
+---
 - name: Install Xorg
   become: true
   tags:
@@ -18,4 +19,4 @@
         path: $HOME/.xinitrc
         line: exec i3
         create: true
-        mode: '0644'
+        mode: "0644"

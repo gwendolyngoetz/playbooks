@@ -1,3 +1,4 @@
+---
 - name: Disable Cloud Init
   become: true
   tags:
@@ -8,11 +9,11 @@
       ansible.builtin.file:
         path: /etc/cloud
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Disable Cloud Init
       ansible.builtin.file:
         path: /etc/cloud/cloud-init.disabled
         state: touch
-        mode: '0644'
+        mode: "0644"
       tags: molecule-idempotence-notest

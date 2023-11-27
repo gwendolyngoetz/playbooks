@@ -1,3 +1,4 @@
+---
 - name: Install QEMU Guest Agent
   become: true
   tags:

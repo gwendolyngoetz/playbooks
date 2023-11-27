@@ -1,4 +1,5 @@
-- name: 'Updating Outlook Settings'
+---
+- name: Updating Outlook Settings
   become: true
   block:
     - name: End Events Five Minutes Early

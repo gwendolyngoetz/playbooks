@@ -1,4 +1,5 @@
+---
 - name: Configure Docker to Rootless Mode
-  ansible.builtin.include_tasks: '{{ item }}'
+  ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - configure-docker-rootless.yml

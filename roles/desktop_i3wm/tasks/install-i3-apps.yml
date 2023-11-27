@@ -1,3 +1,4 @@
+---
 - name: Install i3 apps
   become: true
   tags:

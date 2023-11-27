@@ -1,4 +1,5 @@
+---
 - name: Run Docker Role
-  ansible.builtin.include_tasks: '{{ item }}'
+  ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - install-docker.yml

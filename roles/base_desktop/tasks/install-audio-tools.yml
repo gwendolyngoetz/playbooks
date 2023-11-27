@@ -1,3 +1,4 @@
+---
 - name: Install audio tools
   become: true
   tags:
@@ -18,7 +19,7 @@
 
     - name: Add to Audio group
       ansible.builtin.user:
-        name: '{{ vault_username }}'
+        name: "{{ vault_username }}"
         groups: audio
         state: present
         append: true

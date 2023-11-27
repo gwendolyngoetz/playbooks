@@ -1,4 +1,5 @@
-- name: 'Install Apps'
+---
+- name: Install Apps
   block:
     - name: Install Applications
       chocolatey.chocolatey.win_chocolatey:

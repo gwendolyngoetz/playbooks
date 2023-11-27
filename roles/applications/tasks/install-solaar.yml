@@ -1,3 +1,4 @@
+---
 - name: Install solaar
   become: true
   tags:

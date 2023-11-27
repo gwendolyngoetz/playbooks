@@ -1,5 +1,6 @@
+---
 - name: Run Hestia Role
-  ansible.builtin.include_tasks: '{{ item }}'
+  ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - disable-extra-ethernet-adapter.yml
     - disable-wifi-adapter.yml

@@ -1,3 +1,4 @@
+---
 - name: Configure Settings - TextEdit
   block:
     - name: Set community.general.osx_defaults

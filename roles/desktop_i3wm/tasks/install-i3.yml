@@ -1,8 +1,9 @@
+---
 - name: Install i3
   tags:
     - desktop
   vars:
-    desktop_i3wm_i3_path: '{{ vault_home }}/src/github/system-repos/i3'
+    desktop_i3wm_i3_path: "{{ vault_home }}/src/github/system-repos/i3"
   block:
     - name: Install i3 build tools
       ansible.builtin.package:
@@ -40,28 +41,28 @@
     - name: Clone i3 from github
       ansible.builtin.git:
         repo: https://www.github.com/i3/i3.git
-        dest: '{{ desktop_i3wm_i3_path }}'
+        dest: "{{ desktop_i3wm_i3_path }}"
         clone: true
         update: true
 
     - name: Make i3 build directory
       ansible.builtin.file:
-        path: '{{ desktop_i3wm_i3_path }}/build'
+        path: "{{ desktop_i3wm_i3_path }}/build"
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Run i3 - meson
       ansible.builtin.command: meson ..
       args:
-        chdir: '{{ desktop_i3wm_i3_path }}/build'
+        chdir: "{{ desktop_i3wm_i3_path }}/build"
 
     - name: Run i3 - ninja
       ansible.builtin.command: ninja
       args:
-        chdir: '{{ desktop_i3wm_i3_path }}/build'
+        chdir: "{{ desktop_i3wm_i3_path }}/build"
 
     - name: Run i3 - ninja install
       ansible.builtin.command: ninja install
       args:
-        chdir: '{{ desktop_i3wm_i3_path }}/build'
+        chdir: "{{ desktop_i3wm_i3_path }}/build"
       become: true

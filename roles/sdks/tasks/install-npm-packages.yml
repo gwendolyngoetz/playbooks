@@ -1,3 +1,4 @@
+---
 - name: Install NPM Packages
   become: true
   tags:

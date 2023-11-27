@@ -1,3 +1,4 @@
+---
 - name: Install dotnet
   become: true
   tags:

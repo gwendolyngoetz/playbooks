@@ -1,3 +1,4 @@
+---
 - name: Install Theme - qt5
   tags:
     - desktop
@@ -11,11 +12,11 @@
       ansible.builtin.file:
         path: $HOME/.config/qt5ct/colors
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Copy dracula.conf
       ansible.builtin.copy:
         src: $HOME/src/github/system-repos/qt5-dracula-theme/Dracula.conf
         dest: $HOME/.config/qt5ct/colors/Dracula.conf
         remote_src: true
-        mode: '0644'
+        mode: "0644"

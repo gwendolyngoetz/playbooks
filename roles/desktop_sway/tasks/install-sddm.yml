@@ -1,8 +1,9 @@
+---
 - name: Install SDDM
   tags:
     - desktop
   vars:
-    desktop_sway_sddmchili_repo: '{{ vault_home }}/src/github/system-repos/sddm-chili'
+    desktop_sway_sddmchili_repo: "{{ vault_home }}/src/github/system-repos/sddm-chili"
   block:
     - name: Install sddm
       ansible.builtin.package:
@@ -18,19 +19,19 @@
     - name: Clone Chili SDDM Theme
       ansible.builtin.git:
         repo: https://github.com/MarianArlt/sddm-chili.git
-        dest: '{{ desktop_sway_sddmchili_repo }}'
+        dest: "{{ desktop_sway_sddmchili_repo }}"
 
     - name: Create chili theme directory
       ansible.builtin.file:
         path: /usr/share/sddm/themes/chili
         state: directory
-        mode: '0644'
+        mode: "0644"
       become: true
 
     - name: Copy chili theme to sddm themes folder
-      ansible.builtin.command: 'rsync -av -exclude=".*" . /usr/share/sddm/themes/chili'
+      ansible.builtin.command: rsync -av -exclude=".*" . /usr/share/sddm/themes/chili
       args:
-        chdir: '{{ desktop_sway_sddmchili_repo }}'
+        chdir: "{{ desktop_sway_sddmchili_repo }}"
       become: true
 
     - name: Install chili theme dependencies
@@ -47,13 +48,13 @@
 
     - name: Set up user icon
       ansible.builtin.file:
-        src: '{{ vault_home }}/.face'
-        dest: '{{ vault_home }}/.face.icon'
+        src: "{{ vault_home }}/.face"
+        dest: "{{ vault_home }}/.face.icon"
         state: link
 
     - name: Give sddm user access to $HOME
       ansible.posix.acl:
-        path: '{{ vault_home }}'
+        path: "{{ vault_home }}"
         entity: sddm
         etype: user
         permissions: x
@@ -62,7 +63,7 @@
 
     - name: Give sddm user access to $HOME/.face.icon
       ansible.posix.acl:
-        path: '{{ vault_home }}/.face.icon'
+        path: "{{ vault_home }}/.face.icon"
         entity: sddm
         etype: user
         permissions: r

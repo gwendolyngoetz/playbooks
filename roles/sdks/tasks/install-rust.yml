@@ -1,3 +1,4 @@
+---
 - name: Install Rust
   block:
     - name: Install Dependencies
@@ -9,12 +10,12 @@
     - name: Download Installer Rustup
       ansible.builtin.get_url:
         url: https://static.rust-lang.org/rustup.sh
-        dest: '/tmp/rustup.sh'
-        mode: '750'
+        dest: /tmp/rustup.sh
+        mode: "750"
         validate_certs: false
 
     - name: Run Installer Rustup
       ansible.builtin.command:
-        cmd: './rustup.sh -y'
-        chdir: '/tmp'
-        creates: '{{ vault_home }}/.cargo/bin/cargo'
+        cmd: ./rustup.sh -y
+        chdir: /tmp
+        creates: "{{ vault_home }}/.cargo/bin/cargo"

@@ -1,3 +1,4 @@
+---
 - name: Set motd
   become: true
   tags:
@@ -5,7 +6,7 @@
   block:
     - name: Collect files in motd directory
       ansible.builtin.find:
-        paths: '/etc/update-motd.d'
+        paths: /etc/update-motd.d
         hidden: true
         recurse: true
         file_type: any
@@ -13,19 +14,19 @@
 
     - name: Remove Collected Files
       ansible.builtin.file:
-        path: '{{ file_to_remove.path }}'
+        path: "{{ file_to_remove.path }}"
         state: absent
-      with_items: '{{ basic_server_collected_files.files }}'
+      with_items: "{{ basic_server_collected_files.files }}"
       loop_control:
         loop_var: file_to_remove
 
     - name: Make /etc/update-motd.d directory
       ansible.builtin.file:
-        path: '/etc/update-motd.d'
+        path: /etc/update-motd.d
         state: directory
         owner: root
         group: root
-        mode: '0755'
+        mode: "0755"
 
     - name: Copy motd
       ansible.builtin.copy:
@@ -33,4 +34,4 @@
         dest: /etc/update-motd.d/01-custom
         owner: root
         group: root
-        mode: '0755'
+        mode: "0755"

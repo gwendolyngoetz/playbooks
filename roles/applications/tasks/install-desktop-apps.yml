@@ -1,3 +1,4 @@
+---
 - name: Install Desktop Apps
   become: true
   tags:

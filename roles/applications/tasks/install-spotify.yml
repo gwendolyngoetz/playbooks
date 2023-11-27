@@ -1,20 +1,21 @@
+---
 - name: Install Spotify
   become: true
   tags:
     - apps
   vars:
-    applications_ubuntu_key: '/etc/apt/trusted.gpg.d/spotify.asc'
+    applications_ubuntu_key: /etc/apt/trusted.gpg.d/spotify.asc
   when: ansible_distribution == "Ubuntu"
   block:
     - name: Download Spotify GPG Key
       ansible.builtin.get_url:
         url: https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg
-        dest: '{{ applications_ubuntu_key }}'
-        mode: '0644'
+        dest: "{{ applications_ubuntu_key }}"
+        mode: "0644"
 
     - name: Add Spotify Repository
       ansible.builtin.apt_repository:
-        repo: 'deb [arch=amd64 signed-by={{ applications_ubuntu_key }}] http://repository.spotify.com stable non-free'
+        repo: deb [arch=amd64 signed-by={{ applications_ubuntu_key }}] http://repository.spotify.com stable non-free
         state: present
         filename: spotify
 

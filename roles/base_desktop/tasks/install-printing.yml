@@ -1,3 +1,4 @@
+---
 - name: Install print support
   become: true
   tags:

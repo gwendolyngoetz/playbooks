@@ -1,3 +1,4 @@
+---
 - name: Install Wayland
   become: true
   tags:

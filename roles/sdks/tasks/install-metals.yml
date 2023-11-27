@@ -1,12 +1,13 @@
+---
 - name: Install Scala and Metals
   vars:
-    sdks_coursier_dir: '{{ vault_home }}/.local/share/coursier/bin'
+    sdks_coursier_dir: "{{ vault_home }}/.local/share/coursier/bin"
   block:
     - name: Download Coursier
       ansible.builtin.get_url:
         url: https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz
         dest: /tmp/cs-x86_64-pc-linux.gz
-        mode: '0644'
+        mode: "0644"
 
     - name: Extract Coursier
       ansible.builtin.command:
@@ -26,4 +27,4 @@
 
     - name: Install Metals
       ansible.builtin.command:
-        cmd: '{{ sdks_coursier_dir }}/cs install metals'
+        cmd: "{{ sdks_coursier_dir }}/cs install metals"
