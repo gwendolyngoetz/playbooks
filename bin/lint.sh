@@ -2,11 +2,12 @@
 
 pushd "$(git rev-parse --show-toplevel)" > /dev/null || exit
 
-# find ./playbooks \
-#     -type f \
-#     -name '*.yml' \
-#     ! -name 'windows.yml' \
-#     -exec ansible-lint {} \+
+fix_lint_errors="${1:-none}"
+cmds=()
 
-ansible-lint ./roles/*
+if [[ -n "${fix_lint_errors}" ]]; then
+    cmds=(--fix "${fix_lint_errors}")
+fi
+
+ansible-lint "${cmds[@]}" ./roles/*
 
