@@ -10,7 +10,7 @@
     # - install-polybar.yml
     - install-i3-apps.yml
     # - install-dunst.yml
-    - install-rofi.yml
+    # - install-rofi.yml
     - install-polybar-apps.yml
     - install-xmenu.yml
     - install-themes-qt.yml
