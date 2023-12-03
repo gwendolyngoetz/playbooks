@@ -2,7 +2,6 @@
 
 pushd "$(git rev-parse --show-toplevel)" > /dev/null || exit
 
-#role="${1}"
 playbook="${1}"
 verbose="${2}"
 rollback_snapshot="${3:-true}"
@@ -13,16 +12,6 @@ if [ "${ansible_installed}" != 0 ]; then
   echo "ansible-playbook is not installed or on the path"
   exit 1
 fi
-
-# if [[ -z "${role}" ]]; then
-#     echo "Available roles"
-#     echo "-------------------"
-#     for entry in roles/*; do 
-#         filename="${entry##*/}"
-#         echo "- ${filename%.*}"
-#     done    
-#     exit 1
-# fi
 
 if [[ -z "${playbook}" ]]; then
     echo "Available playbooks"
@@ -85,5 +74,9 @@ if [[ "${verbose}" == "verbose" ]]; then
     cmds=(-vvv)
 fi
 
-ansible-playbook "${cmds[@]}" -i hosts.test.vm "./playbooks/${playbook}.yml" --vault-password-file ./vars/vault.pw --become-password-file ./vars/vault.pw
-
+ansible-playbook \
+    -i hosts.test.vm \
+    --vault-password-file ./vars/vault.pw \
+    --become-password-file ./vars/vault.pw \
+    "${cmds[@]}" \
+    "./playbooks/${playbook}.yml"
