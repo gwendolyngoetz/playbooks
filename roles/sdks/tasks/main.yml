@@ -3,7 +3,6 @@
   ansible.builtin.include_tasks: '{{ item }}'
   loop:
     - install-dev-headers.yml
-    - install-java.yml
     - install-metals.yml
     - install-nodejs.yml
     - install-npm-packages.yml

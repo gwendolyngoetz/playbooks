@@ -1,0 +1,5 @@
+---
+- name: Run Java SDK Role
+  ansible.builtin.include_tasks: '{{ item }}'
+  loop:
+    - install-java.yml

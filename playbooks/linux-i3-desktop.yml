@@ -12,6 +12,7 @@
     - sdk_dotnet
     - sdk_go
     - sdk_rust
+    - sdk_java
     - sdks
     - applications
     - neovim
