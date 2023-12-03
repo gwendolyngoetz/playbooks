@@ -1,0 +1,5 @@
+---
+- name: Run SDK Role
+  ansible.builtin.include_tasks: '{{ item }}'
+  loop:
+    - install-dotnet.yml

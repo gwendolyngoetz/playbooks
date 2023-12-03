@@ -1,9 +1,8 @@
 ---
 - name: Run SDK Role
-  ansible.builtin.include_tasks: "{{ item }}"
+  ansible.builtin.include_tasks: '{{ item }}'
   loop:
     - install-dev-headers.yml
-    - install-dotnet.yml
     - install-java.yml
     - install-metals.yml
     - install-nodejs.yml
