@@ -9,8 +9,9 @@
     # - hestia
     # - base_desktop
     # - desktop_sway
-    # - sdks
     # - sdk_dotnet
+    # - sdk_rust
+    # - sdks
     # - applications
     - neovim
     # - docker
