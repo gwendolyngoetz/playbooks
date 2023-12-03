@@ -1,0 +1,7 @@
+---
+- name: Run Polybar Desktop Role
+  ansible.builtin.include_tasks: "{{ item }}"
+  loop:
+    # - ../../shared/tasks/install-base-tools.yml
+    - install-polybar.yml
+    - install-polybar-apps.yml

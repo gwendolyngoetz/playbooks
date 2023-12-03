@@ -1,0 +1,10 @@
+---
+- name: Install polybar apps
+  become: true
+  tags:
+    - apps
+  block:
+    - name: Install apps used by polybar scripts
+      ansible.builtin.package:
+        name:
+          - jq
