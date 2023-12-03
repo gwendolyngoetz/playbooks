@@ -2,3 +2,4 @@
 /vars/vault.pw
 .venv/
 /roles/gwendolyn.playbooks
+/playbooks/.playbook_temp.*.yml
