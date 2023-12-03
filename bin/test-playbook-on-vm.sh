@@ -29,7 +29,13 @@ if [[ -z "${playbook}" ]]; then
     echo "-------------------"
     for entry in playbooks/*; do 
         filename="${entry##*/}"
-        echo "- ${filename%.*}"
+        playbook_name="${filename%.*}"
+
+        if [[ "${playbook_name}" == "macos" || "${playbook_name}" == "windows" ]]; then
+           continue 
+        fi
+    
+        echo "- ${playbook_name}"
     done    
     exit 1
 fi
