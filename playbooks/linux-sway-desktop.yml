@@ -13,6 +13,7 @@
     # - sdk_go
     # - sdk_rust
     # - sdk_java
+    # - sdk_nodejs
     # - sdks
     # - applications
     - neovim

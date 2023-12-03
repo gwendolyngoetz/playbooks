@@ -1,0 +1,5 @@
+---
+- name: Run NodeJS SDK Role
+  ansible.builtin.include_tasks: '{{ item }}'
+  loop:
+    - install-nodejs.yml
