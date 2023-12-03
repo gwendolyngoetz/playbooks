@@ -10,6 +10,7 @@
     - base_desktop
     - desktop_i3wm
     - sdks
+    - sdk_dotnet
     - applications
     - neovim
     - docker
