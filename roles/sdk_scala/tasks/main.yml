@@ -1,5 +1,5 @@
 ---
 - name: Run Scala SDK Role
-  ansible.builtin.include_tasks: '{{ item }}'
+  ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - install-scala.yml
