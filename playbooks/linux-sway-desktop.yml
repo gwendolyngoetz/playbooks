@@ -10,6 +10,7 @@
     # - base_desktop
     # - desktop_sway
     # - sdk_dotnet
+    # - sdk_go
     # - sdk_rust
     # - sdks
     # - applications

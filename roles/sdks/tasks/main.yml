@@ -8,5 +8,4 @@
     - install-nodejs.yml
     - install-npm-packages.yml
     - install-cargo-packages.yml
-    - install-go.yml
     - install-go-packages.yml
