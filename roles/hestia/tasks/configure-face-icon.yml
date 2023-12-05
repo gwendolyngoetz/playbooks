@@ -1,0 +1,29 @@
+---
+- name: Configure .face.icon file
+  tags:
+    - desktop
+  block:
+    - name: Set up user icon
+      ansible.builtin.file:
+        src: '{{ vault_home }}/.face'
+        dest: '{{ vault_home }}/.face.icon'
+        state: link
+        force: true
+
+    - name: Give sddm user access to user's home directory
+      ansible.posix.acl:
+        path: '{{ vault_home }}'
+        entity: sddm
+        etype: user
+        permissions: x
+        state: present
+      become: true
+
+    - name: Give sddm user access to ~/.face.icon
+      ansible.posix.acl:
+        path: '{{ vault_home }}/.face.icon'
+        entity: sddm
+        etype: user
+        permissions: r
+        state: present
+      become: true
