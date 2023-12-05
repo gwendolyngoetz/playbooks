@@ -21,6 +21,7 @@
       ansible.builtin.copy:
         src: "{{ desktop_sddmchili_path }}/"
         dest: /usr/share/sddm/themes/chili
+        mode: "0755"
       become: true
 
     - name: Install chili theme dependencies
