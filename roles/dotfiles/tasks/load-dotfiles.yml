@@ -3,6 +3,12 @@
   tags:
     - desktop
   block:
+    - name: Install git
+      ansible.builtin.package:
+        name:
+          - git
+      become: true
+
     - name: Clone dotfiles
       ansible.builtin.git:
         repo: https://www.github.com/gwendolyngoetz/dotfiles.git

@@ -1,0 +1,5 @@
+---
+- name: Run i3wm Desktop Role
+  ansible.builtin.include_tasks: '{{ item }}'
+  loop:
+    - load-dotfiles.yml
