@@ -1,11 +1,11 @@
 ---
 - name: Run Sway WM Desktop Role
-  ansible.builtin.include_tasks: "{{ item }}"
+  ansible.builtin.include_tasks: '{{ item }}'
   loop:
     - install-wayland.yml
     - install-sway.yml
     - load-dotfiles.yml
-    - install-sddm.yml
+    # - install-sddm.yml
     - install-waybar.yml
     - install-sway-apps.yml
     # - install-dunst.yml

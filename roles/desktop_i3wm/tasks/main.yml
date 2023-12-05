@@ -6,7 +6,7 @@
     - install-xorg.yml
     - install-i3.yml
     - load-dotfiles.yml
-    - install-sddm.yml
+    # - install-sddm.yml
     # - install-polybar.yml
     - install-i3-apps.yml
     # - install-dunst.yml

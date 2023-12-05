@@ -1,0 +1,15 @@
+---
+- name: Install SDDM
+  tags:
+    - desktop
+  vars:
+    desktop_sddmchili_path: '{{ vault_home }}/src/github/system-repos/sddm-chili'
+  block:
+    - name: Install sddm
+      ansible.builtin.package:
+        name: sddm
+      become: true
+
+    - name: Generate default SDDM config file
+      ansible.builtin.shell: sddm --example-config | tee /etc/sddm.conf
+      become: true
