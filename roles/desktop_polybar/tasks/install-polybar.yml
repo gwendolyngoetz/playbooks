@@ -4,7 +4,7 @@
   tags:
     - desktop
   vars:
-    desktop_polybar_path: '{{ vault_home }}/src/github/system-repos/polybar'
+    desktop_polybar_path: "{{ vault_home }}/src/github/system-repos/polybar"
   block:
     - name: Install polybar build dependencies (Ubuntu)
       ansible.builtin.package:
@@ -54,38 +54,38 @@
   tags:
     - desktop
   vars:
-    desktop_polybar_path: '{{ vault_home }}/src/github/system-repos/polybar'
+    desktop_polybar_path: "{{ vault_home }}/src/github/system-repos/polybar"
   block:
     - name: Clone Polybar Repository
       ansible.builtin.git:
         repo: https://github.com/polybar/polybar.git
-        dest: '{{ desktop_polybar_path }}'
+        dest: "{{ desktop_polybar_path }}"
         recursive: true
 
     - name: Make polybar build directory
       ansible.builtin.file:
-        path: '{{ desktop_polybar_path }}/build'
+        path: "{{ desktop_polybar_path }}/build"
         state: directory
-        mode: '0755'
+        mode: "0755"
 
     - name: Run polybar - cmake
       ansible.builtin.command: cmake ..
       args:
-        chdir: '{{ desktop_polybar_path }}/build'
+        chdir: "{{ desktop_polybar_path }}/build"
 
     - name: Run polybar - make
       ansible.builtin.shell: make -j$(nproc)
       args:
-        chdir: '{{ desktop_polybar_path }}/build'
+        chdir: "{{ desktop_polybar_path }}/build"
 
 - name: Run polybar Install
   become: true
   tags:
     - desktop
   vars:
-    desktop_polybar_path: '{{ vault_home }}/src/github/system-repos/polybar'
+    desktop_polybar_path: "{{ vault_home }}/src/github/system-repos/polybar"
   block:
     - name: Run polybar - make install
       ansible.builtin.command: make install
       args:
-        chdir: '{{ desktop_polybar_path }}/build'
+        chdir: "{{ desktop_polybar_path }}/build"

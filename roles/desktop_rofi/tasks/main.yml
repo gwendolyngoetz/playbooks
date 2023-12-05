@@ -1,6 +1,6 @@
 ---
 - name: Run Rofi Desktop Role
-  ansible.builtin.include_tasks: '{{ item }}'
+  ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - ../../shared/tasks/install-base-tools.yml
     - install-rofi.yml

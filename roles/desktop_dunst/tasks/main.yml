@@ -1,5 +1,5 @@
 ---
 - name: Run Dunst Desktop Role
-  ansible.builtin.include_tasks: '{{ item }}'
+  ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - install-dunst.yml

@@ -3,23 +3,23 @@
   tags:
     - desktop
   vars:
-    desktop_sddmchili_path: '{{ vault_home }}/src/github/system-repos/sddm-chili'
+    desktop_sddmchili_path: "{{ vault_home }}/src/github/system-repos/sddm-chili"
   block:
     - name: Clone Chili SDDM Theme
       ansible.builtin.git:
         repo: https://github.com/MarianArlt/sddm-chili.git
-        dest: '{{ desktop_sddmchili_path }}'
+        dest: "{{ desktop_sddmchili_path }}"
 
     - name: Create chili theme directory
       ansible.builtin.file:
         path: /usr/share/sddm/themes/chili
         state: directory
-        mode: '0755'
+        mode: "0755"
       become: true
 
     - name: Copy chili theme to sddm themes folder
       ansible.builtin.copy:
-        src: '{{ desktop_sddmchili_path }}/'
+        src: "{{ desktop_sddmchili_path }}/"
         dest: /usr/share/sddm/themes/chili
       become: true
 

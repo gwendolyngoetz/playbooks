@@ -3,7 +3,7 @@
   tags:
     - desktop
   vars:
-    desktop_sddmchili_path: '{{ vault_home }}/src/github/system-repos/sddm-chili'
+    desktop_sddmchili_path: "{{ vault_home }}/src/github/system-repos/sddm-chili"
   block:
     - name: Install sddm
       ansible.builtin.package:
