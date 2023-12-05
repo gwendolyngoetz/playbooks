@@ -13,7 +13,7 @@
     # - install-dunst.yml
     # - install-rofi.yml
     - install-polybar-apps.yml
-    - install-xmenu.yml
+    # - install-xmenu.yml
     - install-themes-qt.yml
     - install-themes-gtk.yml
     - symlink-theme-folders.yml

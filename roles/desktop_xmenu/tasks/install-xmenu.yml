@@ -2,10 +2,16 @@
 - name: Install Xmenu
   tags:
     - desktop
+  vars:
+    desktop_xmenu_path: "{{ vault_home }}/src/github/system-repos/xmenu"
   block:
     - name: Install xmenu dependencies (Ubuntu)
       ansible.builtin.package:
         name:
+          - libx11-dev
+          - libxft-dev
+          - make
+          # original
           - libxinerama-dev
           - libimlib2-dev
       when: ansible_distribution == "Ubuntu"
@@ -14,15 +20,15 @@
     - name: Clone xmenu
       ansible.builtin.git:
         repo: https://github.com/phillbush/xmenu.git
-        dest: $HOME/src/github/system-repos/xmenu
+        dest: "{{ desktop_xmenu_path }}"
 
     - name: Run xmenu - make
       ansible.builtin.command: make
       args:
-        chdir: $HOME/src/github/system-repos/xmenu
+        chdir: "{{ desktop_xmenu_path }}"
 
     - name: Run xmenu - make install
       ansible.builtin.command: make install
       args:
-        chdir: "{{ lookup('env', 'HOME') }}/src/github/system-repos/xmenu"
+        chdir: "{{ desktop_xmenu_path }}"
       become: true
