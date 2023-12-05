@@ -1,0 +1,19 @@
+---
+- name: Run i3wm Desktop Role
+  ansible.builtin.include_tasks: '{{ item }}'
+  loop:
+    - ../../shared/tasks/install-base-tools.yml
+    - install-xorg.yml
+    # - install-i3.yml
+    # - load-dotfiles.yml
+    # - install-sddm.yml
+    # - install-sddm-themes.yml
+    # - install-polybar.yml
+    # - install-i3-apps.yml
+    # - install-dunst.yml
+    # - install-rofi.yml
+    # - install-polybar-apps.yml
+    # - install-xmenu.yml
+    - install-themes-qt.yml
+    - install-themes-gtk.yml
+    - symlink-theme-folders.yml
