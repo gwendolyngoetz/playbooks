@@ -23,6 +23,24 @@
         cache_valid_time: 3600
       when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
 
+    - name: Stop and disable unattended-upgrades
+      ansible.builtin.systemd_service:
+        name: unattended-upgrades
+        state: stopped
+        enabled: false
+      register: result_systemd_stop
+      failed_when: result_systemd_stop is failed and 'Could not find the requested service' not in result_systemd_stop.msg
+
+    - name: Remove Unattended
+      ansible.builtin.apt:
+        state: absent
+        purge: true
+        pkg:
+          - unattended-upgrades
+
+    # - name: Disable unattended-upgrades
+    #   ansible.builtin.shell: sed -i 's/Unattended-Upgrade "1"/Unattended-Upgrade "0"/g' /etc/apt/apt.conf.d/20auto-upgrades
+
     - name: Install base tools (Ubuntu or Debian)
       ansible.builtin.apt:
         state: present
