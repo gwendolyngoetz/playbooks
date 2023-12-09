@@ -4,7 +4,7 @@
   tags:
     - apps
   block:
-    - name: Install base tools
+    - name: Install software-properties-common
       ansible.builtin.apt:
         update_cache: true
         state: present
@@ -12,7 +12,7 @@
           - software-properties-common
       when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
 
-    - name: Enable apt universe
+    - name: Enable apt universe repository
       ansible.builtin.command: add-apt-repository universe -y
       when: ansible_distribution == "Ubuntu"
 
