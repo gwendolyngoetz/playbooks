@@ -6,9 +6,19 @@
     - ../vars/vault.yml
   roles:
     - base_os
-    - hestia
     - base_desktop
+
+    - dotfiles
+    - desktop_xorg
     - desktop_i3wm
+    - desktop_sddm
+    - desktop_sddm_themes
+    - desktop_polybar
+    - desktop_dunst
+    - desktop_rofi
+    - desktop_xmenu
+    # - symlink-theme-folders
+
     - sdk_dotnet
     - sdk_go
     - sdk_rust
@@ -20,3 +30,6 @@
     - neovim
     - docker
     - docker_rootless
+
+    # before or after???
+    - hestia
