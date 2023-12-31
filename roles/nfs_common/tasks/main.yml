@@ -1,0 +1,5 @@
+---
+- name: Run NFS Common Role
+  ansible.builtin.include_tasks: '{{ item }}'
+  loop:
+    - install_nfs_common.yml

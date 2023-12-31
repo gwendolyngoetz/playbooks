@@ -1,0 +1,11 @@
+---
+- name: Install NFS Client Tools
+  become: true
+  tags:
+    - dev
+  when: ansible_distribution == "Ubuntu"
+  block:
+    - name: Install NFS Common
+      ansible.builtin.apt:
+        name: nfs-common
+        update_cache: true
