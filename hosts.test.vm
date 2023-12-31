@@ -6,3 +6,6 @@ ansible-target
 
 [local_vm_servers]
 ansible-target
+
+[all_servers]
+ansible-target

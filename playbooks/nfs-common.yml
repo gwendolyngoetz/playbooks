@@ -1,6 +1,6 @@
 ---
 - name: Setup NFS Common Client Tools
-  hosts: all
+  hosts: all_servers
   become_user: root
   vars_files:
     - ../vars/vault.yml
