@@ -9,8 +9,8 @@ platforms:
     pre_build_image: true
     privileged: true
     tmpfs:
-      - /run
       - /tmp
+      - /run
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
       - /var/lib/containerd
