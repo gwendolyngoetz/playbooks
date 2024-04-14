@@ -9,7 +9,7 @@
 
     - name: Download Installer Rustup
       ansible.builtin.get_url:
-        url: https://static.rust-lang.org/rustup.sh
+        url: https://sh.rustup.rs
         dest: /tmp/rustup.sh
         mode: "750"
         validate_certs: false
