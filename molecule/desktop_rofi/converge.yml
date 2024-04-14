@@ -9,4 +9,4 @@
   tasks:
     - name: Role - base_os
       include_role:
-        name: ../../roles/rofi
+        name: ../../roles/desktop_rofi

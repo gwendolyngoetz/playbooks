@@ -9,4 +9,4 @@
   tasks:
     - name: Role - base_os
       include_role:
-        name: ../../roles/polybar
+        name: ../../roles/desktop_polybar

@@ -9,4 +9,4 @@
   tasks:
     - name: Role - base_os
       include_role:
-        name: ../../roles/sddm_themes
+        name: ../../roles/desktop_sddm_themes
