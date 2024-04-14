@@ -24,6 +24,7 @@
         enabled: false
 
 - name: Run docker rootless setup
+  become: false
   tags:
     - dev
   block:
