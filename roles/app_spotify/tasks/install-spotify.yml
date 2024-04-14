@@ -9,7 +9,7 @@
   block:
     - name: Download Spotify GPG Key
       ansible.builtin.get_url:
-        url: https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg
+        url: https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg
         dest: "{{ applications_ubuntu_key }}"
         mode: "0644"
 
