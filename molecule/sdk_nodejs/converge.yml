@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  vars_files: ../../vars/vault.test.yml
+  pre_tasks:
+    - name: Role - add user
+      include_role:
+        name: ../../roles/add_users
+  tasks:
+    - name: Role - sdks
+      include_role:
+        name: ../../roles/sdk_nodejs
