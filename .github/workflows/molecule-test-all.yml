@@ -15,7 +15,7 @@ jobs:
   build-matrix:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@v4
 
       - id: set_matrix
         run: echo "role_matrix=$(ls roles --hide=windows --hide=shared --hide=macos | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
@@ -32,7 +32,7 @@ jobs:
         distro: [ubuntu2204]
         # distro: [ubuntu2204, debian11]
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
