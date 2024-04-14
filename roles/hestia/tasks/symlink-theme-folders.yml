@@ -29,6 +29,10 @@
   become: true
   tags:
     - desktop
+  vars:
+    desktop_i3wm_themes_dir: "{{ vault_home }}/.themes"
+    desktop_i3wm_fonts_dir: "{{ vault_home }}/.fonts"
+    desktop_i3wm_icons_dir: "{{ vault_home }}/.icons"
   block:
     - name: Link .themes to root
       ansible.builtin.file:
