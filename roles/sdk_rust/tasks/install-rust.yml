@@ -11,7 +11,7 @@
       ansible.builtin.get_url:
         url: https://sh.rustup.rs
         dest: /tmp/rustup.sh
-        mode: "750"
+        mode: "775"
         validate_certs: false
 
     - name: Run Installer Rustup
