@@ -1,0 +1,4 @@
+---
+- name: Run Apps Role
+  ansible.builtin.include_tasks:
+    file: install-spotify.yml

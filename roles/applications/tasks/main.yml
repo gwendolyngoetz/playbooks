@@ -17,10 +17,6 @@
 
 - name: Run Apps Role
   ansible.builtin.include_tasks:
-    file: install-spotify.yml
-
-- name: Run Apps Role
-  ansible.builtin.include_tasks:
     file: install-solaar.yml
 
 # - name: Run Apps Role
