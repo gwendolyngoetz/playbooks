@@ -22,6 +22,7 @@
         src: "{{ desktop_sddmchili_path }}/"
         dest: /usr/share/sddm/themes/chili
         mode: "0755"
+        remote_src: true
       become: true
 
     - name: Install chili theme dependencies
