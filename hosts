@@ -6,3 +6,13 @@ ceto
 
 [local_vm_servers]
 ceto
+
+[all_servers]
+ceto
+pihole
+pihole2
+unifi
+manage
+nextcloud
+home-assistant
+
