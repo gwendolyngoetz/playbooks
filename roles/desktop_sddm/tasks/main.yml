@@ -3,3 +3,4 @@
   ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - install-sddm.yml
+    - install-sddm-chili-theme.yml

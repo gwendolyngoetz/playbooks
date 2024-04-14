@@ -33,6 +33,7 @@
       ansible.builtin.git:
         repo: https://github.com/davatorium/rofi.git
         dest: "{{ desktop_rofi_path }}"
+        version: 1.7.2
         recursive: true
 
     - name: Make rofi build directory

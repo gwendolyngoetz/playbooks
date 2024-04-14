@@ -1,6 +1,0 @@
----
-- name: Run SDDM Desktop Role
-  ansible.builtin.include_tasks: "{{ item }}"
-  loop:
-    - ../../shared/tasks/install-base-tools.yml
-    - install-sddm-chili-theme.yml
