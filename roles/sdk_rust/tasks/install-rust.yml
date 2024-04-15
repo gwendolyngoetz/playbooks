@@ -12,6 +12,5 @@
 
     - name: Run Installer Rustup
       ansible.builtin.command:
-        cmd: ./rustup.sh -y
-        chdir: /tmp
+        cmd: /tmp/rustup.sh -y
         creates: "{{ vault_home }}/.cargo/bin/cargo"

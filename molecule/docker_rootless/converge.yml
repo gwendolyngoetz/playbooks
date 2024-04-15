@@ -6,11 +6,10 @@
     - name: Role - add user
       include_role:
         name: ../../roles/add_users
-  tasks:
     - name: Role - docker
       include_role:
         name: ../../roles/docker
-
+  tasks:
     - name: Role - docker_rootless
       include_role:
         name: ../../roles/docker_rootless
