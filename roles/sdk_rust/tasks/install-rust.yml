@@ -1,12 +1,8 @@
 ---
 - name: Install Rust
+  become: true
+  become_user: "{{ vault_username }}"
   block:
-    - name: Install Dependencies
-      ansible.builtin.package:
-        name:
-          - curl
-      become: true
-
     - name: Download Installer Rustup
       ansible.builtin.get_url:
         url: https://sh.rustup.rs

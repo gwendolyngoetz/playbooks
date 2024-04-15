@@ -24,7 +24,8 @@
         enabled: false
 
 - name: Run docker rootless setup
-  become: false
+  become: true
+  become_user: "{{ vault_username }}"
   tags:
     - dev
   block:
