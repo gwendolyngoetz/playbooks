@@ -47,6 +47,7 @@
         pkg:
           - apt-utils
           - acl
+          - curl
           - exa
           - fd-find
           - git

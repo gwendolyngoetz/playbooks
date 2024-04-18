@@ -6,11 +6,17 @@
     - name: Download Installer Rustup
       ansible.builtin.get_url:
         url: https://sh.rustup.rs
-        dest: /tmp/rustup.sh
-        mode: "775"
+        dest: ~/rustup.sh
+        mode: "0775"
+        force: true
         validate_certs: false
 
     - name: Run Installer Rustup
-      ansible.builtin.command:
-        cmd: /tmp/rustup.sh -y
+      ansible.builtin.shell:
+        cmd: ~/rustup.sh -y
         creates: "{{ vault_home }}/.cargo/bin/cargo"
+
+    - name: Cleanup
+      ansible.builtin.file:
+        path: ~/rustup.sh
+        state: absent
