@@ -3,3 +3,4 @@
   ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - install-rust.yml
+    - install-cargo-packages.yml
