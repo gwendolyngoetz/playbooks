@@ -5,31 +5,31 @@
   vars_files:
     - ../vars/vault.yml
   roles:
+    - add_users
+    - shared
     - base_os
     - base_desktop
-
     - dotfiles
     - desktop_xorg
     - desktop_i3wm
     - desktop_sddm
-    - desktop_sddm_themes
     - desktop_polybar
     - desktop_dunst
     - desktop_rofi
     - desktop_xmenu
     # - symlink-theme-folders
-
     - sdk_dotnet
     - sdk_go
     - sdk_rust
     - sdk_java
     - sdk_nodejs
     - sdk_scala
-    - sdks
     - applications
+    - app_spotify
     - neovim
     - docker
     - docker_rootless
+    - nfs_common
 
     # before or after???
     - hestia
