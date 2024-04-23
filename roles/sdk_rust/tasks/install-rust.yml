@@ -12,7 +12,7 @@
         validate_certs: false
 
     - name: Run Installer Rustup
-      ansible.builtin.shell:
+      ansible.builtin.command:
         cmd: ~/rustup.sh -y
         creates: "{{ vault_home }}/.cargo/bin/cargo"
 
