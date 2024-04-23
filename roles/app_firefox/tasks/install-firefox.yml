@@ -21,6 +21,7 @@
     - name: Block
       ansible.builtin.blockinfile:
         path: /etc/apt/preferences.d/mozilla-firefox
+        create: true
         block: |
           Package *
           Pin: origin packages.mozilla.org
