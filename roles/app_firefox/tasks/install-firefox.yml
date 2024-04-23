@@ -1,0 +1,36 @@
+- name: Install Firefox
+  become: true
+  tags:
+    - apps
+  vars:
+    app_firefox_mozilla_gpg_key: /etc/apt/trusted.gpg.d/mozilla.asc
+  when: ansible_distribution == "Ubuntu"
+  block:
+    - name: Download GPG Key
+      ansible.builtin.get_url:
+        url: https://packages.mozilla.org/apt/repo-signing-key.gpg
+        dest: "{{ app_firefox_mozilla_gpg_key }}"
+        mode: "0644"
+
+    - name: Add firefox Repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64 signed-by={{ app_firefox_mozilla_gpg_key }}] https://packages.mozilla.org/apt mozilla main
+        state: present
+        filename: mozilla
+
+    - name: Block
+      ansible.builtin.blockinfile:
+        path: /etc/apt/preferences.d/mozilla-firefox
+        block: |
+          Package *
+          Pin: origin packages.mozilla.org
+          Pin-Priority: 1001
+
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+      changed_when: false
+
+    - name: Install firefox
+      ansible.builtin.package:
+        name: firefox
