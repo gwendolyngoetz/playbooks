@@ -12,18 +12,20 @@
         dest: "{{ app_firefox_mozilla_gpg_key }}"
         mode: "0644"
 
-    - name: Add firefox Repository
+    - name: Add firefox repository
       ansible.builtin.apt_repository:
         repo: deb [arch=amd64 signed-by={{ app_firefox_mozilla_gpg_key }}] https://packages.mozilla.org/apt mozilla main
         state: present
         filename: mozilla
 
-    - name: Block
+    - name: Add firefox apt preferences file
       ansible.builtin.blockinfile:
         path: /etc/apt/preferences.d/mozilla-firefox
         create: true
+        mode: "0644"
         block: |
-          Package *
+          # Rules for firefox
+          Package: *
           Pin: origin packages.mozilla.org
           Pin-Priority: 1001
 
@@ -35,3 +37,13 @@
     - name: Install firefox
       ansible.builtin.package:
         name: firefox
+
+    - name: Check that firefox installed where expected
+      ansible.builtin.stat:
+        path: /usr/bin/firefox
+      register: firefox_executable
+
+    - name: Assert if firefox installed where expected. Checked for snaps.
+      debug:
+        msg: Firefox is not installed at /usr/bin/firefox
+      when: not firefox_executable.stat.exists
