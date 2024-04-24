@@ -44,6 +44,6 @@
       register: firefox_executable
 
     - name: Assert if firefox installed where expected. Checked for snaps.
-      ainsible.builtin.debug:
+      ansible.builtin.debug:
         msg: Firefox is not installed at /usr/bin/firefox
       when: not firefox_executable.stat.exists
