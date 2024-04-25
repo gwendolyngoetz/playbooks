@@ -15,7 +15,7 @@
 
     - name: Add Eza Repository
       ansible.builtin.apt_repository:
-        repo: deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main
+        repo: deb [signed-by={{ eza_ubuntu_key }}] http://deb.gierens.de stable main
         state: present
         filename: gierens-eza
 
