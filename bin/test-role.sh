@@ -4,7 +4,7 @@ pushd "$(git rev-parse --show-toplevel)" > /dev/null || exit
 
 role="${1}"
 command="${2:-test}"
-distro="${3:-ubuntu2204}"
+distro="${3:-ubuntu2404}"
 
 molecule_installed=$(which molecule > /dev/null; echo $?)
 
