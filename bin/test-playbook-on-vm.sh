@@ -35,11 +35,11 @@ fi
 # ------------------------------------
 if [[ "${rollback_snapshot}" == "true" ]]; then
   node="nyx"
-  vmid="200"
+  vmid="201"
   snapshot="before-running-playbooks"
   auth_header="Authorization: PVEAPIToken=${PROXMOX_API_TOKEN_ID}=${PROXMOX_API_SECRET}"
   base_uri="https://${node}.goetz.casa:8006/api2/json"
-  vm_hostname="ansible-target"
+  vm_hostname="ansible-target-2404"
   
   echo "Rolling back ${vm_hostname} to "${snapshot}
   rollback_uri="${base_uri}/nodes/${node}/qemu/${vmid}/snapshot/${snapshot}/rollback?start=1"
