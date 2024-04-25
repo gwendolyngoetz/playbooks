@@ -1,0 +1,25 @@
+---
+- name: Install Eza
+  become: true
+  tags:
+    - apps
+  vars:
+    eza_ubuntu_key: /etc/apt/keyrings/gierens-eza.gpg
+  when: ansible_distribution == "Ubuntu"
+  block:
+    - name: Download Eza GPG Key
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/eza-community/eza/main/deb.asc
+        dest: "{{ eza_ubuntu_key }}"
+        mode: "0644"
+
+    - name: Add Eza Repository
+      ansible.builtin.apt_repository:
+        repo: deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main
+        state: present
+        filename: gierens-eza
+
+    - name: Install eza
+      ansible.builtin.package:
+        name: eza
+
