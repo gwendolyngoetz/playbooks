@@ -29,8 +29,8 @@ jobs:
       fail-fast: false
       matrix:
         role: ${{ fromJson(needs.build-matrix.outputs.role_matrix) }}
-        distro: [ubuntu2204]
-        # distro: [ubuntu2204, debian11]
+        distro: [ubuntu2404]
+        # distro: [ubuntu2404, debian11]
     steps:
       - uses: actions/checkout@v4
 
