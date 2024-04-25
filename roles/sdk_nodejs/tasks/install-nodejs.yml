@@ -1,7 +1,7 @@
 ---
 - name: Install NodeJS
   vars:
-    nvm_version: v.0.39.7
+    nvm_version: v0.39.7
     nvm_file: /tmp/nvm_install.sh
   tags:
     - dev
