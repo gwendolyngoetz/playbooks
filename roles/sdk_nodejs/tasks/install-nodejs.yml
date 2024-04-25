@@ -1,26 +1,26 @@
 ---
 - name: Install NodeJS
   vars:
-    sdks_nodejs_version: 18
-    sdks_nodejs_key: /etc/apt/keyrings/nodejs.asc
-  become: true
+    nvm_version: v.0.39.7
+    nvm_file: /tmp/nvm_install.sh
   tags:
     - dev
   block:
-    - name: Download Nodejs GPG Key
+    - name: Download NVM Install script
       ansible.builtin.get_url:
-        url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
-        dest: "{{ sdks_nodejs_key }}"
-        mode: "0644"
+        url: https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh
+        dest: "{{ nvm_file }}"
+        mode: "0755"
       when: ansible_distribution == "Ubuntu"
 
-    - name: Add Nodejs Repository
-      ansible.builtin.apt_repository:
-        repo: deb [arch=amd64 signed-by={{ sdks_nodejs_key }}] https://deb.nodesource.com/node_{{ sdks_nodejs_version }}.x {{ ansible_distribution_release }} main
-        state: present
-        filename: nodejs
-      when: ansible_distribution == "Ubuntu"
+    - name: Install NVM
+      ansible.builtin.shell:
+        cmd: PROFILE=/dev/null {{ nvm_file }}
 
-    - name: Install the nodejs
-      ansible.builtin.package:
-        name: nodejs
+    - name: Source .bashrc 
+      ansible.builtin.shell:
+        cmd: source ~/.bashrc
+
+    - name: Install Nodejs
+      ansible.builtin.shell:
+        cmd: nvm install node
