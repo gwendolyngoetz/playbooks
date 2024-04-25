@@ -6,6 +6,7 @@
     - name: Install Cargo Packages
       community.general.cargo:
         name:
+          - eza
           - stylua
           - git-delta
           - zellij
