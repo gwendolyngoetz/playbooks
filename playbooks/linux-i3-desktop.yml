@@ -18,7 +18,7 @@
     - desktop_rofi
     - desktop_xmenu
     # - symlink-theme-folders
-    - sdk_dotnet
+    # - sdk_dotnet
     - sdk_go
     - sdk_rust
     - sdk_java

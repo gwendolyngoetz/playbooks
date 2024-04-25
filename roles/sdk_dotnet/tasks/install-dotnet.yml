@@ -5,11 +5,11 @@
     - dev
   when: ansible_distribution == "Ubuntu"
   block:
-    - name: Install Microsoft Signing Key
-      ansible.builtin.apt:
-        deb: https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
+    # - name: Install Microsoft Signing Key
+    #   ansible.builtin.apt:
+    #     deb: https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
 
-    - name: Install dotnet 6
+    - name: Install dotnet 8
       ansible.builtin.apt:
-        name: dotnet-sdk-6.0
+        name: dotnet-sdk-8.0
         update_cache: true
