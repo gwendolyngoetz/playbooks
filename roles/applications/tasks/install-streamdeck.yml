@@ -38,4 +38,4 @@
     - name: Install streamdeck ui
       ansible.builtin.pip:
         name:
-          - streamdeck_ui==2.0.6
+          - streamdeck_ui
