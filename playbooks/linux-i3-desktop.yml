@@ -10,6 +10,7 @@
     - base_os
     - base_desktop
     - dotfiles
+    - neovim
     - desktop_xorg
     - desktop_i3wm
     - desktop_sddm
@@ -28,10 +29,9 @@
     - app_spotify
     - app_firefox
     - app_obsstudio
-    - neovim
     - docker
     - docker_rootless
     - nfs_common
 
     # before or after???
-    - hestia
+    # - hestia
