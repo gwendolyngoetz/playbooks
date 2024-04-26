@@ -17,10 +17,10 @@
       ansible.builtin.shell:
         cmd: PROFILE=/dev/null {{ nvm_file }}
 
-    - name: Source .bashrc 
-      ansible.builtin.shell:
+    - name: Source .bashrc
+      ansible.builtin.command:
         cmd: source ~/.bashrc
 
     - name: Install Nodejs
-      ansible.builtin.shell:
+      ansible.builtin.command:
         cmd: nvm install node

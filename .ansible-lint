@@ -1,5 +1,6 @@
 skip_list:
   - command-instead-of-module
+  - command-instead-of-shell
   - latest[git]
   - no-changed-when
   - package-latest

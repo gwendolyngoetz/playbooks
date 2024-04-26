@@ -20,11 +20,11 @@
         dest: "{{ applications_ubuntu_key }}"
         mode: "0644"
 
-    #- name: Add OBS Studio Repository
-    #  ansible.builtin.apt_repository:
-    #    repo: deb [arch=amd64 signed-by={{ applications_ubuntu_key }}] {{ applications_obs_ppa }} {{ ansible_distribution_release }} main
-    #    state: present
-    #    filename: obsstudio
+    # - name: Add OBS Studio Repository
+    #   ansible.builtin.apt_repository:
+    #     repo: deb [arch=amd64 signed-by={{ applications_ubuntu_key }}] {{ applications_obs_ppa }} {{ ansible_distribution_release }} main
+    #     state: present
+    #     filename: obsstudio
 
     - name: Install OBS Studio
       ansible.builtin.package:
