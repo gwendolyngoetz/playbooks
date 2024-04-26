@@ -18,7 +18,7 @@
           - qt5ct
           # - thunar
           - tmux
-          - youtube-dl
+          # - youtube-dl
           - zathura
       when: ansible_distribution == "Debian"
 
@@ -35,7 +35,7 @@
           - qt5ct
           - thunar
           - tmux
-          - youtube-dl
+          # - youtube-dl
           - zathura
 
           - mesa-utils # for glxinfo
