@@ -9,6 +9,12 @@
     - name: Role - docker
       include_role:
         name: ../../roles/docker
+    - name: Update Apt
+      become: true
+      ansible.builtin.apt:
+        force_apt_get: true
+        update_cache: true
+        state: present
   tasks:
     - name: Role - docker_rootless
       include_role:

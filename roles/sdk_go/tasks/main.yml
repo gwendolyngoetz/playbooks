@@ -3,4 +3,4 @@
   ansible.builtin.include_tasks: "{{ item }}"
   loop:
     - install-go.yml
-    - install-go-packages.yml
+    # - install-go-packages.yml

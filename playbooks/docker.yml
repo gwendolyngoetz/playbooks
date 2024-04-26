@@ -6,3 +6,4 @@
     - ../vars/vault.yml
   roles:
     - docker
+    - docker_rootless

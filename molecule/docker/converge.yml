@@ -6,6 +6,12 @@
     - name: Role - add user
       include_role:
         name: ../../roles/add_users
+    - name: Update Apt
+      become: true
+      ansible.builtin.apt:
+        force_apt_get: true
+        update_cache: true
+        state: present
   tasks:
     - name: Role - docker
       include_role:
