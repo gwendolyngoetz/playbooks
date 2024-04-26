@@ -1,0 +1,8 @@
+---
+- name: Run Apps Role
+  ansible.builtin.include_tasks:
+    file: ../../shared/tasks/main.yml
+
+- name: Run Install ObsStudio
+  ansible.builtin.include_tasks:
+    file: install-obs-studio.yml

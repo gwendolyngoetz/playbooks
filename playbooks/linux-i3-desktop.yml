@@ -26,6 +26,8 @@
     - sdk_scala
     - applications
     - app_spotify
+    - app_firefox
+    - app_obsstudio
     - neovim
     - docker
     - docker_rootless

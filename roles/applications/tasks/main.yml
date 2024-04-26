@@ -21,8 +21,4 @@
 
 - name: Run Apps Role
   ansible.builtin.include_tasks:
-    file: install-obs-studio.yml
-
-- name: Run Apps Role
-  ansible.builtin.include_tasks:
     file: install-streamdeck.yml
