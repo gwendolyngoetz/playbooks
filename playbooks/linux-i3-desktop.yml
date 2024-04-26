@@ -33,5 +33,4 @@
     - docker_rootless
     - nfs_common
 
-    # before or after???
-    # - hestia
+    - hestia
