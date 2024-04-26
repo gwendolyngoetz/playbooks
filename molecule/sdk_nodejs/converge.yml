@@ -6,6 +6,9 @@
     - name: Role - add user
       include_role:
         name: ../../roles/add_users
+    - name: Role - add user
+      include_role:
+        name: ../../roles/shared
   tasks:
     - name: Role - sdks
       include_role:
