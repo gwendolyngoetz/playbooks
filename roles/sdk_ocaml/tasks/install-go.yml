@@ -1,0 +1,38 @@
+---
+- name: Install SDK
+  block:
+    - name: Download Installer Opam
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh
+        dest: /tmp/ocaml-installer.sh
+        mode: "0700"
+
+    - name: Install Opam
+      ansible.builtin.command:
+        cmd: /tmp/ocaml-installer.sh
+        
+        # Need to figure out how to set default
+        # - ARG OPAM_DST=/usr/local/bin/opam
+
+    - name: Add Bubblewrap to AppArmor
+      ansible.builtin.blockinfile:
+        path: /etc/apparmor.d/bwrap
+        mode: "0644"
+        owner: root
+        group: root
+        create: true
+        block: |
+          abi <abi/4.0>,
+          include <tunables/global>
+          
+          profile bwrap /usr/bin/bwrap flags=(unconfined) {
+            userns,
+          
+            # Site-specific additions and overrides. See local/README for details.
+            include if exists <local/bwrap>
+          }
+
+    - name: Initialize Opam
+      ansible.builtin.command:
+        cmd: /usr/local/bin/opam init
+        # Need to figure out how to not update profile
