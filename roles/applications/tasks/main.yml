@@ -15,9 +15,13 @@
   ansible.builtin.include_tasks:
     file: install-solaar.yml
 
-# - name: Run Apps Role
-#   ansible.builtin.include_tasks:
-#     file: install-slack.yml
+- name: Run Apps Role
+  ansible.builtin.include_tasks:
+    file: install-slack.yml
+
+- name: Run Install Intellij Role
+  ansible.builtin.include_tasks:
+    file: install-intellij.yml
 
 - name: Run Apps Role
   ansible.builtin.include_tasks:
