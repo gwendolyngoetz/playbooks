@@ -6,7 +6,7 @@
     - name: Install gum
       ansible.builtin.command:
         cmd: go install github.com/charmbracelet/gum@latest
-        
+
     - name: Install lazygit
       ansible.builtin.command:
         cmd: go install github.com/jesseduffield/lazygit@latest
