@@ -10,7 +10,7 @@
     - name: Install Opam
       ansible.builtin.command:
         cmd: /tmp/ocaml-installer.sh
-        
+
         # Need to figure out how to set default
         # - ARG OPAM_DST=/usr/local/bin/opam
 
@@ -24,10 +24,10 @@
         block: |
           abi <abi/4.0>,
           include <tunables/global>
-          
+
           profile bwrap /usr/bin/bwrap flags=(unconfined) {
             userns,
-          
+
             # Site-specific additions and overrides. See local/README for details.
             include if exists <local/bwrap>
           }

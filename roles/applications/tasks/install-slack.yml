@@ -7,4 +7,3 @@
     - name: Install Slack package
       ansible.builtin.apt:
         deb: https://downloads.slack-edge.com/desktop-releases/linux/x64/4.37.101/slack-desktop-4.37.101-amd64.deb
-
