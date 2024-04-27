@@ -1,11 +1,12 @@
 ---
 - name: Install Go
   vars:
+    sdks_golang_version: "1.22.2"
     sdks_golang_dir: "{{ vault_home }}/.golang/bin"
   block:
     - name: Download Installer Go
       ansible.builtin.get_url:
-        url: https://go.dev/dl/go1.19.4.linux-amd64.tar.gz
+        url: https://go.dev/dl/go{{ sdks_golang_version }}.linux-amd64.tar.gz
         dest: /tmp/go-installer.tar.gz
         mode: "750"
         validate_certs: false
