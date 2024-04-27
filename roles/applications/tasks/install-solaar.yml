@@ -3,13 +3,24 @@
   become: true
   tags:
     - apps
+  vars:
+    app_solaar_ubuntu_key: /etc/apt/trusted.gpg.d/solaar.asc
   block:
-    - name: Add solaar ppa
+    - name: Download GPG Key
+      ansible.builtin.get_url:
+        url: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x643ff34af9151dc814dd3a1b2303d595ee907473
+        dest: "{{ app_solaar_ubuntu_key }}"
+        mode: "0644"
+
+    - name: Add solaar repository
       ansible.builtin.apt_repository:
-        repo: ppa:solaar-unifying/stable
+        repo: deb [arch=amd64 signed-by={{ app_solaar_ubuntu_key }}] http://ppa.launchpad.net/solaar-unifying/stable/ubuntu {{ ansible_distribution_release }} main
+        state: present
+        filename: spotify
       when: ansible_distribution == "Ubuntu"
 
     - name: Install solaar
       ansible.builtin.package:
         name:
           - solaar
+
