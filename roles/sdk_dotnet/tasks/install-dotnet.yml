@@ -1,15 +1,85 @@
 ---
-- name: Install dotnet
+- name: Install dotnet 8
   become: true
   tags:
     - dev
+  vars:
+    sdk_dotnet_destination: "$HOME/.dotnet"
+    sdk_dotnet_installer: "/tmp/dotnet8.tar.gz"
+    sdk_dotnet_download_url: "https://download.visualstudio.microsoft.com/download/pr/0a1b3cbd-b4af-4d0d-9ed7-0054f0e200b4/4bcc533c66379caaa91770236667aacb/dotnet-sdk-8.0.204-linux-x64.tar.gz"
   when: ansible_distribution == "Ubuntu"
   block:
-    # - name: Install Microsoft Signing Key
-    #   ansible.builtin.apt:
-    #     deb: https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb
-
     - name: Install dotnet 8
-      ansible.builtin.apt:
-        name: dotnet-sdk-8.0
-        update_cache: true
+      ansible.builtin.get_url:
+        url: "{{ sdk_dotnet_download_url }}"
+        dest: "{{ sdk_dotnet_installer }}"
+        mode: "750"
+
+    - name: Make create directory
+      ansible.builtin.file:
+        path: "{{ sdk_dotnet_destination }}"
+        state: directory
+        mode: "0755"
+
+    - name: Run Installer
+      ansible.builtin.unarchive:
+        src: "{{ sdk_dotnet_installer }}"
+        dest: "{{ sdk_dotnet_destination }}"
+        remote_src: true
+
+- name: Install dotnet 7
+  become: true
+  tags:
+    - dev
+  vars:
+    sdk_dotnet_destination: "$HOME/.dotnet"
+    sdk_dotnet_installer: "/tmp/dotnet7.tar.gz"
+    sdk_dotnet_download_url: "https://download.visualstudio.microsoft.com/download/pr/a256265b-0ec6-4b63-b943-bc27bcfc98c0/47c8bbd54d7f6dbfe0ca4985c410282e/dotnet-sdk-7.0.408-linux-x64.tar.gz"
+  when: ansible_distribution == "Ubuntu"
+  block:
+    - name: Install dotnet 7
+      ansible.builtin.get_url:
+        url: "{{ sdk_dotnet_download_url }}"
+        dest: "{{ sdk_dotnet_installer }}"
+        mode: "750"
+
+    - name: Make create directory
+      ansible.builtin.file:
+        path: "{{ sdk_dotnet_destination }}"
+        state: directory
+        mode: "0755"
+
+    - name: Run Installer
+      ansible.builtin.unarchive:
+        src: "{{ sdk_dotnet_installer }}"
+        dest: "{{ sdk_dotnet_destination }}"
+        remote_src: true
+
+- name: Install dotnet 6
+  become: true
+  tags:
+    - dev
+  vars:
+    sdk_dotnet_destination: "$HOME/.dotnet"
+    sdk_dotnet_installer: "/tmp/dotnet6.tar.gz"
+    sdk_dotnet_download_url: "https://download.visualstudio.microsoft.com/download/pr/19144d78-6f95-4810-a9f6-3bf86035a244/23f4654fc5352e049b517937f94be839/dotnet-sdk-6.0.421-linux-x64.tar.gz"
+  when: ansible_distribution == "Ubuntu"
+ 
+  block:
+    - name: Install dotnet 6
+      ansible.builtin.get_url:
+        url: "{{ sdk_dotnet_download_url }}"
+        dest: "{{ sdk_dotnet_installer }}"
+        mode: "750"
+
+    - name: Make create directory
+      ansible.builtin.file:
+        path: "{{ sdk_dotnet_destination }}"
+        state: directory
+        mode: "0755"
+
+    - name: Run Installer
+      ansible.builtin.unarchive:
+        src: "{{ sdk_dotnet_installer }}"
+        dest: "{{ sdk_dotnet_destination }}"
+        remote_src: true
