@@ -21,6 +21,7 @@
       ansible.builtin.git:
         repo: https://github.com/phillbush/xmenu.git
         dest: "{{ desktop_xmenu_path }}"
+        version: "9c6188e6f41176909fea4b8d8d408597a29cd3e0" # Last working commit before stopped working with polybar
 
     - name: Run xmenu - make
       ansible.builtin.command: make
