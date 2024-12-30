@@ -18,23 +18,18 @@
         path: /etc/netplan/00-installer-config.yaml
         state: touch
         mode: "0644"
-# Change the renderer to NetworkManager and make enp7s0 optional
-#
-#     optional=true
-#     dhcp4=false
-#     dhcp6=false
-#
 # Sample
 #
 # network:
 #   version: 2
-#   renderer: NetworkManager
+#   renderer: networkd
 #   ethernets:
-#     enp6s0:
+#     eno1:
 #       dhcp4: true
-#     enp7s0:
-#       dhcp4: false
+#        activation-mode: off
+#     eno2:
+#       dhcp4: true
 #       dhcp6: false
-#       optional: true
+#       wakeonlan: true
 
 # sudo netplan apply
