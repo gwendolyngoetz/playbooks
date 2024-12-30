@@ -26,3 +26,7 @@
 - name: Run Apps Role
   ansible.builtin.include_tasks:
     file: install-streamdeck.yml
+
+- name: Run Apps Role
+  ansible.builtin.include_tasks:
+    file: install-gh.yml

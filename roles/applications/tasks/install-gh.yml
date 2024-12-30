@@ -1,0 +1,25 @@
+---
+- name: Install gh
+  become: true
+  tags:
+    - apps
+  vars:
+    app_gh_ubuntu_key: /etc/apt/keyrings/githubcli.gpg
+  block:
+    - name: Download GPG Key
+      ansible.builtin.get_url:
+        url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+        dest: "{{ app_gh_ubuntu_key }}"
+        mode: "0644"
+
+    - name: Add gh repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64 signed-by={{ app_gh_ubuntu_key }}] https://cli.github.com/packages stable main
+        state: present
+        filename: /etc/apt/sources.list.d/github-cli.list
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Install gh
+      ansible.builtin.package:
+        name:
+          - gh
