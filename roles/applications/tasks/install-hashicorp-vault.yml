@@ -3,22 +3,21 @@
   become: true
   tags:
     - apps
+  when: ansible_distribution == "Ubuntu"
   vars:
-    applications_ubuntu_vault_key: /etc/apt/trusted.gpg.d/hashicorp-vault.asc
+    applications_vault_key: /etc/apt/keyrings/hashicorp-vault.asc
   block:
     - name: Download Vault GPG Key
       ansible.builtin.get_url:
         url: https://apt.releases.hashicorp.com/gpg
-        dest: "{{ applications_ubuntu_vault_key }}"
+        dest: "{{ applications_vault_key }}"
         mode: "0644"
-      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
 
-    - name: Add Vault Repository (Ubuntu or Debian)
+    - name: Add Vault Repository
       ansible.builtin.apt_repository:
-        repo: deb [signed-by={{ applications_ubuntu_vault_key }}] https://apt.releases.hashicorp.com $(lsb_release -cs) main
+        repo: deb [arch=amd64 signed-by={{ applications_vault_key }}] https://apt.releases.hashicorp.com $(lsb_release -cs) main
         state: present
-        filename: spotify
-      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
+        filename: hashicorp
 
     - name: Install Vault
       ansible.builtin.package:
