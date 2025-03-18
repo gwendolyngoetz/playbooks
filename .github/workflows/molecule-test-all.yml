@@ -15,7 +15,7 @@ jobs:
   build-matrix:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - id: set_matrix
         run: echo "role_matrix=$(ls roles --hide=windows --hide=shared --hide=macos | jq -R -s -c 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
@@ -32,10 +32,10 @@ jobs:
         distro: [ubuntu2404]
         # distro: [ubuntu2404, debian11]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
         with:
           python-version: '3.13'
           cache: 'pip'
@@ -46,7 +46,7 @@ jobs:
         run: ansible-galaxy install -r requirements.yml
 
       - name: Cache Ansible Packages
-        uses: actions/cache@v4
+        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf # v4
         with:
           path: ~/.ansible
           key: ${{ runner.os }}-ansible
