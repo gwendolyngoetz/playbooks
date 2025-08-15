@@ -7,3 +7,4 @@ skip_list:
   - partial-become
   - risky-shell-pipe
   - yaml[line-length]
+  - var-naming[no-role-prefix]
