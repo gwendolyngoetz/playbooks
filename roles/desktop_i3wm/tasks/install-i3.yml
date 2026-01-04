@@ -35,7 +35,7 @@
           - libxcb-xrm-dev
           - automake
           - libxcb-shape0-dev
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
       become: true
 
     - name: Clone i3 from github

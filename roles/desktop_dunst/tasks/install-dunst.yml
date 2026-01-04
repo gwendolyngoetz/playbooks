@@ -9,7 +9,7 @@
       ansible.builtin.package:
         name:
           - git
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
       become: true
 
     - name: Install dunst dependencies (Ubuntu)
@@ -25,7 +25,7 @@
           - libxinerama-dev
           - libxrandr-dev
           - libxss-dev
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
       become: true
 
     - name: Clone dunst

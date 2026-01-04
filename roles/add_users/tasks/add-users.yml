@@ -10,7 +10,7 @@
     - name: Set sudo group name (Ubuntu)
       ansible.builtin.set_fact:
         sudo_group: sudo
-      when: (ansible_distribution == "Ubuntu" or ansible_distribution == "Debian")
+      when: (ansible_facts['distribution'] == "Ubuntu" or ansible_facts['distribution'] == "Debian")
 
     - name: Add my user account
       ansible.builtin.user:

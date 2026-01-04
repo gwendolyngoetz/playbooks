@@ -9,7 +9,7 @@
         name:
           - dbus-user-session
           - uidmap
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Disable system-wide docker daemon service
       ansible.builtin.systemd:

@@ -3,7 +3,7 @@
   become: true
   tags:
     - apps
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_facts['distribution'] == "Ubuntu"
   vars:
     applications_vault_key: /etc/apt/keyrings/hashicorp-vault.asc
   block:
@@ -15,7 +15,7 @@
 
     - name: Add Vault Repository
       ansible.builtin.apt_repository:
-        repo: deb [arch=amd64 signed-by={{ applications_vault_key }}] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+        repo: deb [arch=amd64 signed-by={{ applications_vault_key }}] https://apt.releases.hashicorp.com {{ ansible_facts['distribution_release'] }} main
         state: present
         filename: hashicorp
 

@@ -5,7 +5,7 @@
     - apps
   vars:
     applications_ubuntu_key: /etc/apt/trusted.gpg.d/spotify.asc
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_facts['distribution'] == "Ubuntu"
   block:
     - name: Download Spotify GPG Key
       ansible.builtin.get_url:

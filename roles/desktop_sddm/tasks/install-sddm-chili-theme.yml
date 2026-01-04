@@ -30,7 +30,7 @@
         name:
           - qml-module-qtquick-controls
           - qml-module-qtquick-controls2
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
       become: true
 
     - name: Set SDDM theme

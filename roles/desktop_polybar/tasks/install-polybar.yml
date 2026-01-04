@@ -17,7 +17,7 @@
           - python3
           - python3-sphinx
           - python3-packaging
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Install polybar required dependencies (Ubuntu)
       ansible.builtin.package:
@@ -33,7 +33,7 @@
           - libxcb-image0-dev
           - libxcb-ewmh-dev
           - libxcb-icccm4-dev
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Install polybar optional dependencies (Ubuntu)
       ansible.builtin.package:
@@ -48,7 +48,7 @@
           - libmpdclient-dev
           - libcurl4-openssl-dev
           - libnl-genl-3-dev
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
 - name: Clone Polybar Repository
   tags:

@@ -22,7 +22,7 @@
           - g++
           - pkg-config
         update_cache: true
-      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
+      when: (ansible_facts['distribution'] == "Ubuntu") or (ansible_facts['distribution'] == "Debian")
       become: true
 
     - name: Install neovim build dependencies (MacOSX)
@@ -43,7 +43,7 @@
           - make
           - pkgconfig
       become: true
-      when: ansible_distribution == "MacOSX"
+      when: ansible_facts['distribution'] == "MacOSX"
 
     - name: Clone neovim from github
       ansible.builtin.git:

@@ -3,7 +3,7 @@
   become: true
   tags:
     - homeassistant
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_facts['distribution'] == "Ubuntu"
   block:
     - name: Install required system packages
       ansible.builtin.apt:

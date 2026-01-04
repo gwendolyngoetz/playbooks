@@ -8,4 +8,4 @@
       ansible.builtin.package:
         name:
           - libnotify-bin
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"

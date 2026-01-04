@@ -3,7 +3,7 @@
   become: true
   tags:
     - system
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_facts['distribution'] == "Ubuntu"
   block:
     - name: Create /etc/cloud
       ansible.builtin.file:

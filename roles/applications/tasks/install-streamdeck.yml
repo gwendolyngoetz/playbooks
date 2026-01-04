@@ -12,7 +12,7 @@
           - libhidapi-libusb0
           - libxcb-xinerama0
           - udev
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Start udev service
       ansible.builtin.service:

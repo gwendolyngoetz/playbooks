@@ -10,4 +10,4 @@
           - libssl-dev
           - libxml2-utils
         update_cache: true
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"

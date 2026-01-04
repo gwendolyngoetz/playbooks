@@ -1,7 +1,7 @@
 ---
 - name: Upgrade Server (Ubuntu or Debian)
   become: true
-  when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
+  when: (ansible_facts['distribution'] == "Ubuntu") or (ansible_facts['distribution'] == "Debian")
   block:
     - name: Update apt repo and cache (Ubuntu or Debian)
       ansible.builtin.apt:

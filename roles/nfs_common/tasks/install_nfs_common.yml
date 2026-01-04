@@ -3,7 +3,7 @@
   become: true
   tags:
     - dev
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_facts['distribution'] == "Ubuntu"
   block:
     - name: Install NFS Common
       ansible.builtin.apt:

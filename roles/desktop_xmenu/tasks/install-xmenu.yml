@@ -14,7 +14,7 @@
           # original
           - libxinerama-dev
           - libimlib2-dev
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
       become: true
 
     - name: Clone xmenu

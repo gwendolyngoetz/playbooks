@@ -17,7 +17,7 @@
         repo: deb [arch=amd64 signed-by={{ app_gh_ubuntu_key }}] https://cli.github.com/packages stable main
         state: present
         filename: /etc/apt/sources.list.d/github-cli.list
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Install gh
       ansible.builtin.package:

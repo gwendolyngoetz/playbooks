@@ -20,7 +20,7 @@
           - tmux
           # - youtube-dl
           - zathura
-      when: ansible_distribution == "Debian"
+      when: ansible_facts['distribution'] == "Debian"
 
     - name: Install other apps (Ubuntu)
       ansible.builtin.package:
@@ -41,4 +41,4 @@
           - mesa-utils # for glxinfo
           - nfs-common
           - policykit-1-gnome
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"

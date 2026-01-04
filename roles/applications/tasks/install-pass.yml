@@ -9,6 +9,6 @@
         name:
           - pass
           - pass-extension-otp
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
   # Configure gpg

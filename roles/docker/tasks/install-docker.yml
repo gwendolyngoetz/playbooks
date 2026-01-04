@@ -3,7 +3,7 @@
   become: true
   tags:
     - dev
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_facts['distribution'] == "Ubuntu"
   block:
     - name: Install required system packages
       ansible.builtin.apt:
@@ -22,7 +22,7 @@
 
     - name: Add Docker Repository
       ansible.builtin.apt_repository:
-        repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+        repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_facts['distribution_release'] }} stable
         state: present
         filename: docker
 
@@ -30,7 +30,7 @@
   become: true
   tags:
     - dev
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_facts['distribution'] == "Ubuntu"
   block:
     - name: Update apt and install docker-ce
       ansible.builtin.package:
@@ -44,7 +44,7 @@
   become: true
   tags:
     - dev
-  when: ansible_distribution == "Debian"
+  when: ansible_facts['distribution'] == "Debian"
   block:
     - name: Install
       ansible.builtin.fail:

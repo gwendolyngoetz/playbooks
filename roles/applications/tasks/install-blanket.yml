@@ -10,7 +10,7 @@
       ansible.builtin.apt:
         update_cache: true
       changed_when: false
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Install dependencies
       ansible.builtin.package:

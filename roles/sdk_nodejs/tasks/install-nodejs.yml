@@ -11,7 +11,7 @@
         url: https://raw.githubusercontent.com/nvm-sh/nvm/{{ nvm_version }}/install.sh
         dest: "{{ nvm_file }}"
         mode: "0755"
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Install NVM
       ansible.builtin.shell:

@@ -4,7 +4,7 @@
     - apps
   vars:
     app_firefox_mozilla_gpg_key: /etc/apt/trusted.gpg.d/mozilla.asc
-  when: ansible_distribution == "Ubuntu"
+  when: ansible_facts['distribution'] == "Ubuntu"
   block:
     - name: Download GPG Key
       ansible.builtin.get_url:

@@ -10,18 +10,18 @@
         state: present
         pkg:
           - software-properties-common
-      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
+      when: (ansible_facts['distribution'] == "Ubuntu") or (ansible_facts['distribution'] == "Debian")
 
     - name: Enable apt universe repository
       ansible.builtin.command: add-apt-repository universe -y
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Update apt repo and cache
       ansible.builtin.apt:
         update_cache: true
         force_apt_get: true
         cache_valid_time: 3600
-      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
+      when: (ansible_facts['distribution'] == "Ubuntu") or (ansible_facts['distribution'] == "Debian")
 
     - name: Stop and disable unattended-upgrades
       ansible.builtin.systemd_service:
@@ -61,4 +61,4 @@
           - xdotool
           - xsel
           - zip
-      when: (ansible_distribution == "Ubuntu") or (ansible_distribution == "Debian")
+      when: (ansible_facts['distribution'] == "Ubuntu") or (ansible_facts['distribution'] == "Debian")

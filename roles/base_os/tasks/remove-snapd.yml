@@ -9,7 +9,7 @@
         name: snapd
         state: absent
         purge: true
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Remove snapd-related directories
       ansible.builtin.file:
@@ -23,7 +23,7 @@
         - "{{ vault_home }}/snap" # nonroot
       loop_control:
         loop_var: snap_folder
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Create nosnap.pref file
       ansible.builtin.file:

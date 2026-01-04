@@ -14,10 +14,10 @@
 
     - name: Add solaar repository
       ansible.builtin.apt_repository:
-        repo: deb [arch=amd64 signed-by={{ app_solaar_ubuntu_key }}] http://ppa.launchpad.net/solaar-unifying/stable/ubuntu {{ ansible_distribution_release }} main
+        repo: deb [arch=amd64 signed-by={{ app_solaar_ubuntu_key }}] http://ppa.launchpad.net/solaar-unifying/stable/ubuntu {{ ansible_facts['distribution_release'] }} main
         state: present
         filename: spotify
-      when: ansible_distribution == "Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
 
     - name: Install solaar
       ansible.builtin.package:

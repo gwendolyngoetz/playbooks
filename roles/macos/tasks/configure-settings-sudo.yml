@@ -5,4 +5,4 @@
       ansible.builtin.blockinfile:
         path: /etc/pam.d/sudo
         block: auth       sufficient      pam_tid.so
-      when: ansible_distribution == "MacOSX"
+      when: ansible_facts['distribution'] == "MacOSX"
