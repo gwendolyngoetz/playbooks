@@ -1,11 +1,11 @@
 [new]
-ansible-target
+ansible-target-2510
 
 [new_wayland]
-ansible-target
+ansible-target-2510
 
 [local_vm_servers]
-ansible-target
+ansible-target-2510
 
 [all_servers]
-ansible-target
+ansible-target-2510
