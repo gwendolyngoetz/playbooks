@@ -35,15 +35,15 @@ fi
 # ------------------------------------
 if [[ "${rollback_snapshot}" == "true" ]]; then
   node="nyx"
-  vmid="201"
+  vmid="100"
   snapshot="before-running-playbooks"
   auth_header="Authorization: PVEAPIToken=${PROXMOX_API_TOKEN_ID}=${PROXMOX_API_SECRET}"
   base_uri="https://${node}.goetz.casa:8006/api2/json"
-  vm_hostname="ansible-target-2404"
+  vm_hostname="ansible-target-2510"
   
-  echo "Rolling back ${vm_hostname} to "${snapshot}
+  echo "Rolling back ${vm_hostname} to ${snapshot}"
   rollback_uri="${base_uri}/nodes/${node}/qemu/${vmid}/snapshot/${snapshot}/rollback?start=1"
-  curl -s --header "${auth_header}" -X POST "${rollback_uri}" > /dev/null
+  curl -s --header "${auth_header}" -X POST "${rollback_uri}" >/dev/null
   
   status_uri="${base_uri}/nodes/${node}/qemu/${vmid}/status/current"
   
@@ -55,7 +55,7 @@ if [[ "${rollback_snapshot}" == "true" ]]; then
       sleep 0.5
   done
   
-  while [[ "$(ssh -o ConnectTimeout=1 "${vm_hostname}" "runlevel" > /dev/null 2> /dev/null; echo $?)" != "0" ]]; do
+  while [[ "$(ssh -o ConnectTimeout=1 "${vm_hostname}" "true" >/dev/null 2>/dev/null; echo $?)" != "0" ]]; do
       echo -n "."
       sleep 0.5
   done
